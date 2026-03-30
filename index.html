@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Luciana & Gusttavo| Nosso Casamento</title>
+    <title>Gusttavo & Luciana | Nosso Casamento</title>
     <style>
         /* Variáveis de Cores - Estilo Minimalista */
         :root {
@@ -277,6 +277,158 @@
             color: var(--texto-secundario);
             margin-top: 8px;
         }
+
+        /* Botão Presentes no Hero */
+        .btn-presentes-hero {
+            display: inline-block;
+            margin-top: 36px;
+            padding: 12px 34px;
+            border: 1px solid rgba(255,255,255,0.7);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-presentes-hero:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+        /* Seção de Presentes */
+        .categorias-filtro {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .filtro-btn {
+            padding: 8px 20px;
+            border: 1px solid #ddd;
+            background: none;
+            font-family: var(--fonte-textos);
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--texto-secundario);
+        }
+
+        .filtro-btn.ativo,
+        .filtro-btn:hover {
+            border-color: var(--texto-principal);
+            color: var(--texto-principal);
+        }
+
+        .presentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .presente-card {
+            border: 1px solid #ebebeb;
+            padding: 28px 20px;
+            text-align: center;
+            transition: box-shadow 0.3s;
+        }
+
+        .presente-card:hover {
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+        }
+
+        .presente-card.oculto {
+            display: none;
+        }
+
+        .presente-cat-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-bottom: 14px;
+        }
+
+        .presente-nome {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--texto-principal);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .presente-descricao {
+            font-size: 0.82rem;
+            color: var(--texto-secundario);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .presente-valor {
+            font-size: 1.4rem;
+            font-weight: 200;
+            color: var(--texto-principal);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .presente-btn {
+            display: inline-block;
+            padding: 10px 22px;
+            border: 1px solid var(--texto-principal);
+            color: var(--texto-principal);
+            text-decoration: none;
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .presente-btn:hover {
+            background: var(--texto-principal);
+            color: var(--branco-puro);
+        }
+
+        /* Barra por card de presente */
+        .presente-barra-bg {
+            width: 100%;
+            height: 2px;
+            background: #ebebeb;
+            margin-top: 20px;
+        }
+
+        .presente-barra-fill {
+            height: 2px;
+            background: var(--texto-principal);
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .presente-barra-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--texto-secundario);
+            margin-top: 6px;
+            text-align: right;
+        }
+
+        .presente-card.reservado {
+            opacity: 0.5;
+        }
+
+        .presente-btn.btn-reservado {
+            border-color: #bbb;
+            color: #bbb;
+            cursor: default;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -292,6 +444,7 @@
             <h1>Gusttavo & Luciana</h1>
             <p class="data">15 de Agosto de 2026 • 18:00</p>
             <div class="contador" id="contador"></div>
+            <a href="#presentes" class="btn-presentes-hero">Lista de Presentes</a>
         </div>
     </section>
 
@@ -341,6 +494,173 @@
         <p style="color: var(--texto-secundario);">Detalhes do local, cerimônia e mapa.</p>
     </section>
 
+    <!-- ===================== LISTA DE PRESENTES ===================== -->
+    <section id="presentes" class="fundo-cinza">
+        <h2>Lista de Presentes</h2>
+        <p style="color: var(--texto-secundario); margin-bottom: 40px;">
+            Sua presença é o nosso maior presente. Mas se quiser nos presentear, ficamos felizes com qualquer escolha.
+        </p>
+
+        <!-- Filtros de Categoria -->
+        <div class="categorias-filtro">
+            <button class="filtro-btn ativo" data-cat="todos">Todos</button>
+            <button class="filtro-btn" data-cat="cozinha">Cozinha</button>
+            <button class="filtro-btn" data-cat="quarto">Quarto & Banho</button>
+            <button class="filtro-btn" data-cat="eletro">Eletrodomésticos</button>
+            <button class="filtro-btn" data-cat="luademel">Lua de Mel</button>
+            <button class="filtro-btn" data-cat="decoracao">Decoração</button>
+        </div>
+
+        <!-- Grid de Presentes -->
+        <div class="presentes-grid">
+
+            <!-- Cozinha -->
+            <div class="presente-card" data-cat="cozinha" data-id="panelas-premium" data-valor="890">
+                <div class="presente-cat-label">Cozinha</div>
+                <div class="presente-nome">Conjunto de Panelas Premium</div>
+                <div class="presente-descricao">6 peças antiaderentes com tampa de vidro</div>
+                <div class="presente-valor">R$ 890</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="tacas-cristal" data-valor="320">
+                <div class="presente-cat-label">Cozinha</div>
+                <div class="presente-nome">Jogo de Taças de Cristal</div>
+                <div class="presente-descricao">6 taças para vinho tinto e branco</div>
+                <div class="presente-valor">R$ 320</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="pratos-porcelana" data-valor="380">
+                <div class="presente-cat-label">Cozinha</div>
+                <div class="presente-nome">Jogo de Pratos Porcelana</div>
+                <div class="presente-descricao">6 pratos rasos + 6 fundos</div>
+                <div class="presente-valor">R$ 380</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <!-- Quarto & Banho -->
+            <div class="presente-card" data-cat="quarto" data-id="cama-king" data-valor="520">
+                <div class="presente-cat-label">Quarto & Banho</div>
+                <div class="presente-nome">Jogo de Cama King 500 Fios</div>
+                <div class="presente-descricao">100% algodão egípcio, 4 peças</div>
+                <div class="presente-valor">R$ 520</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="quarto" data-id="toalhas-premium" data-valor="340">
+                <div class="presente-cat-label">Quarto & Banho</div>
+                <div class="presente-nome">Kit de Toalhas Premium</div>
+                <div class="presente-descricao">8 peças felpudas de algodão turco</div>
+                <div class="presente-valor">R$ 340</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="quarto" data-id="travesseiros-latex" data-valor="280">
+                <div class="presente-cat-label">Quarto & Banho</div>
+                <div class="presente-nome">Par de Travesseiros de Látex</div>
+                <div class="presente-descricao">Antialérgico, suporte cervical</div>
+                <div class="presente-valor">R$ 280</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <!-- Eletrodomésticos -->
+            <div class="presente-card" data-cat="eletro" data-id="cafeteira-nespresso" data-valor="750">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Cafeteira Nespresso</div>
+                <div class="presente-descricao">Cápsulas, espumador de leite incluso</div>
+                <div class="presente-valor">R$ 750</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="aspirador-robo" data-valor="1500">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Aspirador Robô</div>
+                <div class="presente-descricao">Com mapeamento inteligente e app</div>
+                <div class="presente-valor">R$ 1.500</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="liquidificador" data-valor="480">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Liquidificador de Alta Potência</div>
+                <div class="presente-descricao">1200W, copo de vidro, 10 velocidades</div>
+                <div class="presente-valor">R$ 480</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <!-- Lua de Mel -->
+            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-200" data-valor="200">
+                <div class="presente-cat-label">Lua de Mel</div>
+                <div class="presente-nome">Cota Lua de Mel</div>
+                <div class="presente-descricao">Contribua para nossa viagem</div>
+                <div class="presente-valor">R$ 200</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-500" data-valor="500">
+                <div class="presente-cat-label">Lua de Mel</div>
+                <div class="presente-nome">Cota Lua de Mel</div>
+                <div class="presente-descricao">Contribua para nossa viagem</div>
+                <div class="presente-valor">R$ 500</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="luademel" data-id="jantar-romantico" data-valor="350">
+                <div class="presente-cat-label">Lua de Mel</div>
+                <div class="presente-nome">Jantar Romântico</div>
+                <div class="presente-descricao">Uma noite especial para dois</div>
+                <div class="presente-valor">R$ 350</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <!-- Decoração -->
+            <div class="presente-card" data-cat="decoracao" data-id="quadro-sala" data-valor="420">
+                <div class="presente-cat-label">Decoração</div>
+                <div class="presente-nome">Quadro Abstrato para Sala</div>
+                <div class="presente-descricao">Arte em tela, 80×60cm</div>
+                <div class="presente-valor">R$ 420</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="decoracao" data-id="vaso-ceramica" data-valor="280">
+                <div class="presente-cat-label">Decoração</div>
+                <div class="presente-nome">Vaso de Cerâmica Artesanal</div>
+                <div class="presente-descricao">Peça única, feita à mão</div>
+                <div class="presente-valor">R$ 280</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+            <div class="presente-card" data-cat="decoracao" data-id="espelho-redondo" data-valor="380">
+                <div class="presente-cat-label">Decoração</div>
+                <div class="presente-nome">Espelho Redondo de Parede</div>
+                <div class="presente-descricao">Moldura metálica dourada, Ø 80cm</div>
+                <div class="presente-valor">R$ 380</div>
+                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== SCRIPT: FILTROS DE PRESENTES ===================== -->
+    <script>
+        document.querySelectorAll('.filtro-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+                this.classList.add('ativo');
+
+                const cat = this.dataset.cat;
+                document.querySelectorAll('.presente-card').forEach(card => {
+                    if (cat === 'todos' || card.dataset.cat === cat) {
+                        card.classList.remove('oculto');
+                    } else {
+                        card.classList.add('oculto');
+                    }
+                });
+            });
+        });
+    </script>
+
     <!-- ===================== SCRIPT: CONTAGEM REGRESSIVA ===================== -->
     <script>
         const dataCasamento = new Date("August 15, 2026 18:00:00").getTime();
@@ -384,7 +704,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
-        import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
         import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
 
         const firebaseConfig = {
@@ -423,6 +743,81 @@
         }
 
         atualizarContadorConvidados();
+
+        atualizarContadorConvidados();
+
+        // ===================== PRESENTES - RESERVAS =====================
+        const VALOR_TOTAL_LISTA = 7590;
+
+        // Adiciona barra em cada card e preenche proporcionalmente ao valor total
+        document.querySelectorAll('.presente-card').forEach(card => {
+            const valor = parseInt(card.dataset.valor);
+            const pct = (valor / VALOR_TOTAL_LISTA) * 100;
+
+            const barra = document.createElement('div');
+            barra.className = 'presente-barra-bg';
+            barra.innerHTML = `<div class="presente-barra-fill" style="width: ${pct.toFixed(1)}%"></div>`;
+            card.appendChild(barra);
+
+            // Exibe o percentual abaixo da barra
+            const label = document.createElement('div');
+            label.className = 'presente-barra-label';
+            label.innerText = pct.toFixed(0) + '% do total';
+            card.appendChild(label);
+        });
+
+        async function carregarReservas() {
+            try {
+                const snapshot = await getDocs(collection(db, "presentes_reservados"));
+                const idsReservados = new Set();
+                snapshot.forEach(d => idsReservados.add(d.id));
+
+                idsReservados.forEach(id => {
+                    const card = document.querySelector(`.presente-card[data-id="${id}"]`);
+                    if (card) {
+                        card.classList.add('reservado');
+                        const btn = card.querySelector('.presente-btn');
+                        btn.classList.add('btn-reservado');
+                        btn.innerText = 'Reservado ✓';
+                    }
+                });
+            } catch (e) {
+                console.warn('Erro ao carregar reservas:', e);
+            }
+        }
+
+        carregarReservas();
+
+        document.querySelectorAll('.presente-btn').forEach(btn => {
+            btn.addEventListener('click', async function (e) {
+                e.preventDefault();
+                if (this.classList.contains('btn-reservado')) return;
+
+                const card = this.closest('.presente-card');
+                const id = card.dataset.id;
+                const nome = card.querySelector('.presente-nome').innerText;
+                const valor = parseInt(card.dataset.valor);
+                const mpLink = this.getAttribute('href');
+
+                try {
+                    await setDoc(doc(db, "presentes_reservados", id), {
+                        nome: nome,
+                        valor: valor,
+                        dataReserva: new Date().toISOString()
+                    });
+
+                    card.classList.add('reservado');
+                    this.classList.add('btn-reservado');
+                    this.innerText = 'Reservado ✓';
+                } catch (e) {
+                    console.error('Erro ao registrar reserva:', e);
+                }
+
+                if (mpLink && mpLink !== '#') {
+                    window.open(mpLink, '_blank');
+                }
+            });
+        });
 
         // ===================== MOSAICO =====================
         const TOTAL_CELULAS = 12; // 4 colunas × 3 linhas
