@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gusttavo & Luciana | Nosso Casamento</title>
+    <title> Luciana & Gusttavo| Nosso Casamento</title>
     <style>
         /* Variáveis de Cores - Estilo Minimalista */
         :root {
@@ -65,16 +65,16 @@
             position: absolute;
             inset: 0;
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
             z-index: 0;
             gap: 0;
         }
 
         @media (max-width: 768px) {
             .mosaic-bg {
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: repeat(5, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
             }
         }
 
@@ -90,6 +90,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center top;
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
@@ -250,6 +251,12 @@
             font-weight: 300;
         }
 
+        #total-convidados {
+            font-size: 2rem;
+            font-weight: 200;
+            color: var(--texto-principal);
+        }
+
         .barra-progresso-bg {
             width: 100%;
             height: 1px;
@@ -302,12 +309,6 @@
         </div>
     </section>
 
-    <!-- ===================== O EVENTO ===================== -->
-    <section id="evento">
-        <h2>O Evento</h2>
-        <p style="color: var(--texto-secundario);">Detalhes do local, cerimônia e mapa.</p>
-    </section>
-
     <!-- ===================== CONFIRMAÇÃO DE PRESENÇA ===================== -->
     <section id="rsvp" class="fundo-cinza">
         <h2>Confirme sua Presença</h2>
@@ -332,6 +333,12 @@
             <button type="submit" id="btn-confirmar">Confirmar Presença</button>
             <p id="mensagem-feedback"></p>
         </form>
+    </section>
+
+    <!-- ===================== O EVENTO ===================== -->
+    <section id="evento">
+        <h2>O Evento</h2>
+        <p style="color: var(--texto-secundario);">Detalhes do local, cerimônia e mapa.</p>
     </section>
 
     <!-- ===================== SCRIPT: CONTAGEM REGRESSIVA ===================== -->
@@ -418,7 +425,7 @@
         atualizarContadorConvidados();
 
         // ===================== MOSAICO =====================
-        const TOTAL_CELULAS = 20;
+        const TOTAL_CELULAS = 12; // 4 colunas × 3 linhas
         const INTERVALO_TROCA = 5000;
         const ATRASO_ENTRE_CELULAS = 400;
 
