@@ -501,6 +501,252 @@
             cursor: default;
             pointer-events: none;
         }
+
+        /* Imagem do card */
+        .presente-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            margin: -28px -20px 18px;
+            width: calc(100% + 40px);
+        }
+
+        .presente-img-placeholder {
+            width: calc(100% + 40px);
+            height: 160px;
+            margin: -28px -20px 18px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        /* Modal de pagamento */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.aberto {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-img-placeholder {
+            width: 100%;
+            height: 220px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .modal-fechar {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: rgba(0,0,0,0.35);
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            line-height: 32px;
+            text-align: center;
+        }
+
+        .modal-corpo {
+            padding: 28px 28px 36px;
+        }
+
+        .modal-cat {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-bottom: 8px;
+        }
+
+        .modal-nome {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--texto-principal);
+            margin-bottom: 6px;
+        }
+
+        .modal-descricao {
+            font-size: 0.85rem;
+            color: var(--texto-secundario);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .modal-valor {
+            font-size: 1.6rem;
+            font-weight: 200;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
+            margin-bottom: 28px;
+        }
+
+        .modal-barra-bg {
+            width: 100%;
+            height: 2px;
+            background: #ebebeb;
+            margin-bottom: 6px;
+        }
+
+        .modal-barra-fill {
+            height: 2px;
+            background: var(--texto-principal);
+            transition: width 1s ease;
+        }
+
+        .modal-barra-label {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--texto-secundario);
+            text-align: right;
+            margin-bottom: 28px;
+        }
+
+        .modal-titulo-opcoes {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-bottom: 16px;
+        }
+
+        .modal-opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-opcao {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.25s;
+        }
+
+        .modal-opcao:hover {
+            border-color: var(--texto-principal);
+        }
+
+        .modal-opcao-icone {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+        }
+
+        .modal-opcao-texto {
+            text-align: left;
+        }
+
+        .modal-opcao-titulo {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--texto-principal);
+            display: block;
+        }
+
+        .modal-opcao-subtitulo {
+            font-size: 0.75rem;
+            color: var(--texto-secundario);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* PIX expandido */
+        .pix-box {
+            display: none;
+            margin-top: 16px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .pix-box.aberto { display: block; }
+
+        .pix-chave {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
+            font-weight: 400;
+            margin: 12px 0;
+            word-break: break-all;
+        }
+
+        .pix-copiar {
+            padding: 10px 24px;
+            background: var(--texto-principal);
+            color: #fff;
+            border: none;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .pix-instrucao {
+            font-size: 0.78rem;
+            color: var(--texto-secundario);
+            margin-top: 14px;
+            line-height: 1.6;
+        }
+
+        .pix-confirmar {
+            margin-top: 16px;
+            padding: 12px 28px;
+            border: 1px solid var(--texto-principal);
+            background: none;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: var(--texto-principal);
+            transition: all 0.3s;
+        }
+
+        .pix-confirmar:hover {
+            background: var(--texto-principal);
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -586,143 +832,422 @@
         <!-- Filtros de Categoria -->
         <div class="categorias-filtro">
             <button class="filtro-btn ativo" data-cat="todos">Todos</button>
-            <button class="filtro-btn" data-cat="cozinha">Cozinha</button>
-            <button class="filtro-btn" data-cat="quarto">Quarto & Banho</button>
             <button class="filtro-btn" data-cat="eletro">Eletrodomésticos</button>
-            <button class="filtro-btn" data-cat="luademel">Lua de Mel</button>
-            <button class="filtro-btn" data-cat="decoracao">Decoração</button>
+            <button class="filtro-btn" data-cat="cozinha">Cozinha & Mesa</button>
+            <button class="filtro-btn" data-cat="casa">Casa</button>
         </div>
 
         <!-- Grid de Presentes -->
         <div class="presentes-grid">
 
-            <!-- Cozinha -->
-            <div class="presente-card" data-cat="cozinha" data-id="panelas-premium" data-valor="890">
-                <div class="presente-cat-label">Cozinha</div>
-                <div class="presente-nome">Conjunto de Panelas Premium</div>
-                <div class="presente-descricao">6 peças antiaderentes com tampa de vidro</div>
-                <div class="presente-valor">R$ 890</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
-            </div>
-
-            <div class="presente-card" data-cat="cozinha" data-id="tacas-cristal" data-valor="320">
-                <div class="presente-cat-label">Cozinha</div>
-                <div class="presente-nome">Jogo de Taças de Cristal</div>
-                <div class="presente-descricao">6 taças para vinho tinto e branco</div>
-                <div class="presente-valor">R$ 320</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
-            </div>
-
-            <div class="presente-card" data-cat="cozinha" data-id="pratos-porcelana" data-valor="380">
-                <div class="presente-cat-label">Cozinha</div>
-                <div class="presente-nome">Jogo de Pratos Porcelana</div>
-                <div class="presente-descricao">6 pratos rasos + 6 fundos</div>
-                <div class="presente-valor">R$ 380</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
-            </div>
-
-            <!-- Quarto & Banho -->
-            <div class="presente-card" data-cat="quarto" data-id="cama-king" data-valor="520">
-                <div class="presente-cat-label">Quarto & Banho</div>
-                <div class="presente-nome">Jogo de Cama King 500 Fios</div>
-                <div class="presente-descricao">100% algodão egípcio, 4 peças</div>
-                <div class="presente-valor">R$ 520</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
-            </div>
-
-            <div class="presente-card" data-cat="quarto" data-id="toalhas-premium" data-valor="340">
-                <div class="presente-cat-label">Quarto & Banho</div>
-                <div class="presente-nome">Kit de Toalhas Premium</div>
-                <div class="presente-descricao">8 peças felpudas de algodão turco</div>
-                <div class="presente-valor">R$ 340</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
-            </div>
-
-            <div class="presente-card" data-cat="quarto" data-id="travesseiros-latex" data-valor="280">
-                <div class="presente-cat-label">Quarto & Banho</div>
-                <div class="presente-nome">Par de Travesseiros de Látex</div>
-                <div class="presente-descricao">Antialérgico, suporte cervical</div>
-                <div class="presente-valor">R$ 280</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
-            </div>
-
-            <!-- Eletrodomésticos -->
-            <div class="presente-card" data-cat="eletro" data-id="cafeteira-nespresso" data-valor="750">
+            <div class="presente-card" data-cat="eletro" data-id="maquina-lavar-louca" data-valor="3255"
+                 data-nome="Máquina de Lavar Louça" data-descricao="Brastemp Smart Sensor"
+                 data-img="https://m.media-amazon.com/images/I/515RhwbRJfL._AC_SX466_.jpg"
+                 data-loja="https://www.amazon.com.br/Lava-lou%C3%A7as-Servi%C3%A7os-Brastemp-Smart-Sensor/dp/B0DKG4KN2Y/">
                 <div class="presente-cat-label">Eletrodomésticos</div>
-                <div class="presente-nome">Cafeteira Nespresso</div>
-                <div class="presente-descricao">Cápsulas, espumador de leite incluso</div>
-                <div class="presente-valor">R$ 750</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+                <div class="presente-nome">Máquina de Lavar Louça</div>
+                <div class="presente-descricao">Brastemp Smart Sensor</div>
+                <div class="presente-valor">R$ 3.255</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <div class="presente-card" data-cat="eletro" data-id="aspirador-robo" data-valor="1500">
+            <div class="presente-card" data-cat="eletro" data-id="sanduicheira" data-valor="148"
+                 data-nome="Sanduicheira" data-descricao="Elétrica antiaderente"
+                 data-img="https://m.media-amazon.com/images/I/5131X1N1gWL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B07B675ZQ6/">
                 <div class="presente-cat-label">Eletrodomésticos</div>
-                <div class="presente-nome">Aspirador Robô</div>
-                <div class="presente-descricao">Com mapeamento inteligente e app</div>
-                <div class="presente-valor">R$ 1.500</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+                <div class="presente-nome">Sanduicheira</div>
+                <div class="presente-descricao">Elétrica antiaderente</div>
+                <div class="presente-valor">R$ 148</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <div class="presente-card" data-cat="eletro" data-id="liquidificador" data-valor="480">
+            <div class="presente-card" data-cat="eletro" data-id="torradeira" data-valor="123"
+                 data-nome="Torradeira de Pão" data-descricao="Electrolux Efficient ETS10"
+                 data-img="https://m.media-amazon.com/images/I/51IRloWQneL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Torradeira-El%C3%A9trica-Electrolux-Efficient-ETS10/dp/B09CC71S5H/">
                 <div class="presente-cat-label">Eletrodomésticos</div>
-                <div class="presente-nome">Liquidificador de Alta Potência</div>
-                <div class="presente-descricao">1200W, copo de vidro, 10 velocidades</div>
-                <div class="presente-valor">R$ 480</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+                <div class="presente-nome">Torradeira de Pão</div>
+                <div class="presente-descricao">Electrolux Efficient ETS10</div>
+                <div class="presente-valor">R$ 123</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <!-- Lua de Mel -->
-            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-200" data-valor="200">
-                <div class="presente-cat-label">Lua de Mel</div>
-                <div class="presente-nome">Cota Lua de Mel</div>
-                <div class="presente-descricao">Contribua para nossa viagem</div>
-                <div class="presente-valor">R$ 200</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            <div class="presente-card" data-cat="eletro" data-id="forno-eletrico" data-valor="409"
+                 data-nome="Forno Elétrico" data-descricao="Philco PFE52P 52 litros"
+                 data-img="https://m.media-amazon.com/images/I/61cqfHB8XNL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Forno-El%C3%A9trico-Philco-PFE52P-resist%C3%AAncia/dp/B0CBQPG37R/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Forno Elétrico</div>
+                <div class="presente-descricao">Philco PFE52P 52 litros</div>
+                <div class="presente-valor">R$ 409</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-500" data-valor="500">
-                <div class="presente-cat-label">Lua de Mel</div>
-                <div class="presente-nome">Cota Lua de Mel</div>
-                <div class="presente-descricao">Contribua para nossa viagem</div>
-                <div class="presente-valor">R$ 500</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            <div class="presente-card" data-cat="eletro" data-id="vaporizador" data-valor="187"
+                 data-nome="Vaporizador de Roupas" data-descricao="Portátil, remoção de amassados"
+                 data-img="https://m.media-amazon.com/images/I/61RNxwH7zyL._AC_SX569_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B08B6DLFYD/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Vaporizador de Roupas</div>
+                <div class="presente-descricao">Portátil, remoção de amassados</div>
+                <div class="presente-valor">R$ 187</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <div class="presente-card" data-cat="luademel" data-id="jantar-romantico" data-valor="350">
-                <div class="presente-cat-label">Lua de Mel</div>
-                <div class="presente-nome">Jantar Romântico</div>
-                <div class="presente-descricao">Uma noite especial para dois</div>
-                <div class="presente-valor">R$ 350</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            <div class="presente-card" data-cat="eletro" data-id="air-fryer" data-valor="330"
+                 data-nome="Air Fryer" data-descricao="Philips Walita RapidAir"
+                 data-img="https://m.media-amazon.com/images/I/5106QpD9V6L._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Fritadeira-Airfryer-Walita-Tecnologia-RapidAir/dp/B0FMDNT137/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Air Fryer</div>
+                <div class="presente-descricao">Philips Walita RapidAir</div>
+                <div class="presente-valor">R$ 330</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <!-- Decoração -->
-            <div class="presente-card" data-cat="decoracao" data-id="quadro-sala" data-valor="420">
-                <div class="presente-cat-label">Decoração</div>
-                <div class="presente-nome">Quadro Abstrato para Sala</div>
-                <div class="presente-descricao">Arte em tela, 80×60cm</div>
-                <div class="presente-valor">R$ 420</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            <div class="presente-card" data-cat="eletro" data-id="liquidificador" data-valor="279"
+                 data-nome="Liquidificador" data-descricao="Alta potência, jarro de vidro"
+                 data-img="https://m.media-amazon.com/images/I/613LbadctMS._AC_SY879_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B08TLM8GDQ/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Liquidificador</div>
+                <div class="presente-descricao">Alta potência, jarro de vidro</div>
+                <div class="presente-valor">R$ 279</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <div class="presente-card" data-cat="decoracao" data-id="vaso-ceramica" data-valor="280">
-                <div class="presente-cat-label">Decoração</div>
-                <div class="presente-nome">Vaso de Cerâmica Artesanal</div>
-                <div class="presente-descricao">Peça única, feita à mão</div>
-                <div class="presente-valor">R$ 280</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            <div class="presente-card" data-cat="eletro" data-id="panela-pressao" data-valor="379"
+                 data-nome="Panela de Pressão Elétrica" data-descricao="Multifuncional, 6 litros"
+                 data-img="https://m.media-amazon.com/images/I/81iejDNyklL._AC_SX300_SY300_QL70_ML2_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B07L8SH6NK/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Panela de Pressão Elétrica</div>
+                <div class="presente-descricao">Multifuncional, 6 litros</div>
+                <div class="presente-valor">R$ 379</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
-            <div class="presente-card" data-cat="decoracao" data-id="espelho-redondo" data-valor="380">
-                <div class="presente-cat-label">Decoração</div>
-                <div class="presente-nome">Espelho Redondo de Parede</div>
-                <div class="presente-descricao">Moldura metálica dourada, Ø 80cm</div>
-                <div class="presente-valor">R$ 380</div>
-                <a href="#" class="presente-btn" target="_blank">Presentear</a>
+            <div class="presente-card" data-cat="cozinha" data-id="jogo-tacas" data-valor="120"
+                 data-nome="Jogo de Taças" data-descricao="Cristal Bohemia Bordeaux Gastro"
+                 data-img="https://m.media-amazon.com/images/I/41-8Kv6rCDL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Ta%C3%A7as-Bordeaux-Gastro-Cristal-Bohemia/dp/B07KDBZ8HF/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Taças</div>
+                <div class="presente-descricao">Cristal Bohemia Bordeaux Gastro</div>
+                <div class="presente-valor">R$ 120</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="panelas-tramontina" data-valor="709"
+                 data-nome="Jogo de Panelas Tramontina" data-descricao="Solar Aço Inox, conjunto completo"
+                 data-img="https://m.media-amazon.com/images/I/71yG1BEwZ+L._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B076B9N81Q/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Panelas Tramontina</div>
+                <div class="presente-descricao">Solar Aço Inox, conjunto completo</div>
+                <div class="presente-valor">R$ 709</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="sousplat-1" data-valor="55"
+                 data-nome="Sousplat Elegante — Modelo 1" data-descricao="Jogo americano redondo"
+                 data-img="https://m.media-amazon.com/images/I/619gKuXuyIL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Jogo-Americano-Redondo-Sousplat-Elegante/dp/B0FRCRFMMX/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Sousplat Elegante — Modelo 1</div>
+                <div class="presente-descricao">Jogo americano redondo</div>
+                <div class="presente-valor">R$ 55</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="sousplat-2" data-valor="60"
+                 data-nome="Sousplat Elegante — Modelo 2" data-descricao="Antiderrapante, resistente"
+                 data-img="https://m.media-amazon.com/images/I/71WX02HlCAL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Kit-Americano-Elegante-Resistente-Antiderrapante/dp/B0GK2WLZQR/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Sousplat Elegante — Modelo 2</div>
+                <div class="presente-descricao">Antiderrapante, resistente</div>
+                <div class="presente-valor">R$ 60</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="jogo-facas" data-valor="66"
+                 data-nome="Jogo de Facas" data-descricao="Tramontina Plenus, lâminas inox"
+                 data-img="https://m.media-amazon.com/images/I/51oCxGHT-aL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Facas-Tramontina-Plenus-L%C3%A2minas-Polipropileno/dp/B07WR4TP9W/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Facas</div>
+                <div class="presente-descricao">Tramontina Plenus, lâminas inox</div>
+                <div class="presente-valor">R$ 66</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="jogo-talheres" data-valor="131"
+                 data-nome="Jogo de Talheres" data-descricao="Faqueiro Bellagio Brinox"
+                 data-img="https://m.media-amazon.com/images/I/61u1qf8ArML._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Faqueiro-Bellagio-Brinox-5103-102/dp/B01MZ2CK50/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Talheres</div>
+                <div class="presente-descricao">Faqueiro Bellagio Brinox</div>
+                <div class="presente-valor">R$ 131</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="petisqueira" data-valor="60"
+                 data-nome="Petisqueira" data-descricao="Melamina com garfinhos"
+                 data-img="https://m.media-amazon.com/images/I/61qlhRliuBL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Petisqueira-melamina-garfinhos-petisco-feitos/dp/B0DPGY8VJK/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Petisqueira</div>
+                <div class="presente-descricao">Melamina com garfinhos</div>
+                <div class="presente-valor">R$ 60</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="casa" data-id="sofa" data-valor="2979"
+                 data-nome="Sofá Retrátil e Reclinável" data-descricao="Velusoft, bordado, ensacado"
+                 data-img="https://m.media-amazon.com/images/I/61TUFodZWZL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Retr%C3%A1til-Reclin%C3%A1vel-Ensacadas-Bordado-Velusoft/dp/B09YS9K7J7/">
+                <div class="presente-cat-label">Casa</div>
+                <div class="presente-nome">Sofá Retrátil e Reclinável</div>
+                <div class="presente-descricao">Velusoft, bordado, ensacado</div>
+                <div class="presente-valor">R$ 2.979</div>
+                <button class="presente-btn">Presentear</button>
             </div>
 
         </div>
     </section>
+
+            <div class="presente-card" data-cat="cozinha" data-id="panelas-premium" data-valor="890"
+                 data-nome="Conjunto de Panelas Premium" data-descricao="6 peças antiaderentes com tampa de vidro"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🍳</div>
+                <div class="presente-cat-label">Cozinha</div>
+                <div class="presente-nome">Conjunto de Panelas Premium</div>
+                <div class="presente-descricao">6 peças antiaderentes com tampa de vidro</div>
+                <div class="presente-valor">R$ 890</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="tacas-cristal" data-valor="320"
+                 data-nome="Jogo de Taças de Cristal" data-descricao="6 taças para vinho tinto e branco"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🍷</div>
+                <div class="presente-cat-label">Cozinha</div>
+                <div class="presente-nome">Jogo de Taças de Cristal</div>
+                <div class="presente-descricao">6 taças para vinho tinto e branco</div>
+                <div class="presente-valor">R$ 320</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="pratos-porcelana" data-valor="380"
+                 data-nome="Jogo de Pratos Porcelana" data-descricao="6 pratos rasos + 6 fundos"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🍽️</div>
+                <div class="presente-cat-label">Cozinha</div>
+                <div class="presente-nome">Jogo de Pratos Porcelana</div>
+                <div class="presente-descricao">6 pratos rasos + 6 fundos</div>
+                <div class="presente-valor">R$ 380</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="quarto" data-id="cama-king" data-valor="520"
+                 data-nome="Jogo de Cama King 500 Fios" data-descricao="100% algodão egípcio, 4 peças"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🛏️</div>
+                <div class="presente-cat-label">Quarto & Banho</div>
+                <div class="presente-nome">Jogo de Cama King 500 Fios</div>
+                <div class="presente-descricao">100% algodão egípcio, 4 peças</div>
+                <div class="presente-valor">R$ 520</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="quarto" data-id="toalhas-premium" data-valor="340"
+                 data-nome="Kit de Toalhas Premium" data-descricao="8 peças felpudas de algodão turco"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🛁</div>
+                <div class="presente-cat-label">Quarto & Banho</div>
+                <div class="presente-nome">Kit de Toalhas Premium</div>
+                <div class="presente-descricao">8 peças felpudas de algodão turco</div>
+                <div class="presente-valor">R$ 340</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="quarto" data-id="travesseiros-latex" data-valor="280"
+                 data-nome="Par de Travesseiros de Látex" data-descricao="Antialérgico, suporte cervical"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">😴</div>
+                <div class="presente-cat-label">Quarto & Banho</div>
+                <div class="presente-nome">Par de Travesseiros de Látex</div>
+                <div class="presente-descricao">Antialérgico, suporte cervical</div>
+                <div class="presente-valor">R$ 280</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="cafeteira-nespresso" data-valor="750"
+                 data-nome="Cafeteira Nespresso" data-descricao="Cápsulas, espumador de leite incluso"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">☕</div>
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Cafeteira Nespresso</div>
+                <div class="presente-descricao">Cápsulas, espumador de leite incluso</div>
+                <div class="presente-valor">R$ 750</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="aspirador-robo" data-valor="1500"
+                 data-nome="Aspirador Robô" data-descricao="Com mapeamento inteligente e app"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🤖</div>
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Aspirador Robô</div>
+                <div class="presente-descricao">Com mapeamento inteligente e app</div>
+                <div class="presente-valor">R$ 1.500</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="liquidificador" data-valor="480"
+                 data-nome="Liquidificador de Alta Potência" data-descricao="1200W, copo de vidro, 10 velocidades"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🧃</div>
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Liquidificador de Alta Potência</div>
+                <div class="presente-descricao">1200W, copo de vidro, 10 velocidades</div>
+                <div class="presente-valor">R$ 480</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-200" data-valor="200"
+                 data-nome="Cota Lua de Mel" data-descricao="Contribua para nossa viagem"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">✈️</div>
+                <div class="presente-cat-label">Lua de Mel</div>
+                <div class="presente-nome">Cota Lua de Mel</div>
+                <div class="presente-descricao">Contribua para nossa viagem</div>
+                <div class="presente-valor">R$ 200</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-500" data-valor="500"
+                 data-nome="Cota Lua de Mel" data-descricao="Contribua para nossa viagem"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🌅</div>
+                <div class="presente-cat-label">Lua de Mel</div>
+                <div class="presente-nome">Cota Lua de Mel</div>
+                <div class="presente-descricao">Contribua para nossa viagem</div>
+                <div class="presente-valor">R$ 500</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="luademel" data-id="jantar-romantico" data-valor="350"
+                 data-nome="Jantar Romântico" data-descricao="Uma noite especial para dois"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🕯️</div>
+                <div class="presente-cat-label">Lua de Mel</div>
+                <div class="presente-nome">Jantar Romântico</div>
+                <div class="presente-descricao">Uma noite especial para dois</div>
+                <div class="presente-valor">R$ 350</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="decoracao" data-id="quadro-sala" data-valor="420"
+                 data-nome="Quadro Abstrato para Sala" data-descricao="Arte em tela, 80×60cm"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🖼️</div>
+                <div class="presente-cat-label">Decoração</div>
+                <div class="presente-nome">Quadro Abstrato para Sala</div>
+                <div class="presente-descricao">Arte em tela, 80×60cm</div>
+                <div class="presente-valor">R$ 420</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="decoracao" data-id="vaso-ceramica" data-valor="280"
+                 data-nome="Vaso de Cerâmica Artesanal" data-descricao="Peça única, feita à mão"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🏺</div>
+                <div class="presente-cat-label">Decoração</div>
+                <div class="presente-nome">Vaso de Cerâmica Artesanal</div>
+                <div class="presente-descricao">Peça única, feita à mão</div>
+                <div class="presente-valor">R$ 280</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="decoracao" data-id="espelho-redondo" data-valor="380"
+                 data-nome="Espelho Redondo de Parede" data-descricao="Moldura metálica dourada, Ø 80cm"
+                 data-img="" data-loja="#">
+                <div class="presente-img-placeholder">🪞</div>
+                <div class="presente-cat-label">Decoração</div>
+                <div class="presente-nome">Espelho Redondo de Parede</div>
+                <div class="presente-descricao">Moldura metálica dourada, Ø 80cm</div>
+                <div class="presente-valor">R$ 380</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===================== MODAL DE PAGAMENTO ===================== -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-fechar" id="modal-fechar">✕</button>
+            <div id="modal-img-wrap"></div>
+            <div class="modal-corpo">
+                <div class="modal-cat" id="modal-cat"></div>
+                <div class="modal-nome" id="modal-nome"></div>
+                <div class="modal-descricao" id="modal-descricao"></div>
+                <div class="modal-valor" id="modal-valor"></div>
+
+                <div class="modal-barra-bg">
+                    <div class="modal-barra-fill" id="modal-barra-fill"></div>
+                </div>
+                <div class="modal-barra-label" id="modal-barra-label"></div>
+
+                <div class="modal-titulo-opcoes">Como deseja presentear?</div>
+                <div class="modal-opcoes">
+
+                    <!-- PIX -->
+                    <div class="modal-opcao" id="opcao-pix" style="flex-direction:column;align-items:flex-start;gap:0">
+                        <div style="display:flex;align-items:center;gap:14px;width:100%" id="pix-header">
+                            <div class="modal-opcao-icone">◆</div>
+                            <div class="modal-opcao-texto">
+                                <span class="modal-opcao-titulo">PIX</span>
+                                <span class="modal-opcao-subtitulo">Transferência instantânea, sem taxas</span>
+                            </div>
+                        </div>
+                        <div class="pix-box" id="pix-box">
+                            <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto-secundario)">Chave PIX</div>
+                            <div class="pix-chave" id="pix-chave-valor">SUA_CHAVE_PIX</div>
+                            <button class="pix-copiar" id="pix-copiar">Copiar chave</button>
+                            <div class="pix-instrucao">
+                                Após realizar o pagamento, clique abaixo para confirmar a reserva do presente.
+                            </div>
+                            <button class="pix-confirmar" id="pix-confirmar">Já paguei — confirmar presente</button>
+                        </div>
+                    </div>
+
+                    <!-- Cartão de Crédito -->
+                    <a class="modal-opcao" id="opcao-cartao" href="#" target="_blank">
+                        <div class="modal-opcao-icone">▣</div>
+                        <div class="modal-opcao-texto">
+                            <span class="modal-opcao-titulo">Cartão de Crédito</span>
+                            <span class="modal-opcao-subtitulo">Via Mercado Pago — parcelamento disponível</span>
+                        </div>
+                    </a>
+
+                    <!-- Comprar o presente -->
+                    <a class="modal-opcao" id="opcao-loja" href="#" target="_blank">
+                        <div class="modal-opcao-icone">◎</div>
+                        <div class="modal-opcao-texto">
+                            <span class="modal-opcao-titulo">Comprar o presente</span>
+                            <span class="modal-opcao-subtitulo">Adquira diretamente na loja e nos entregue</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- ===================== SCRIPT: FILTROS DE PRESENTES ===================== -->
     <script>
@@ -828,77 +1353,175 @@
 
         atualizarContadorConvidados();
 
-        // ===================== PRESENTES - RESERVAS =====================
-        const VALOR_TOTAL_LISTA = 7590;
+        // ===================== PRESENTES - RESERVAS + MODAL =====================
+        const VALOR_TOTAL_LISTA = 9290;
+        const PIX_CHAVE = 'SUA_CHAVE_PIX'; // ⚠️ substitua pela sua chave PIX
 
-        // Adiciona barra em cada card e preenche proporcionalmente ao valor total
+        let cardAtivo = null;
+
+        // Barra proporcional + imagem real em cada card
         document.querySelectorAll('.presente-card').forEach(card => {
             const valor = parseInt(card.dataset.valor);
             const pct = (valor / VALOR_TOTAL_LISTA) * 100;
 
+            // Insere imagem real no topo do card se disponível
+            const imgUrl = card.dataset.img;
+            if (imgUrl) {
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                img.alt = card.dataset.nome;
+                img.className = 'presente-img';
+                card.insertBefore(img, card.firstChild);
+            }
+
             const barra = document.createElement('div');
             barra.className = 'presente-barra-bg';
-            barra.innerHTML = `<div class="presente-barra-fill" style="width: ${pct.toFixed(1)}%"></div>`;
+            barra.innerHTML = `<div class="presente-barra-fill" style="width:${pct.toFixed(1)}%"></div>`;
             card.appendChild(barra);
-
-            // Exibe o percentual abaixo da barra
-            const label = document.createElement('div');
-            label.className = 'presente-barra-label';
-            label.innerText = pct.toFixed(0) + '% do total';
-            card.appendChild(label);
+            const lbl = document.createElement('div');
+            lbl.className = 'presente-barra-label';
+            lbl.innerText = pct.toFixed(0) + '% do total';
+            card.appendChild(lbl);
         });
 
         async function carregarReservas() {
             try {
                 const snapshot = await getDocs(collection(db, "presentes_reservados"));
-                const idsReservados = new Set();
-                snapshot.forEach(d => idsReservados.add(d.id));
-
-                idsReservados.forEach(id => {
-                    const card = document.querySelector(`.presente-card[data-id="${id}"]`);
-                    if (card) {
-                        card.classList.add('reservado');
-                        const btn = card.querySelector('.presente-btn');
-                        btn.classList.add('btn-reservado');
-                        btn.innerText = 'Reservado ✓';
-                    }
-                });
+                snapshot.forEach(d => marcarReservado(d.id));
             } catch (e) {
                 console.warn('Erro ao carregar reservas:', e);
             }
         }
 
+        function marcarReservado(id) {
+            const card = document.querySelector(`.presente-card[data-id="${id}"]`);
+            if (!card) return;
+            card.classList.add('reservado');
+            const btn = card.querySelector('.presente-btn');
+            btn.classList.add('btn-reservado');
+            btn.innerText = 'Reservado ✓';
+        }
+
+        async function registrarReserva(id, nome, valor, tipo) {
+            await setDoc(doc(db, "presentes_reservados", id), {
+                nome, valor, tipo,
+                dataReserva: new Date().toISOString()
+            });
+            marcarReservado(id);
+        }
+
         carregarReservas();
 
+        // Abre o modal ao clicar em "Presentear"
         document.querySelectorAll('.presente-btn').forEach(btn => {
-            btn.addEventListener('click', async function (e) {
-                e.preventDefault();
+            btn.addEventListener('click', function () {
                 if (this.classList.contains('btn-reservado')) return;
-
-                const card = this.closest('.presente-card');
-                const id = card.dataset.id;
-                const nome = card.querySelector('.presente-nome').innerText;
-                const valor = parseInt(card.dataset.valor);
-                const mpLink = this.getAttribute('href');
-
-                try {
-                    await setDoc(doc(db, "presentes_reservados", id), {
-                        nome: nome,
-                        valor: valor,
-                        dataReserva: new Date().toISOString()
-                    });
-
-                    card.classList.add('reservado');
-                    this.classList.add('btn-reservado');
-                    this.innerText = 'Reservado ✓';
-                } catch (e) {
-                    console.error('Erro ao registrar reserva:', e);
-                }
-
-                if (mpLink && mpLink !== '#') {
-                    window.open(mpLink, '_blank');
-                }
+                cardAtivo = this.closest('.presente-card');
+                abrirModal(cardAtivo);
             });
+        });
+
+        function abrirModal(card) {
+            const img    = card.dataset.img;
+            const cat    = card.querySelector('.presente-cat-label').innerText;
+            const nome   = card.dataset.nome;
+            const desc   = card.dataset.descricao;
+            const valor  = parseInt(card.dataset.valor);
+            const loja   = card.dataset.loja;
+            const pct    = (valor / VALOR_TOTAL_LISTA) * 100;
+
+            // Imagem ou placeholder
+            const wrap = document.getElementById('modal-img-wrap');
+            if (img) {
+                wrap.innerHTML = `<img class="modal-img" src="${img}" alt="${nome}">`;
+            } else {
+                const emoji = card.querySelector('.presente-img-placeholder').innerText;
+                wrap.innerHTML = `<div class="modal-img-placeholder">${emoji}</div>`;
+            }
+
+            document.getElementById('modal-cat').innerText = cat;
+            document.getElementById('modal-nome').innerText = nome;
+            document.getElementById('modal-descricao').innerText = desc;
+            document.getElementById('modal-valor').innerText = 'R$ ' + valor.toLocaleString('pt-BR');
+            document.getElementById('modal-barra-fill').style.width = pct.toFixed(1) + '%';
+            document.getElementById('modal-barra-label').innerText = pct.toFixed(0) + '% do total da lista';
+            document.getElementById('pix-chave-valor').innerText = PIX_CHAVE;
+
+            // Link Mercado Pago (use data-mp se disponível, senão #)
+            const mpLink = card.dataset.mp || '#';
+            document.getElementById('opcao-cartao').href = mpLink;
+
+            // Link loja
+            document.getElementById('opcao-loja').href = loja && loja !== '#' ? loja : '#';
+
+            // Fecha PIX se estava aberto
+            document.getElementById('pix-box').classList.remove('aberto');
+
+            document.getElementById('modal-overlay').classList.add('aberto');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharModal() {
+            document.getElementById('modal-overlay').classList.remove('aberto');
+            document.body.style.overflow = '';
+            cardAtivo = null;
+        }
+
+        document.getElementById('modal-fechar').addEventListener('click', fecharModal);
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) fecharModal();
+        });
+
+        // PIX — expande a caixa
+        document.getElementById('opcao-pix').addEventListener('click', function() {
+            document.getElementById('pix-box').classList.toggle('aberto');
+        });
+
+        // Copiar chave PIX
+        document.getElementById('pix-copiar').addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigator.clipboard.writeText(PIX_CHAVE).then(() => {
+                this.innerText = 'Copiado!';
+                setTimeout(() => this.innerText = 'Copiar chave', 2000);
+            });
+        });
+
+        // Confirmar pagamento PIX
+        document.getElementById('pix-confirmar').addEventListener('click', async function(e) {
+            e.stopPropagation();
+            if (!cardAtivo) return;
+            const id    = cardAtivo.dataset.id;
+            const nome  = cardAtivo.dataset.nome;
+            const valor = parseInt(cardAtivo.dataset.valor);
+            this.innerText = 'Registrando...';
+            this.disabled = true;
+            try {
+                await registrarReserva(id, nome, valor, 'pix');
+                fecharModal();
+            } catch (err) {
+                this.innerText = 'Erro — tente novamente';
+                this.disabled = false;
+            }
+        });
+
+        // Cartão — registra reserva e abre MP
+        document.getElementById('opcao-cartao').addEventListener('click', async function() {
+            if (!cardAtivo || this.href === '#' || this.href === window.location.href + '#') return;
+            const id    = cardAtivo.dataset.id;
+            const nome  = cardAtivo.dataset.nome;
+            const valor = parseInt(cardAtivo.dataset.valor);
+            try { await registrarReserva(id, nome, valor, 'cartao'); } catch(e) {}
+            fecharModal();
+        });
+
+        // Comprar — registra reserva e abre loja
+        document.getElementById('opcao-loja').addEventListener('click', async function() {
+            if (!cardAtivo || this.href === '#' || this.href === window.location.href + '#') return;
+            const id    = cardAtivo.dataset.id;
+            const nome  = cardAtivo.dataset.nome;
+            const valor = parseInt(cardAtivo.dataset.valor);
+            try { await registrarReserva(id, nome, valor, 'loja'); } catch(e) {}
+            fecharModal();
         });
 
         // ===================== MOSAICO =====================
