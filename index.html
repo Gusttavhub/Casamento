@@ -398,40 +398,50 @@
 
         .presentes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .presente-card {
             border: 1px solid #ebebeb;
-            padding: 28px 20px;
+            padding: 0;
             text-align: center;
             transition: box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .presente-card:hover {
-            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            box-shadow: 0 6px 32px rgba(0,0,0,0.09);
         }
 
         .presente-card.oculto {
             display: none;
         }
 
+        .presente-card-body {
+            padding: 22px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
         .presente-cat-label {
-            font-size: 0.68rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--texto-secundario);
-            margin-bottom: 14px;
+            margin-bottom: 10px;
         }
 
         .presente-nome {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 400;
             color: var(--texto-principal);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             line-height: 1.4;
         }
 
@@ -440,10 +450,11 @@
             color: var(--texto-secundario);
             margin-bottom: 16px;
             line-height: 1.6;
+            flex: 1;
         }
 
         .presente-valor {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 200;
             color: var(--texto-principal);
             letter-spacing: 1px;
@@ -451,15 +462,17 @@
         }
 
         .presente-btn {
-            display: inline-block;
-            padding: 10px 22px;
+            padding: 12px 22px;
             border: 1px solid var(--texto-principal);
             color: var(--texto-principal);
-            text-decoration: none;
+            background: none;
+            font-family: var(--fonte-textos);
             font-size: 0.72rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+            cursor: pointer;
             transition: all 0.3s;
+            width: 100%;
         }
 
         .presente-btn:hover {
@@ -472,7 +485,7 @@
             width: 100%;
             height: 2px;
             background: #ebebeb;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .presente-barra-fill {
@@ -483,11 +496,11 @@
         }
 
         .presente-barra-label {
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--texto-secundario);
-            margin-top: 6px;
+            margin-top: 5px;
             text-align: right;
         }
 
@@ -505,22 +518,21 @@
         /* Imagem do card */
         .presente-img {
             width: 100%;
-            height: 160px;
-            object-fit: cover;
+            height: 200px;
+            object-fit: contain;
             display: block;
-            margin: -28px -20px 18px;
-            width: calc(100% + 40px);
+            background: #f8f8f8;
+            padding: 16px;
         }
 
         .presente-img-placeholder {
-            width: calc(100% + 40px);
-            height: 160px;
-            margin: -28px -20px 18px;
-            background: #f0f0f0;
+            width: 100%;
+            height: 200px;
+            background: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 3rem;
         }
 
         /* Modal de pagamento */
@@ -1017,175 +1029,7 @@
             </div>
 
         </div>
-    </section>
-
-            <div class="presente-card" data-cat="cozinha" data-id="panelas-premium" data-valor="890"
-                 data-nome="Conjunto de Panelas Premium" data-descricao="6 peças antiaderentes com tampa de vidro"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🍳</div>
-                <div class="presente-cat-label">Cozinha</div>
-                <div class="presente-nome">Conjunto de Panelas Premium</div>
-                <div class="presente-descricao">6 peças antiaderentes com tampa de vidro</div>
-                <div class="presente-valor">R$ 890</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="cozinha" data-id="tacas-cristal" data-valor="320"
-                 data-nome="Jogo de Taças de Cristal" data-descricao="6 taças para vinho tinto e branco"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🍷</div>
-                <div class="presente-cat-label">Cozinha</div>
-                <div class="presente-nome">Jogo de Taças de Cristal</div>
-                <div class="presente-descricao">6 taças para vinho tinto e branco</div>
-                <div class="presente-valor">R$ 320</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="cozinha" data-id="pratos-porcelana" data-valor="380"
-                 data-nome="Jogo de Pratos Porcelana" data-descricao="6 pratos rasos + 6 fundos"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🍽️</div>
-                <div class="presente-cat-label">Cozinha</div>
-                <div class="presente-nome">Jogo de Pratos Porcelana</div>
-                <div class="presente-descricao">6 pratos rasos + 6 fundos</div>
-                <div class="presente-valor">R$ 380</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="quarto" data-id="cama-king" data-valor="520"
-                 data-nome="Jogo de Cama King 500 Fios" data-descricao="100% algodão egípcio, 4 peças"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🛏️</div>
-                <div class="presente-cat-label">Quarto & Banho</div>
-                <div class="presente-nome">Jogo de Cama King 500 Fios</div>
-                <div class="presente-descricao">100% algodão egípcio, 4 peças</div>
-                <div class="presente-valor">R$ 520</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="quarto" data-id="toalhas-premium" data-valor="340"
-                 data-nome="Kit de Toalhas Premium" data-descricao="8 peças felpudas de algodão turco"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🛁</div>
-                <div class="presente-cat-label">Quarto & Banho</div>
-                <div class="presente-nome">Kit de Toalhas Premium</div>
-                <div class="presente-descricao">8 peças felpudas de algodão turco</div>
-                <div class="presente-valor">R$ 340</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="quarto" data-id="travesseiros-latex" data-valor="280"
-                 data-nome="Par de Travesseiros de Látex" data-descricao="Antialérgico, suporte cervical"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">😴</div>
-                <div class="presente-cat-label">Quarto & Banho</div>
-                <div class="presente-nome">Par de Travesseiros de Látex</div>
-                <div class="presente-descricao">Antialérgico, suporte cervical</div>
-                <div class="presente-valor">R$ 280</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="eletro" data-id="cafeteira-nespresso" data-valor="750"
-                 data-nome="Cafeteira Nespresso" data-descricao="Cápsulas, espumador de leite incluso"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">☕</div>
-                <div class="presente-cat-label">Eletrodomésticos</div>
-                <div class="presente-nome">Cafeteira Nespresso</div>
-                <div class="presente-descricao">Cápsulas, espumador de leite incluso</div>
-                <div class="presente-valor">R$ 750</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="eletro" data-id="aspirador-robo" data-valor="1500"
-                 data-nome="Aspirador Robô" data-descricao="Com mapeamento inteligente e app"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🤖</div>
-                <div class="presente-cat-label">Eletrodomésticos</div>
-                <div class="presente-nome">Aspirador Robô</div>
-                <div class="presente-descricao">Com mapeamento inteligente e app</div>
-                <div class="presente-valor">R$ 1.500</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="eletro" data-id="liquidificador" data-valor="480"
-                 data-nome="Liquidificador de Alta Potência" data-descricao="1200W, copo de vidro, 10 velocidades"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🧃</div>
-                <div class="presente-cat-label">Eletrodomésticos</div>
-                <div class="presente-nome">Liquidificador de Alta Potência</div>
-                <div class="presente-descricao">1200W, copo de vidro, 10 velocidades</div>
-                <div class="presente-valor">R$ 480</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-200" data-valor="200"
-                 data-nome="Cota Lua de Mel" data-descricao="Contribua para nossa viagem"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">✈️</div>
-                <div class="presente-cat-label">Lua de Mel</div>
-                <div class="presente-nome">Cota Lua de Mel</div>
-                <div class="presente-descricao">Contribua para nossa viagem</div>
-                <div class="presente-valor">R$ 200</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="luademel" data-id="cota-lua-mel-500" data-valor="500"
-                 data-nome="Cota Lua de Mel" data-descricao="Contribua para nossa viagem"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🌅</div>
-                <div class="presente-cat-label">Lua de Mel</div>
-                <div class="presente-nome">Cota Lua de Mel</div>
-                <div class="presente-descricao">Contribua para nossa viagem</div>
-                <div class="presente-valor">R$ 500</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="luademel" data-id="jantar-romantico" data-valor="350"
-                 data-nome="Jantar Romântico" data-descricao="Uma noite especial para dois"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🕯️</div>
-                <div class="presente-cat-label">Lua de Mel</div>
-                <div class="presente-nome">Jantar Romântico</div>
-                <div class="presente-descricao">Uma noite especial para dois</div>
-                <div class="presente-valor">R$ 350</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="decoracao" data-id="quadro-sala" data-valor="420"
-                 data-nome="Quadro Abstrato para Sala" data-descricao="Arte em tela, 80×60cm"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🖼️</div>
-                <div class="presente-cat-label">Decoração</div>
-                <div class="presente-nome">Quadro Abstrato para Sala</div>
-                <div class="presente-descricao">Arte em tela, 80×60cm</div>
-                <div class="presente-valor">R$ 420</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="decoracao" data-id="vaso-ceramica" data-valor="280"
-                 data-nome="Vaso de Cerâmica Artesanal" data-descricao="Peça única, feita à mão"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🏺</div>
-                <div class="presente-cat-label">Decoração</div>
-                <div class="presente-nome">Vaso de Cerâmica Artesanal</div>
-                <div class="presente-descricao">Peça única, feita à mão</div>
-                <div class="presente-valor">R$ 280</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-            <div class="presente-card" data-cat="decoracao" data-id="espelho-redondo" data-valor="380"
-                 data-nome="Espelho Redondo de Parede" data-descricao="Moldura metálica dourada, Ø 80cm"
-                 data-img="" data-loja="#">
-                <div class="presente-img-placeholder">🪞</div>
-                <div class="presente-cat-label">Decoração</div>
-                <div class="presente-nome">Espelho Redondo de Parede</div>
-                <div class="presente-descricao">Moldura metálica dourada, Ø 80cm</div>
-                <div class="presente-valor">R$ 380</div>
-                <button class="presente-btn">Presentear</button>
-            </div>
-
-        </div>
-    </section>
+        </section>
 
     <!-- ===================== MODAL DE PAGAMENTO ===================== -->
     <div class="modal-overlay" id="modal-overlay">
@@ -1217,7 +1061,7 @@
                         </div>
                         <div class="pix-box" id="pix-box">
                             <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto-secundario)">Chave PIX</div>
-                            <div class="pix-chave" id="pix-chave-valor">SUA_CHAVE_PIX</div>
+                            <div class="pix-chave" id="pix-chave-valor">64 9217-1411</div>
                             <button class="pix-copiar" id="pix-copiar">Copiar chave</button>
                             <div class="pix-instrucao">
                                 Após realizar o pagamento, clique abaixo para confirmar a reserva do presente.
@@ -1225,15 +1069,6 @@
                             <button class="pix-confirmar" id="pix-confirmar">Já paguei — confirmar presente</button>
                         </div>
                     </div>
-
-                    <!-- Cartão de Crédito -->
-                    <a class="modal-opcao" id="opcao-cartao" href="#" target="_blank">
-                        <div class="modal-opcao-icone">▣</div>
-                        <div class="modal-opcao-texto">
-                            <span class="modal-opcao-titulo">Cartão de Crédito</span>
-                            <span class="modal-opcao-subtitulo">Via Mercado Pago — parcelamento disponível</span>
-                        </div>
-                    </a>
 
                     <!-- Comprar o presente -->
                     <a class="modal-opcao" id="opcao-loja" href="#" target="_blank">
@@ -1355,33 +1190,42 @@
 
         // ===================== PRESENTES - RESERVAS + MODAL =====================
         const VALOR_TOTAL_LISTA = 9290;
-        const PIX_CHAVE = 'SUA_CHAVE_PIX'; // ⚠️ substitua pela sua chave PIX
+        const PIX_CHAVE = '64 9217-1411';
 
         let cardAtivo = null;
 
-        // Barra proporcional + imagem real em cada card
+        // Estrutura + imagem real + barra em cada card
         document.querySelectorAll('.presente-card').forEach(card => {
             const valor = parseInt(card.dataset.valor);
             const pct = (valor / VALOR_TOTAL_LISTA) * 100;
-
-            // Insere imagem real no topo do card se disponível
             const imgUrl = card.dataset.img;
+
+            // Cria o wrapper do corpo
+            const body = document.createElement('div');
+            body.className = 'presente-card-body';
+
+            // Move todos os filhos atuais para o body
+            while (card.firstChild) body.appendChild(card.firstChild);
+            card.appendChild(body);
+
+            // Insere imagem real no topo do card (antes do body)
             if (imgUrl) {
                 const img = document.createElement('img');
                 img.src = imgUrl;
                 img.alt = card.dataset.nome;
                 img.className = 'presente-img';
-                card.insertBefore(img, card.firstChild);
+                card.insertBefore(img, body);
             }
 
+            // Barra e label dentro do body
             const barra = document.createElement('div');
             barra.className = 'presente-barra-bg';
             barra.innerHTML = `<div class="presente-barra-fill" style="width:${pct.toFixed(1)}%"></div>`;
-            card.appendChild(barra);
+            body.appendChild(barra);
             const lbl = document.createElement('div');
             lbl.className = 'presente-barra-label';
             lbl.innerText = pct.toFixed(0) + '% do total';
-            card.appendChild(lbl);
+            body.appendChild(lbl);
         });
 
         async function carregarReservas() {
@@ -1502,16 +1346,6 @@
                 this.innerText = 'Erro — tente novamente';
                 this.disabled = false;
             }
-        });
-
-        // Cartão — registra reserva e abre MP
-        document.getElementById('opcao-cartao').addEventListener('click', async function() {
-            if (!cardAtivo || this.href === '#' || this.href === window.location.href + '#') return;
-            const id    = cardAtivo.dataset.id;
-            const nome  = cardAtivo.dataset.nome;
-            const valor = parseInt(cardAtivo.dataset.valor);
-            try { await registrarReserva(id, nome, valor, 'cartao'); } catch(e) {}
-            fecharModal();
         });
 
         // Comprar — registra reserva e abre loja
