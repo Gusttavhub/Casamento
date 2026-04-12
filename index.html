@@ -65,23 +65,23 @@
             position: absolute;
             inset: 0;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(4, 1fr);
             z-index: 0;
-            gap: 0;
+            gap: 3px;
         }
 
         @media (max-width: 768px) {
             .mosaic-bg {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(5, 1fr);
             }
         }
 
         .mosaic-cell {
             position: relative;
             overflow: hidden;
-            background: #000;
+            background: #111;
         }
 
         .mosaic-cell img {
@@ -912,7 +912,7 @@
 
     <!-- ===================== INFO DO CASAL ===================== -->
     <section class="info-casal">
-        <p class="data">15 de Agosto de 2026 • 16:30</p>
+        <p class="data">15 de Agosto de 2026 • 18:00</p>
         <p class="contagem-label">Contagem Regressiva</p>
         <div class="contador" id="contador"></div>
         <div class="spotify-wrap">
@@ -1554,56 +1554,63 @@
         });
 
         // ===================== MOSAICO =====================
-        const TOTAL_CELULAS = 12; // 4 colunas × 3 linhas
-        const INTERVALO_TROCA = 5000;
-        const ATRASO_ENTRE_CELULAS = 400;
+        const TOTAL_CELULAS = 24;
+        const INTERVALO_TROCA = 4000;
+        const DURACAO_FADE = 1500;
+        const ATRASO_ENTRE_CELULAS = 300;
 
         async function iniciarMosaico() {
             try {
                 const pastafotosRef = ref(storage, 'Fotos casal/');
                 const resultado = await listAll(pastafotosRef);
-
                 if (resultado.items.length === 0) return;
 
                 const urls = await Promise.all(resultado.items.map(item => getDownloadURL(item)));
-                const urlsEmbaralhadas = urls.sort(() => Math.random() - 0.5);
+                const embaralhadas = [...urls].sort(() => Math.random() - 0.5);
                 const container = document.getElementById('mosaic-bg');
 
                 for (let i = 0; i < TOTAL_CELULAS; i++) {
                     const celula = document.createElement('div');
-                    celula.classList.add('mosaic-cell');
+                    celula.className = 'mosaic-cell';
 
-                    const imgA = document.createElement('img');
-                    const imgB = document.createElement('img');
-                    imgA.alt = '';
-                    imgB.alt = '';
+                    // Camada de baixo — sempre visível, nunca transiciona
+                    const base = document.createElement('img');
+                    base.alt = '';
+                    base.src = embaralhadas[i % embaralhadas.length];
+                    base.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:1;';
 
-                    imgA.src = urlsEmbaralhadas[i % urlsEmbaralhadas.length];
-                    imgA.classList.add('visivel');
+                    // Camada de cima — fade in sobre a base, depois base é atualizada
+                    const topo = document.createElement('img');
+                    topo.alt = '';
+                    topo.style.cssText = `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0;transition:opacity ${DURACAO_FADE}ms ease-in-out;`;
 
-                    celula.appendChild(imgA);
-                    celula.appendChild(imgB);
+                    celula.appendChild(base);
+                    celula.appendChild(topo);
                     container.appendChild(celula);
 
-                    let fotoAtual = i % urlsEmbaralhadas.length;
-                    let usandoA = true;
+                    let indiceFoto = i % embaralhadas.length;
 
                     setTimeout(() => {
                         setInterval(() => {
-                            fotoAtual = (fotoAtual + 1) % urlsEmbaralhadas.length;
-                            const proximaImg = usandoA ? imgB : imgA;
-                            const imgAtual  = usandoA ? imgA : imgB;
+                            indiceFoto = (indiceFoto + 1) % embaralhadas.length;
+                            const proxUrl = embaralhadas[indiceFoto];
 
-                            proximaImg.src = urlsEmbaralhadas[fotoAtual];
-                            proximaImg.classList.add('visivel');
-                            imgAtual.classList.remove('visivel');
-
-                            usandoA = !usandoA;
+                            // Carrega a nova foto na camada de cima
+                            topo.src = proxUrl;
+                            topo.onload = () => {
+                                // Fade in do topo
+                                topo.style.opacity = '1';
+                                setTimeout(() => {
+                                    // Quando termina o fade, atualiza a base e esconde o topo
+                                    base.src = proxUrl;
+                                    topo.style.opacity = '0';
+                                }, DURACAO_FADE + 50);
+                            };
                         }, INTERVALO_TROCA);
                     }, i * ATRASO_ENTRE_CELULAS);
                 }
             } catch (e) {
-                console.warn('Mosaico: nenhuma foto encontrada ou erro ao carregar.', e);
+                console.warn('Mosaico: erro ao carregar fotos.', e);
             }
         }
 
