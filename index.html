@@ -144,14 +144,29 @@
         }
 
         .contagem-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--texto-secundario);
-            margin-bottom: 20px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
+            margin-bottom: 24px;
         }
 
         /* O Evento */
+        .evento-bloco {
+            max-width: 960px;
+            margin: 0 auto 0;
+        }
+
+        .evento-tipo-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--texto-secundario);
+            margin-bottom: 14px;
+        }
+
         .evento-endereco {
             margin-bottom: 56px;
         }
@@ -163,7 +178,7 @@
             font-style: italic;
             color: var(--texto-principal);
             letter-spacing: 1px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .evento-local-end {
@@ -172,47 +187,66 @@
             text-transform: uppercase;
             color: var(--texto-secundario);
             font-weight: 300;
+            margin-bottom: 40px;
         }
 
-        /* Galeria do local */
+        /* Foto única da igreja */
+        .evento-galeria-unica {
+            max-width: 960px;
+            margin: 0 auto 32px;
+            overflow: hidden;
+            background: #f5f5f5;
+            max-height: 420px;
+        }
+
+        .evento-galeria-unica img {
+            width: 100%;
+            height: 100%;
+            max-height: 420px;
+            object-fit: contain;
+            display: block;
+            padding: 12px;
+        }
+
+        /* Galeria do local 3x2 */
         .evento-galeria {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 220px);
-            gap: 6px;
+            gap: 8px;
             max-width: 960px;
-            margin: 0 auto 48px;
+            margin: 0 auto 32px;
         }
 
         @media (max-width: 640px) {
             .evento-galeria {
                 grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(3, 180px);
             }
         }
 
         .evento-galeria-cell {
+            background: #f5f5f5;
             overflow: hidden;
-            background: #f0f0f0;
+            aspect-ratio: 4 / 3;
         }
 
         .evento-galeria-cell img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             transition: transform 0.5s ease;
             display: block;
+            padding: 8px;
         }
 
         .evento-galeria-cell img:hover {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
 
         /* Mapa */
         .evento-mapa {
             max-width: 960px;
-            margin: 0 auto;
+            margin: 0 auto 0;
             overflow: hidden;
         }
 
@@ -221,11 +255,30 @@
             width: 100%;
         }
 
+        /* Divisor entre blocos */
+        .evento-divisor {
+            max-width: 960px;
+            margin: 64px auto;
+            height: 1px;
+            background: #e8e8e8;
+        }
+
         /* Spotify Player */
         .spotify-wrap {
             margin-top: 48px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .spotify-label {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
         }
 
         .spotify-wrap iframe {
@@ -859,10 +912,11 @@
 
     <!-- ===================== INFO DO CASAL ===================== -->
     <section class="info-casal">
-        <p class="data">15 de Agosto de 2026 • 18:00</p>
+        <p class="data">15 de Agosto de 2026 • 16:30</p>
         <p class="contagem-label">Contagem Regressiva</p>
         <div class="contador" id="contador"></div>
         <div class="spotify-wrap">
+            <div class="spotify-label">Trilha sonora do casamento</div>
             <iframe
                 src="https://open.spotify.com/embed/playlist/37i9dQZF1E8Jjyi7BP2J4e?utm_source=generator&theme=0"
                 width="100%"
@@ -926,28 +980,49 @@
     <section id="evento">
         <h2>O Evento</h2>
 
-        <!-- Endereço -->
-        <div class="evento-endereco">
+        <!-- IGREJA -->
+        <div class="evento-bloco">
+            <div class="evento-tipo-label">Cerimônia</div>
+            <div class="evento-local-nome">Paróquia Nossa Senhora Auxiliadora</div>
+            <div class="evento-local-end">Iporá — GO</div>
+
+            <div class="evento-galeria-unica" id="galeria-igreja"></div>
+
+            <div class="evento-mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.6670954736633!2d-51.119014899999996!3d-16.441725299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bdbb78b5ab0d%3A0x42a8d85c9f976b99!2sParoquia%20Nossa%20Senhora%20Auxiliadora!5e0!3m2!1spt-BR!2sbr!4v1776019961669!5m2!1spt-BR!2sbr"
+                    width="100%" height="380"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- DIVISOR -->
+        <div class="evento-divisor"></div>
+
+        <!-- FESTA -->
+        <div class="evento-bloco">
+            <div class="evento-tipo-label">Recepção</div>
             <div class="evento-local-nome">Recanto das Emílias</div>
             <div class="evento-local-end">Jardim Novo Horizonte · Iporá — GO · 76200-000</div>
+
+            <div class="evento-galeria" id="galeria-local"></div>
+
+            <div class="evento-mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.0543534875014!2d-51.109376399999995!3d-16.422065699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bd3962a81eeb%3A0x1a7e1ba7a1efc4e!2sRecanto%20das%20Em%C3%ADlias!5e0!3m2!1spt-BR!2sbr!4v1776017370841!5m2!1spt-BR!2sbr"
+                    width="100%" height="380"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
 
-        <!-- Galeria do local (6 fotos do Firebase) -->
-        <div class="evento-galeria" id="galeria-local">
-            <!-- preenchido via JS -->
-        </div>
-
-        <!-- Mapa -->
-        <div class="evento-mapa">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.0543534875014!2d-51.109376399999995!3d-16.422065699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bd3962a81eeb%3A0x1a7e1ba7a1efc4e!2sRecanto%20das%20Em%C3%ADlias!5e0!3m2!1spt-BR!2sbr!4v1776017370841!5m2!1spt-BR!2sbr"
-                width="100%" height="420"
-                style="border:0;"
-                allowfullscreen
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
     </section>
 
     <!-- ===================== LISTA DE PRESENTES ===================== -->
@@ -1561,6 +1636,27 @@
         }
 
         iniciarGaleriaLocal();
+
+        // ===================== FOTO DA IGREJA =====================
+        async function iniciarGaleriaIgreja() {
+            try {
+                const pastaRef = ref(storage, 'igreja/');
+                const resultado = await listAll(pastaRef);
+                if (resultado.items.length === 0) return;
+
+                const url = await getDownloadURL(resultado.items[0]);
+                const container = document.getElementById('galeria-igreja');
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Paróquia Nossa Senhora Auxiliadora';
+                img.loading = 'lazy';
+                container.appendChild(img);
+            } catch (e) {
+                console.warn('Galeria igreja: erro ao carregar foto.', e);
+            }
+        }
+
+        iniciarGaleriaIgreja();
 
         // ===================== RSVP =====================
         document.getElementById('form-rsvp').addEventListener('submit', async function (event) {
