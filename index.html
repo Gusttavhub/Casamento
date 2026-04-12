@@ -151,6 +151,76 @@
             margin-bottom: 20px;
         }
 
+        /* O Evento */
+        .evento-endereco {
+            margin-bottom: 56px;
+        }
+
+        .evento-local-nome {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--texto-principal);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .evento-local-end {
+            font-size: 0.8rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--texto-secundario);
+            font-weight: 300;
+        }
+
+        /* Galeria do local */
+        .evento-galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 220px);
+            gap: 6px;
+            max-width: 960px;
+            margin: 0 auto 48px;
+        }
+
+        @media (max-width: 640px) {
+            .evento-galeria {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 180px);
+            }
+        }
+
+        .evento-galeria-cell {
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .evento-galeria-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .evento-galeria-cell img:hover {
+            transform: scale(1.04);
+        }
+
+        /* Mapa */
+        .evento-mapa {
+            max-width: 960px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .evento-mapa iframe {
+            display: block;
+            width: 100%;
+        }
+
         /* Spotify Player */
         .spotify-wrap {
             margin-top: 48px;
@@ -855,7 +925,29 @@
     <!-- ===================== O EVENTO ===================== -->
     <section id="evento">
         <h2>O Evento</h2>
-        <p style="color: var(--texto-secundario);">Detalhes do local, cerimônia e mapa.</p>
+
+        <!-- Endereço -->
+        <div class="evento-endereco">
+            <div class="evento-local-nome">Recanto das Emílias</div>
+            <div class="evento-local-end">Jardim Novo Horizonte · Iporá — GO · 76200-000</div>
+        </div>
+
+        <!-- Galeria do local (6 fotos do Firebase) -->
+        <div class="evento-galeria" id="galeria-local">
+            <!-- preenchido via JS -->
+        </div>
+
+        <!-- Mapa -->
+        <div class="evento-mapa">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.0543534875014!2d-51.109376399999995!3d-16.422065699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bd3962a81eeb%3A0x1a7e1ba7a1efc4e!2sRecanto%20das%20Em%C3%ADlias!5e0!3m2!1spt-BR!2sbr!4v1776017370841!5m2!1spt-BR!2sbr"
+                width="100%" height="420"
+                style="border:0;"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
     </section>
 
     <!-- ===================== LISTA DE PRESENTES ===================== -->
@@ -1441,6 +1533,34 @@
         }
 
         iniciarMosaico();
+
+        // ===================== GALERIA DO LOCAL =====================
+        async function iniciarGaleriaLocal() {
+            try {
+                const pastaRef = ref(storage, 'Fotos local do casamento/');
+                const resultado = await listAll(pastaRef);
+                if (resultado.items.length === 0) return;
+
+                const urls = await Promise.all(resultado.items.map(item => getDownloadURL(item)));
+                const container = document.getElementById('galeria-local');
+                const seis = urls.slice(0, 6);
+
+                seis.forEach(url => {
+                    const cell = document.createElement('div');
+                    cell.className = 'evento-galeria-cell';
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = 'Recanto das Emílias';
+                    img.loading = 'lazy';
+                    cell.appendChild(img);
+                    container.appendChild(cell);
+                });
+            } catch (e) {
+                console.warn('Galeria local: erro ao carregar fotos.', e);
+            }
+        }
+
+        iniciarGaleriaLocal();
 
         // ===================== RSVP =====================
         document.getElementById('form-rsvp').addEventListener('submit', async function (event) {
