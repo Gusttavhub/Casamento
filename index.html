@@ -1549,9 +1549,14 @@
             if (e.target === this) fecharModal();
         });
 
-        // PIX — expande a caixa
-        document.getElementById('opcao-pix').addEventListener('click', function() {
+// PIX — expande a caixa ao clicar no cabeçalho
+        document.getElementById('pix-header').addEventListener('click', function() {
             document.getElementById('pix-box').classList.toggle('aberto');
+        });
+
+        // Impede que o clique no campo de texto feche a caixa sem querer
+        document.getElementById('pix-box').addEventListener('click', function(e) {
+            e.stopPropagation();
         });
 
         // Copiar chave PIX
