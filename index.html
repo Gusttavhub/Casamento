@@ -879,6 +879,7 @@
             padding: 20px;
             border: 1px solid #e0e0e0;
             text-align: center;
+            width: 100%;
         }
 
         .pix-box.aberto { display: block; }
@@ -922,6 +923,7 @@
             cursor: pointer;
             color: var(--texto-principal);
             transition: all 0.3s;
+            width: 100%;
         }
 
         .pix-confirmar:hover {
@@ -932,19 +934,15 @@
 </head>
 <body>
 
-    <!-- ===================== CAPA ===================== -->
     <section class="hero">
-        <!-- Mosaico de fundo (preenchido via Firebase Storage) -->
         <div class="mosaic-bg" id="mosaic-bg"></div>
         <div class="mosaic-overlay"></div>
 
-        <!-- Conteúdo principal -->
         <div class="hero-conteudo">
             <h1>Gusttavo & Luciana</h1>
         </div>
     </section>
 
-    <!-- ===================== INFO DO CASAL ===================== -->
     <section class="info-casal">
         <p class="data">15 de Agosto de 2026 • 16:30</p>
         <p class="contagem-label">Contagem Regressiva</p>
@@ -970,7 +968,6 @@
         </nav>
     </section>
 
-    <!-- ===================== NOSSA HISTÓRIA ===================== -->
     <section id="historia" class="fundo-cinza">
         <h2>Nossa História</h2>
         <div class="historia-texto">
@@ -984,14 +981,12 @@
         </div>
     </section>
 
-    <!-- ===================== CONFIRMAÇÃO DE PRESENÇA ===================== -->
     <section id="rsvp" class="fundo-cinza">
         <h2>Confirme sua Presença</h2>
         <p style="color: var(--texto-secundario); margin-bottom: 30px;">
             Por favor, confirme sua presença até o dia 15 de Julho de 2026.
         </p>
 
-        <!-- Contador de Convidados -->
         <div class="bloco-contador-convidados">
             <div class="numero-convidados">
                 <span id="total-convidados">—</span> / 200 <span>convidados</span>
@@ -1010,11 +1005,9 @@
         </form>
     </section>
 
-    <!-- ===================== O EVENTO ===================== -->
     <section id="evento">
         <h2>O Evento</h2>
 
-        <!-- IGREJA -->
         <div class="evento-bloco">
             <div class="evento-tipo-label">Cerimônia</div>
             <div class="evento-local-nome">Paróquia Nossa Senhora Auxiliadora</div>
@@ -1034,10 +1027,8 @@
             </div>
         </div>
 
-        <!-- DIVISOR -->
         <div class="evento-divisor"></div>
 
-        <!-- FESTA -->
         <div class="evento-bloco">
             <div class="evento-tipo-label">Recepção</div>
             <div class="evento-local-nome">Recanto das Emílias</div>
@@ -1059,23 +1050,12 @@
 
     </section>
 
-    <!-- ===================== LISTA DE PRESENTES ===================== -->
     <section id="presentes" class="fundo-cinza">
         <h2>Lista de Presentes</h2>
         <p style="color: var(--texto-secundario); margin-bottom: 40px;">
             Sua presença é o nosso maior presente. Mas se quiser nos presentear, ficamos felizes com qualquer escolha.
         </p>
-            </section>
 
-    <!-- ===================== ENDEREÇO DE ENTREGA ===================== -->
-    <section class="entrega-section">
-        <div class="entrega-wrap">
-            <div class="entrega-titulo">Endereço para entrega dos presentes</div>
-            <div class="entrega-local-nome">Gusttavo & Luciana</div>
-            <div class="entrega-linha">Avenida 03, quadra 20, lote 02 · Setor São Bento · Apt 206</div>
-            <div class="entrega-linha">Mineiros — GO &nbsp;·&nbsp; CEP 75.832-066</div>
-        </div>
-        <!-- Filtros de Categoria -->
         <div class="categorias-filtro">
             <button class="filtro-btn ativo" data-cat="todos">Todos</button>
             <button class="filtro-btn" data-cat="eletro">Eletrodomésticos</button>
@@ -1083,7 +1063,6 @@
             <button class="filtro-btn" data-cat="casa">Casa</button>
         </div>
 
-        <!-- Grid de Presentes -->
         <div class="presentes-grid">
 
             <div class="presente-card" data-cat="eletro" data-id="maquina-lavar-louca" data-valor="3255"
@@ -1263,9 +1242,17 @@
             </div>
 
         </div>
-
-
     </section>
+
+    <section class="entrega-section">
+        <div class="entrega-wrap">
+            <div class="entrega-titulo">Endereço para entrega dos presentes</div>
+            <div class="entrega-local-nome">Gusttavo & Luciana</div>
+            <div class="entrega-linha">Avenida 03, quadra 20, lote 02 · Setor São Bento · Apt 206</div>
+            <div class="entrega-linha">Mineiros — GO  ·  CEP 75.832-066</div>
+        </div>
+    </section>
+
     <div class="modal-overlay" id="modal-overlay">
         <div class="modal-box">
             <button class="modal-fechar" id="modal-fechar">✕</button>
@@ -1284,7 +1271,6 @@
                 <div class="modal-titulo-opcoes">Como deseja presentear?</div>
                 <div class="modal-opcoes">
 
-                    <!-- PIX -->
                     <div class="modal-opcao" id="opcao-pix" style="flex-direction:column;align-items:flex-start;gap:0">
                         <div style="display:flex;align-items:center;gap:14px;width:100%" id="pix-header">
                             <div class="modal-opcao-icone">◆</div>
@@ -1293,7 +1279,7 @@
                                 <span class="modal-opcao-subtitulo">Transferência instantânea, sem taxas</span>
                             </div>
                         </div>
-                            <div class="pix-box" id="pix-box">
+                        <div class="pix-box" id="pix-box">
                             <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto-secundario)">Chave PIX</div>
                             <div class="pix-chave" id="pix-chave-valor">64 9217-1411</div>
                             <button class="pix-copiar" id="pix-copiar">Copiar chave</button>
@@ -1311,21 +1297,30 @@
                         </div>
                     </div>
 
-                    <!-- Comprar o presente -->
-                    <a class="modal-opcao" id="opcao-loja" href="#" target="_blank">
-                        <div class="modal-opcao-icone">◎</div>
-                        <div class="modal-opcao-texto">
-                            <span class="modal-opcao-titulo">Comprar o presente</span>
-                            <span class="modal-opcao-subtitulo">Adquira diretamente na loja e nos entregue</span>
+                    <div class="modal-opcao" id="opcao-loja-container" style="flex-direction:column;align-items:flex-start;gap:0">
+                        <div style="display:flex;align-items:center;gap:14px;width:100%" id="loja-header">
+                            <div class="modal-opcao-icone">◎</div>
+                            <div class="modal-opcao-texto">
+                                <span class="modal-opcao-titulo">Comprar na loja virtual</span>
+                                <span class="modal-opcao-subtitulo">Compre no site e mande entregar</span>
+                            </div>
                         </div>
-                    </a>
+                        <div class="pix-box" id="loja-box">
+                            <input type="text" id="nome-presenteador-loja" placeholder="Seu Nome Completo" 
+                                   style="width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--fonte-textos); font-size: 0.9rem; outline: none;">
+
+                            <div class="pix-instrucao" style="margin-top: 0;">
+                                Digite seu nome para registrarmos o seu presente. Ao clicar abaixo, você será redirecionado para a loja.
+                            </div>
+                            <button class="pix-confirmar" id="loja-confirmar">Registrar e Ir para a Loja</button>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ===================== SCRIPT: FILTROS DE PRESENTES ===================== -->
     <script>
         document.querySelectorAll('.filtro-btn').forEach(btn => {
             btn.addEventListener('click', function () {
@@ -1344,7 +1339,6 @@
         });
     </script>
 
-    <!-- ===================== SCRIPT: CONTAGEM REGRESSIVA ===================== -->
     <script>
         const dataCasamento = new Date("August 15, 2026 18:00:00").getTime();
 
@@ -1383,7 +1377,6 @@
         }, 1000);
     </script>
 
-    <!-- ===================== SCRIPT: FIREBASE + RSVP + MOSAICO ===================== -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
@@ -1413,7 +1406,6 @@
                 const snapshot = await getDocs(collection(db, "convidados"));
                 let total = 0;
                 snapshot.forEach(doc => {
-                    // Cada registro = 1 (o próprio convidado) + número de acompanhantes
                     total += 1 + (doc.data().acompanhantes || 0);
                 });
 
@@ -1427,23 +1419,19 @@
 
         atualizarContadorConvidados();
 
-        // ===================== PRESENTES - RESERVAS + MODAL =====================
+        // ===================== LÓGICA DE COTAS E PROGRESSO =====================
         const VALOR_TOTAL_LISTA = 9290;
         const PIX_CHAVE = '64 9217-1411';
-
         let cardAtivo = null;
 
-        // Estrutura + imagem real + barra em cada card
+        // Estrutura inicial das barras
         document.querySelectorAll('.presente-card').forEach(card => {
             const imgUrl = card.dataset.img;
-
-            // Cria o wrapper do corpo
             const body = document.createElement('div');
             body.className = 'presente-card-body';
             while (card.firstChild) body.appendChild(card.firstChild);
             card.appendChild(body);
 
-            // Insere imagem real no topo
             if (imgUrl) {
                 const img = document.createElement('img');
                 img.src = imgUrl;
@@ -1452,7 +1440,6 @@
                 card.insertBefore(img, body);
             }
 
-            // Barra começa zerada
             const barra = document.createElement('div');
             barra.className = 'presente-barra-bg';
             barra.innerHTML = `<div class="presente-barra-fill" style="width:0%"></div>`;
@@ -1463,40 +1450,53 @@
             body.appendChild(lbl);
         });
 
-        async function carregarReservas() {
+        // Carrega progresso do banco
+        async function carregarProgressoPresentes() {
             try {
-                const snapshot = await getDocs(collection(db, "presentes_reservados"));
-                snapshot.forEach(d => marcarReservado(d.id));
+                const snapshot = await getDocs(collection(db, "presentes_contribuicoes"));
+                const totaisPorPresente = {};
+
+                // Soma todas as contribuições
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const id = data.presenteId;
+                    totaisPorPresente[id] = (totaisPorPresente[id] || 0) + data.valorContribuido;
+                });
+
+                document.querySelectorAll('.presente-card').forEach(card => {
+                    const id = card.dataset.id;
+                    const valorTotalNecessario = parseFloat(card.dataset.valor);
+                    const acumulado = totaisPorPresente[id] || 0;
+                    
+                    const percentual = Math.min((acumulado / valorTotalNecessario) * 100, 100);
+                    
+                    const barra = card.querySelector('.presente-barra-fill');
+                    const legenda = card.querySelector('.presente-barra-label');
+                    
+                    if (barra) barra.style.width = percentual + '%';
+                    if (legenda) {
+                        if (percentual >= 100) {
+                            legenda.innerText = "Presente Ganho! ✓";
+                            card.classList.add('reservado');
+                            const btn = card.querySelector('.presente-btn');
+                            if(btn) {
+                                btn.innerText = "Ganho! ✓";
+                                btn.classList.add('btn-reservado');
+                                btn.disabled = true;
+                            }
+                        } else {
+                            legenda.innerText = `R$ ${acumulado.toLocaleString('pt-BR')} arrecadados (${percentual.toFixed(0)}%)`;
+                        }
+                    }
+                });
             } catch (e) {
-                console.warn('Erro ao carregar reservas:', e);
+                console.warn("Erro ao carregar progresso:", e);
             }
         }
 
-        function marcarReservado(id) {
-            const card = document.querySelector(`.presente-card[data-id="${id}"]`);
-            if (!card) return;
-            card.classList.add('reservado');
-            const btn = card.querySelector('.presente-btn');
-            btn.classList.add('btn-reservado');
-            btn.innerText = 'Reservado ✓';
-            // Preenche barra e atualiza label
-            const fill = card.querySelector('.presente-barra-fill');
-            const lbl  = card.querySelector('.presente-barra-label');
-            if (fill) fill.style.width = '100%';
-            if (lbl)  lbl.innerText = 'Reservado ✓';
-        }
+        carregarProgressoPresentes();
 
-        async function registrarReserva(id, nome, valor, tipo) {
-            await setDoc(doc(db, "presentes_reservados", id), {
-                nome, valor, tipo,
-                dataReserva: new Date().toISOString()
-            });
-            marcarReservado(id);
-        }
-
-        carregarReservas();
-
-        // Abre o modal ao clicar em "Presentear"
+        // ===================== ABRIR / FECHAR MODAL =====================
         document.querySelectorAll('.presente-btn').forEach(btn => {
             btn.addEventListener('click', function () {
                 if (this.classList.contains('btn-reservado')) return;
@@ -1511,10 +1511,7 @@
             const nome   = card.dataset.nome;
             const desc   = card.dataset.descricao;
             const valor  = parseInt(card.dataset.valor);
-            const loja   = card.dataset.loja;
-            const pct    = (valor / VALOR_TOTAL_LISTA) * 100;
 
-            // Imagem ou placeholder
             const wrap = document.getElementById('modal-img-wrap');
             if (img) {
                 wrap.innerHTML = `<img class="modal-img" src="${img}" alt="${nome}">`;
@@ -1527,15 +1524,11 @@
             document.getElementById('modal-nome').innerText = nome;
             document.getElementById('modal-descricao').innerText = desc;
             document.getElementById('modal-valor').innerText = 'R$ ' + valor.toLocaleString('pt-BR');
-            document.getElementById('modal-barra-fill').style.width = pct.toFixed(1) + '%';
-            document.getElementById('modal-barra-label').innerText = pct.toFixed(0) + '% do total da lista';
             document.getElementById('pix-chave-valor').innerText = PIX_CHAVE;
 
-            // Link loja
-            document.getElementById('opcao-loja').href = loja && loja !== '#' ? loja : '#';
-
-            // Fecha PIX se estava aberto
+            // Fecha sanfonas ao abrir
             document.getElementById('pix-box').classList.remove('aberto');
+            document.getElementById('loja-box').classList.remove('aberto');
 
             document.getElementById('modal-overlay').classList.add('aberto');
             document.body.style.overflow = 'hidden';
@@ -1552,17 +1545,15 @@
             if (e.target === this) fecharModal();
         });
 
-// PIX — expande a caixa ao clicar no cabeçalho
+        // ===================== BOTÕES PIX =====================
         document.getElementById('pix-header').addEventListener('click', function() {
             document.getElementById('pix-box').classList.toggle('aberto');
         });
 
-        // Impede que o clique no campo de texto feche a caixa sem querer
         document.getElementById('pix-box').addEventListener('click', function(e) {
             e.stopPropagation();
         });
 
-        // Copiar chave PIX
         document.getElementById('pix-copiar').addEventListener('click', function(e) {
             e.stopPropagation();
             navigator.clipboard.writeText(PIX_CHAVE).then(() => {
@@ -1571,72 +1562,111 @@
             });
         });
 
-// Confirmar pagamento PIX e Validar via WhatsApp
         document.getElementById('pix-confirmar').addEventListener('click', async function(e) {
             e.stopPropagation();
             if (!cardAtivo) return;
 
-            // Pega o nome digitado
-            const nomePresenteador = document.getElementById('nome-presenteador').value.trim();
+            const nomeDoador = document.getElementById('nome-presenteador').value.trim();
+            const valorDigitado = parseFloat(document.getElementById('valor-enviado').value);
 
-            // Validação de segurança: obriga a preencher o nome
-            if (!nomePresenteador) {
-                alert('Por favor, preencha seu nome para sabermos quem está nos presenteando!');
-                document.getElementById('nome-presenteador').focus();
+            if (!nomeDoador || isNaN(valorDigitado) || valorDigitado <= 0) {
+                alert('Por favor, preencha seu nome e o valor correto enviado.');
+                return;
+            }
+
+            const id = cardAtivo.dataset.id;
+            const nomePresente = cardAtivo.dataset.nome;
+            
+            this.innerText = 'Processando...';
+            this.disabled = true;
+
+            try {
+                await addDoc(collection(db, "presentes_contribuicoes"), {
+                    presenteId: id,
+                    presenteNome: nomePresente,
+                    doador: nomeDoador,
+                    valorContribuido: valorDigitado,
+                    metodo: 'pix',
+                    data: new Date().toISOString()
+                });
+
+                await carregarProgressoPresentes();
+                alert(`Muito obrigado, ${nomeDoador}! Sua contribuição de R$ ${valorDigitado.toFixed(2)} para o item "${nomePresente}" foi registrada com sucesso.`);
+                
+                fecharModal();
+                document.getElementById('nome-presenteador').value = '';
+                document.getElementById('valor-enviado').value = '';
+
+            } catch (err) {
+                console.error(err);
+                alert('Erro ao salvar. Tente novamente.');
+            } finally {
+                this.innerText = 'Confirmar Contribuição';
+                this.disabled = false;
+            }
+        });
+
+        // ===================== BOTÕES LOJA =====================
+        document.getElementById('loja-header').addEventListener('click', function() {
+            document.getElementById('loja-box').classList.toggle('aberto');
+        });
+
+        document.getElementById('loja-box').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        async function registrarReservaLoja(id, nome, valor, tipo, doador) {
+            await addDoc(collection(db, "presentes_contribuicoes"), {
+                presenteId: id,
+                presenteNome: nome,
+                doador: doador,
+                valorContribuido: valor, 
+                metodo: tipo,
+                data: new Date().toISOString()
+            });
+            await carregarProgressoPresentes();
+        }
+
+        document.getElementById('loja-confirmar').addEventListener('click', async function(e) {
+            e.stopPropagation();
+            if (!cardAtivo) return;
+
+            const nomeDoador = document.getElementById('nome-presenteador-loja').value.trim();
+
+            if (!nomeDoador) {
+                alert('Por favor, preencha seu nome antes de ir para a loja!');
+                document.getElementById('nome-presenteador-loja').focus();
                 return;
             }
 
             const id    = cardAtivo.dataset.id;
             const nome  = cardAtivo.dataset.nome;
             const valor = parseInt(cardAtivo.dataset.valor);
-            
+            const linkLoja = cardAtivo.dataset.loja;
+
             this.innerText = 'Registrando...';
             this.disabled = true;
-            
+
             try {
-                // Salva no banco de dados com o NOME do doador
-                await setDoc(doc(db, "pix_pendentes", id + '_' + Date.now()), {
-                    presenteId: id,
-                    presenteNome: nome,
-                    valor: valor,
-                    doador: nomePresenteador, 
-                    status: 'pendente',
-                    dataEnvio: new Date().toISOString()
-                });
-                
+                await registrarReservaLoja(id, nome, valor, 'loja', nomeDoador);
                 this.innerText = 'Redirecionando...';
                 
-                // LÓGICA DE VALIDAÇÃO: Monta a mensagem e abre o WhatsApp
-                // IMPORTANTE: Altere o número abaixo para o seu WhatsApp (com DDI 55 e DDD)
-                const numeroWhatsApp = "64 99217-1411"; 
-                const mensagem = `Olá! Meu nome é *${nomePresenteador}*. Acabei de presentear vocês com o item: *${nome}* (R$ ${valor}). Segue abaixo o meu comprovante do PIX!`;
-                const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-
-                // Abre o WhatsApp em nova aba
-                window.open(urlWhatsApp, '_blank');
+                if (linkLoja && linkLoja !== '#') {
+                    window.open(linkLoja, '_blank');
+                }
                 
                 setTimeout(() => {
                     fecharModal();
-                    this.innerText = 'Já paguei — Enviar Comprovante';
+                    this.innerText = 'Registrar e Ir para a Loja';
                     this.disabled = false;
-                    document.getElementById('nome-presenteador').value = ''; // Limpa o campo
-                }, 1200);
-                
+                    document.getElementById('nome-presenteador-loja').value = '';
+                }, 1000);
+
             } catch (err) {
                 console.error(err);
                 this.innerText = 'Erro — tente novamente';
                 this.disabled = false;
             }
-        });
-
-        // Comprar — registra reserva e abre loja
-        document.getElementById('opcao-loja').addEventListener('click', async function() {
-            if (!cardAtivo || this.href === '#' || this.href === window.location.href + '#') return;
-            const id    = cardAtivo.dataset.id;
-            const nome  = cardAtivo.dataset.nome;
-            const valor = parseInt(cardAtivo.dataset.valor);
-            try { await registrarReserva(id, nome, valor, 'loja'); } catch(e) {}
-            fecharModal();
         });
 
         // ===================== MOSAICO =====================
@@ -1678,7 +1708,6 @@
                             const proximaImg = usandoA ? imgB : imgA;
                             const imgAtual   = usandoA ? imgA : imgB;
 
-                            // Pré-carrega antes de mostrar
                             proximaImg.src = urlsEmbaralhadas[proximoIndice];
                             proximaImg.onload = () => {
                                 proximaImg.className = 'visivel';
@@ -1693,7 +1722,6 @@
                 console.warn('Mosaico: erro ao carregar fotos.', e);
             }
         }
-
         iniciarMosaico();
 
         // ===================== GALERIA DO LOCAL =====================
@@ -1719,7 +1747,6 @@
                 console.warn('Galeria local: erro ao carregar fotos.', e);
             }
         }
-
         iniciarGaleriaLocal();
 
         // ===================== FOTO DA IGREJA =====================
@@ -1727,10 +1754,7 @@
             try {
                 const pastaRef = ref(storage, 'Igreja/');
                 const resultado = await listAll(pastaRef);
-                if (resultado.items.length === 0) {
-                    console.warn('Pasta igreja/ vazia ou não encontrada no Storage.');
-                    return;
-                }
+                if (resultado.items.length === 0) return;
                 const url = await getDownloadURL(resultado.items[0]);
                 const container = document.getElementById('galeria-igreja');
                 const img = document.createElement('img');
@@ -1742,7 +1766,6 @@
                 console.warn('Igreja: erro —', e.message);
             }
         }
-
         iniciarGaleriaIgreja();
 
         // ===================== RSVP =====================
@@ -1769,7 +1792,6 @@
                 feedback.innerText = "Presença confirmada com sucesso! Muito obrigado.";
                 document.getElementById('form-rsvp').reset();
 
-                // Atualiza o contador após nova confirmação
                 atualizarContadorConvidados();
 
             } catch (e) {
@@ -1783,7 +1805,5 @@
             }
         });
     </script>
-
-
 </body>
 </html>
