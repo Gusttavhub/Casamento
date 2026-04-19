@@ -3,1205 +3,1743 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NavePort - Mobilidade Operacional Unificada</title>
+    <title>Gusttavo & Luciana | Nosso Casamento</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Variáveis de Cores - Estilo Minimalista */
+        :root {
+            --branco-puro: #ffffff;
+            --cinza-fundo: #fafafa;
+            --texto-principal: #2c2c2c;
+            --texto-secundario: #888888;
+            --fonte-titulos: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --fonte-textos: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        /* Reset e Estilos Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #FFFFFF;
-            color: #1A1A1A;
+            font-family: var(--fonte-textos);
+            background-color: var(--branco-puro);
+            color: var(--texto-principal);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Seções */
+        section {
+            padding: 100px 20px;
+        }
+
+        .fundo-cinza {
+            background-color: var(--cinza-fundo);
+        }
+
+        h2 {
+            font-family: var(--fonte-titulos);
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: var(--texto-principal);
+        }
+
+        /* Capa (Hero Section) */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
             overflow: hidden;
         }
 
-        :root {
-            --navy: #0B2545;
-            --navy-claro: #1A4B75;
-            --laranja: #E55934;
-            --laranja-escuro: #D64A2F;
-            --amarelo: #FEC40F;
-            --verde: #008542;
-            --vermelho: #DC3545;
-            --cinza-claro: #F5F5F5;
-            --cinza-medio: #E0E0E0;
-            --cinza-texto: #666;
-            --branco: #FFFFFF;
-        }
-
-        /* LOGIN */
-        .login-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #0B2545 0%, #1A4B75 100%);
-        }
-
-        .login-box {
-            background-color: var(--branco);
-            padding: 48px;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 420px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .login-logo { text-align: center; margin-bottom: 32px; }
-
-        .login-logo-icon {
-            width: 72px; height: 72px;
-            background-color: var(--amarelo);
-            border-radius: 12px;
-            margin: 0 auto 16px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 40px;
-        }
-
-        .login-logo h1 { font-size: 32px; color: var(--navy); margin-bottom: 4px; }
-        .login-logo p { font-size: 13px; color: var(--cinza-texto); }
-
-        .login-form { display: flex; flex-direction: column; gap: 16px; }
-
-        .login-form input {
-            padding: 14px; font-size: 15px;
-            border: 2px solid var(--cinza-claro);
-            border-radius: 6px; font-family: inherit;
-        }
-
-        .login-form input:focus {
-            outline: none;
-            border-color: var(--laranja);
-            box-shadow: 0 0 0 3px rgba(229, 89, 52, 0.1);
-        }
-
-        .login-form button {
-            padding: 14px;
-            background-color: var(--laranja);
-            color: var(--branco);
-            font-size: 16px; font-weight: 600;
-            border: none; border-radius: 6px;
-            cursor: pointer; transition: all 0.2s ease;
-            margin-top: 8px;
-        }
-
-        .login-form button:hover {
-            background-color: var(--laranja-escuro);
-            box-shadow: 0 4px 12px rgba(229, 89, 52, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .login-help {
-            margin-top: 20px; padding: 12px;
-            background-color: var(--cinza-claro);
-            border-radius: 6px;
-            font-size: 12px; color: var(--cinza-texto);
-            line-height: 1.6;
-        }
-
-        .login-help strong { color: var(--navy); }
-
-        .login-error {
-            color: var(--vermelho);
-            font-size: 13px; margin-top: 4px;
-            display: none;
-        }
-        .login-error.active { display: block; }
-
-        /* HEADER */
-        header {
-            background-color: var(--navy);
-            color: var(--branco);
-            padding: 14px 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            height: 64px;
-        }
-
-        .logo {
-            font-size: 22px; font-weight: bold;
-            display: flex; align-items: center; gap: 12px;
-        }
-
-        .logo-icon {
-            width: 36px; height: 36px;
-            display: flex; align-items: center; justify-content: center;
-            background-color: var(--amarelo);
-            border-radius: 8px; font-size: 20px;
-        }
-
-        .header-right { display: flex; align-items: center; gap: 20px; }
-
-        .user-badge {
-            display: flex; align-items: center; gap: 10px;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px; font-weight: 600;
-        }
-
-        .user-badge.adm { background-color: var(--laranja); color: var(--branco); }
-        .user-badge.user { background-color: var(--verde); color: var(--branco); }
-
-        .hora-atual {
-            font-size: 14px; color: var(--amarelo); font-weight: 600;
-        }
-
-        .btn-logout {
-            background: none;
-            border: 1px solid rgba(255,255,255,0.3);
-            color: var(--branco);
-            padding: 6px 14px; border-radius: 6px;
-            cursor: pointer; font-size: 13px;
-            transition: all 0.2s;
-        }
-
-        .btn-logout:hover { background-color: rgba(255,255,255,0.1); }
-
-        /* LAYOUT */
-        .app-container {
-            display: flex;
-            height: calc(100vh - 64px);
-        }
-
-        .mapa-section {
-            flex: 1;
-            display: flex; flex-direction: column;
-            background-color: var(--cinza-claro);
-            position: relative;
-        }
-
-        .mapa-header {
-            padding: 16px 24px;
-            background-color: var(--branco);
-            border-bottom: 1px solid var(--cinza-medio);
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 12px;
-        }
-
-        .mapa-titulo { color: var(--navy); font-size: 17px; font-weight: bold; }
-        .mapa-titulo-sub { font-size: 12px; color: var(--cinza-texto); margin-top: 2px; }
-
-        .mapa-legendas {
-            display: flex; gap: 14px; font-size: 11px;
-            flex-wrap: wrap;
-        }
-
-        .legenda-item { display: flex; align-items: center; gap: 5px; }
-        .legenda-cor { width: 14px; height: 4px; border-radius: 2px; }
-
-        /* MAPA GOOGLE */
-        .mapa-google-container {
-            flex: 1; position: relative; overflow: hidden;
-        }
-
-        .mapa-google-container iframe {
-            width: 100%; height: 100%; border: 0;
-        }
-
-        .rotas-lista-flutuante {
+        /* Mosaico de Fotos */
+        .mosaic-bg {
             position: absolute;
-            top: 16px; right: 16px;
-            background-color: var(--branco);
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
-            padding: 16px;
-            width: 280px;
-            max-height: 420px;
-            overflow-y: auto;
-            z-index: 20;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            z-index: 0;
+            gap: 3px;
         }
 
-        .rotas-lista-titulo {
-            font-size: 12px; font-weight: bold;
-            color: var(--navy); margin-bottom: 12px;
-            text-transform: uppercase; letter-spacing: 0.5px;
-            border-bottom: 2px solid var(--cinza-claro);
-            padding-bottom: 8px;
+        @media (max-width: 768px) {
+            .mosaic-bg {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+            }
         }
 
-        .rota-item {
-            padding: 10px 12px;
-            background-color: var(--cinza-claro);
-            border-radius: 6px;
-            margin-bottom: 8px;
-            border-left: 4px solid var(--verde);
-            font-size: 12px;
+        .mosaic-cell {
             position: relative;
+            overflow: hidden;
+            background: #000;
         }
 
-        .rota-item-nome {
-            font-weight: bold; color: var(--navy);
-            margin-bottom: 4px; padding-right: 20px;
+        .mosaic-cell img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
 
-        .rota-item-tipo {
-            color: var(--cinza-texto); font-size: 11px; line-height: 1.5;
+        .mosaic-cell img.visivel {
+            opacity: 1;
         }
 
-        .rota-item-tipo strong { color: var(--navy); }
-
-        .rota-item-delete {
-            position: absolute; top: 8px; right: 8px;
-            background: none; border: none;
-            color: var(--vermelho); cursor: pointer;
-            font-size: 14px; padding: 0 4px;
+        .mosaic-overlay {
+            position: absolute;
+            inset: 0;
+            background: transparent;
+            z-index: 1;
         }
 
-        .rotas-vazias {
-            text-align: center; color: var(--cinza-texto);
-            font-size: 12px; padding: 20px 10px;
-            font-style: italic; line-height: 1.6;
+        .hero-conteudo {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* SIDEBAR */
-        .sidebar {
-            width: 340px;
-            background-color: var(--branco);
-            padding: 24px;
-            border-left: 1px solid var(--cinza-medio);
-            display: flex; flex-direction: column; gap: 14px;
-            overflow-y: auto;
+        .hero h1 {
+            font-family: var(--fonte-titulos);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 200;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
         }
 
-        .sidebar-titulo {
-            font-size: 13px; font-weight: bold;
-            color: var(--navy);
-            text-transform: uppercase; letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        .card-kpi {
-            background-color: var(--cinza-claro);
-            padding: 14px 16px;
-            border-radius: 8px;
-            border-left: 4px solid var(--laranja);
-        }
-
-        .card-kpi-label {
-            font-size: 10px; color: var(--cinza-texto);
-            text-transform: uppercase; letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .card-kpi-valor {
-            font-size: 24px; font-weight: bold; color: var(--navy);
-        }
-
-        .botoes-acao {
-            display: flex; flex-direction: column; gap: 10px;
-            margin-top: 4px;
-        }
-
-        button {
-            padding: 13px 16px;
-            font-size: 13px; font-weight: 600;
-            border: none; border-radius: 6px;
-            cursor: pointer; transition: all 0.2s ease;
-            text-align: center; width: 100%;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background-color: var(--laranja); color: var(--branco);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--laranja-escuro);
-            box-shadow: 0 4px 12px rgba(229, 89, 52, 0.3);
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background-color: var(--branco);
-            color: var(--navy);
-            border: 2px solid var(--navy);
-        }
-
-        .btn-secondary:hover { background-color: var(--navy); color: var(--branco); }
-
-        .btn-adm {
-            background-color: var(--navy); color: var(--branco);
-        }
-
-        .btn-adm:hover { background-color: var(--navy-claro); }
-
-        .adm-aviso {
-            background-color: #FFF4E6;
-            border-left: 4px solid var(--laranja);
-            padding: 10px 12px;
-            border-radius: 4px;
-            font-size: 11px; color: var(--navy);
-            margin-top: 4px; line-height: 1.5;
-        }
-
-        /* MODAL */
-        .modal {
+        .hero .data {
             display: none;
-            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0,0,0,0.6);
-            z-index: 1000;
-            align-items: center; justify-content: center;
-            animation: fadeIn 0.2s ease;
         }
 
-        .modal.active { display: flex; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .modal-content {
-            background-color: var(--branco);
-            border-radius: 12px;
-            padding: 32px;
-            width: 90%; max-width: 520px;
-            max-height: 90vh; overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            animation: slideUp 0.3s ease;
-            position: relative;
+        /* Seção de info abaixo do mosaico */
+        .info-casal {
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(40px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        .data {
+            font-size: 1.1rem;
+            color: var(--texto-secundario);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
         }
 
-        .modal-title {
-            font-size: 20px; font-weight: bold;
-            color: var(--navy); margin-bottom: 8px;
-        }
-
-        .modal-subtitle {
-            font-size: 13px; color: var(--cinza-texto);
+        .contagem-label {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
             margin-bottom: 24px;
         }
 
-        .form-group { margin-bottom: 18px; }
-
-        .form-group label {
-            display: block;
-            font-size: 12px; font-weight: 600;
-            color: var(--navy); margin-bottom: 6px;
-            text-transform: uppercase; letter-spacing: 0.5px;
+        /* O Evento */
+        .evento-bloco {
+            max-width: 960px;
+            margin: 0 auto 0;
         }
 
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 11px; font-size: 14px;
-            border: 2px solid var(--cinza-claro);
-            border-radius: 6px; font-family: inherit;
+        .evento-tipo-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--texto-secundario);
+            margin-bottom: 14px;
         }
 
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: var(--laranja);
-            box-shadow: 0 0 0 3px rgba(229, 89, 52, 0.1);
+        .evento-endereco {
+            margin-bottom: 56px;
         }
 
-        .form-group input:disabled {
-            background-color: var(--cinza-claro);
-            color: var(--cinza-texto);
-        }
-
-        .form-row {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-        }
-
-        .veiculos-lista {
-            display: none;
-            margin-top: 20px; padding-top: 20px;
-            border-top: 1px solid var(--cinza-claro);
-        }
-
-        .veiculos-lista.active { display: block; }
-
-        .veiculos-lista-titulo {
-            font-size: 12px; color: var(--cinza-texto);
-            margin-bottom: 12px; text-transform: uppercase;
-        }
-
-        .veiculo-opcao {
-            padding: 14px;
-            background-color: var(--cinza-claro);
-            border: 2px solid transparent;
-            border-radius: 8px; margin-bottom: 10px;
-            cursor: pointer; transition: all 0.2s ease;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .veiculo-opcao:hover {
-            border-color: var(--laranja);
-            background-color: var(--branco);
-            box-shadow: 0 4px 12px rgba(229, 89, 52, 0.15);
-        }
-
-        .veiculo-info-principal { flex: 1; }
-
-        .veiculo-nome {
-            font-weight: bold; color: var(--navy);
-            font-size: 14px; margin-bottom: 2px;
-        }
-
-        .veiculo-empresa { font-size: 11px; color: var(--cinza-texto); }
-
-        .veiculo-tempo {
-            font-size: 18px; font-weight: bold; color: var(--verde);
-        }
-
-        .veiculo-tempo-label {
-            font-size: 10px; color: var(--cinza-texto); text-align: center;
-        }
-
-        .tipos-rota-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-        }
-
-        .tipo-rota-opcao {
-            padding: 12px;
-            border: 2px solid var(--cinza-claro);
-            border-radius: 6px; cursor: pointer;
-            text-align: center; font-size: 13px;
-            transition: all 0.2s;
-            display: flex; align-items: center;
-            gap: 8px; justify-content: center;
-        }
-
-        .tipo-rota-opcao:hover { border-color: var(--laranja); }
-
-        .tipo-rota-opcao.selected {
-            border-color: var(--laranja);
-            background-color: #FFF4E6;
-            font-weight: bold; color: var(--navy);
-        }
-
-        .tipo-rota-cor {
-            width: 14px; height: 14px; border-radius: 3px;
-        }
-
-        /* NOTIFICAÇÃO */
-        .notificacao {
-            position: fixed;
-            bottom: 24px; left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--verde);
-            color: var(--branco);
-            padding: 14px 24px; border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
-            display: none; z-index: 2000;
-            animation: slideUpNotif 0.3s ease;
-            font-weight: 600; font-size: 14px;
-            max-width: 90%;
-        }
-
-        @keyframes slideUpNotif {
-            from { transform: translate(-50%, 30px); opacity: 0; }
-            to { transform: translate(-50%, 0); opacity: 1; }
-        }
-
-        .notificacao.active { display: block; }
-        .notificacao.erro { background-color: var(--vermelho); }
-        .notificacao.adm { background-color: var(--navy); }
-
-        /* DASHBOARD DESPACHANTE */
-        .dashboard-despachante {
-            display: none;
-            width: 100%; padding: 32px;
-            background-color: var(--cinza-claro);
-            overflow-y: auto;
-            height: calc(100vh - 64px);
-        }
-
-        .dashboard-despachante.active {
-            display: flex; flex-direction: column;
-        }
-
-        .despachante-titulo {
-            font-size: 26px; font-weight: bold;
-            color: var(--navy); margin-bottom: 8px;
-        }
-
-        .despachante-subtitulo {
-            font-size: 14px; color: var(--cinza-texto);
-            margin-bottom: 28px;
-        }
-
-        .kpis-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 18px; margin-bottom: 32px;
-        }
-
-        .kpi-card {
-            background-color: var(--branco);
-            padding: 24px; border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--laranja);
-        }
-
-        .kpi-card:nth-child(even) { border-top-color: var(--verde); }
-
-        .kpi-label {
-            font-size: 12px; color: var(--cinza-texto);
-            text-transform: uppercase; letter-spacing: 0.5px;
+        .evento-local-nome {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--texto-principal);
+            letter-spacing: 1px;
             margin-bottom: 10px;
         }
 
-        .kpi-numero {
-            font-size: 42px; font-weight: bold; color: var(--navy);
+        .evento-local-end {
+            font-size: 0.8rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--texto-secundario);
+            font-weight: 300;
+            margin-bottom: 40px;
         }
 
-        .botoes-despachante { display: flex; gap: 12px; }
-
-        .hidden { display: none !important; }
-
-        .btn-fechar {
-            position: absolute;
-            top: 16px; right: 16px;
-            background: none; border: none;
-            font-size: 28px; color: var(--navy);
-            cursor: pointer; padding: 0;
-            width: 32px; height: 32px; line-height: 1;
+        /* Foto única da igreja */
+        .evento-galeria-unica {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto 32px;
+            overflow: hidden;
+            background: #f9f7f4;
         }
 
-        .btn-fechar:hover { color: var(--laranja); }
+        .evento-galeria-unica img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
 
-        @media (max-width: 1100px) {
-            .app-container { flex-direction: column; }
-            .sidebar {
-                width: 100%;
-                border-left: none;
-                border-top: 1px solid var(--cinza-medio);
-                max-height: 280px;
+        /* Galeria do local 3x2 */
+        .evento-galeria {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 280px);
+            gap: 8px;
+            max-width: 960px;
+            margin: 0 auto 32px;
+        }
+
+        @media (max-width: 640px) {
+            .evento-galeria {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 200px);
             }
-            .kpis-grid { grid-template-columns: repeat(2, 1fr); }
-            .rotas-lista-flutuante { width: 240px; max-height: 300px; }
+        }
+
+        .evento-galeria-cell {
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .evento-galeria-cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .evento-galeria-cell img:hover {
+            transform: scale(1.04);
+        }
+
+        /* Mapa */
+        .evento-mapa {
+            max-width: 960px;
+            margin: 0 auto 0;
+            overflow: hidden;
+        }
+
+        .evento-mapa iframe {
+            display: block;
+            width: 100%;
+        }
+
+        /* Divisor entre blocos */
+        .evento-divisor {
+            max-width: 960px;
+            margin: 64px auto;
+            height: 1px;
+            background: #e8e8e8;
+        }
+
+        /* Spotify Player */
+        .spotify-wrap {
+            margin-top: 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .spotify-label {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
+        }
+
+        .spotify-wrap iframe {
+            border-radius: 12px;
+            border: none;
+        }
+
+        /* Navegação abaixo do mosaico */
+        .info-nav {
+            display: flex;
+            gap: 36px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .info-nav a {
+            color: var(--texto-secundario);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding-bottom: 3px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .info-nav a:hover {
+            color: var(--texto-principal);
+            border-bottom-color: var(--texto-principal);
+        }
+
+        /* Contagem Regressiva */
+        .contador {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .bloco-tempo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .numero {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--texto-principal);
+        }
+
+        .legenda {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-top: 5px;
+        }
+
+        /* Formulário RSVP */
+        #form-rsvp input {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--fonte-textos);
+            font-size: 1rem;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #form-rsvp input:focus {
+            border-color: var(--texto-principal);
+        }
+
+        #btn-confirmar {
+            padding: 15px;
+            background-color: var(--texto-principal);
+            color: var(--branco-puro);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        #btn-confirmar:hover:not(:disabled) {
+            background-color: #555;
+        }
+
+        #btn-confirmar:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #mensagem-feedback {
+            display: none;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Nossa História - Texto */
+        .historia-texto {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: left;
+            color: var(--texto-secundario);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .historia-texto p {
+            margin-bottom: 1.4em;
+        }
+
+        .historia-texto p:last-child {
+            margin-bottom: 0;
+            font-style: italic;
+            text-align: center;
+            color: var(--texto-principal);
+            font-weight: 300;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* Contador de Convidados */
+        .bloco-contador-convidados {
+            max-width: 400px;
+            margin: 0 auto 30px;
+            text-align: center;
+        }
+
+        .numero-convidados {
+            font-size: 2rem;
+            font-weight: 200;
+            color: var(--texto-principal);
+            letter-spacing: 2px;
+        }
+
+        .numero-convidados span {
+            font-size: 1rem;
+            color: var(--texto-secundario);
+            font-weight: 300;
+        }
+
+        #total-convidados {
+            font-size: 2rem;
+            font-weight: 200;
+            color: var(--texto-principal);
+        }
+
+        .barra-progresso-bg {
+            width: 100%;
+            height: 1px;
+            background-color: #ddd;
+            margin-top: 10px;
+        }
+
+        .barra-progresso-fill {
+            height: 1px;
+            background-color: var(--texto-principal);
+            transition: width 0.8s ease;
+        }
+
+        .legenda-convidados {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-top: 8px;
+        }
+
+        /* Scroll suave global */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navegação no Hero */
+        .hero-nav {
+            display: flex;
+            gap: 36px;
+            margin-top: 52px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-nav a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding-bottom: 3px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .hero-nav a:hover {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* Botão Presentes no Hero */
+        .btn-presentes-hero {
+            display: inline-block;
+            margin-top: 36px;
+            padding: 12px 34px;
+            border: 1px solid rgba(255,255,255,0.7);
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .btn-presentes-hero:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+        /* Seção de Presentes */
+        .categorias-filtro {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+
+        .filtro-btn {
+            padding: 8px 20px;
+            border: 1px solid #ddd;
+            background: none;
+            font-family: var(--fonte-textos);
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--texto-secundario);
+        }
+
+        .filtro-btn.ativo,
+        .filtro-btn:hover {
+            border-color: var(--texto-principal);
+            color: var(--texto-principal);
+        }
+
+        .presentes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .presente-card {
+            border: 1px solid #ebebeb;
+            padding: 0;
+            text-align: center;
+            transition: box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .presente-card:hover {
+            box-shadow: 0 6px 32px rgba(0,0,0,0.09);
+        }
+
+        .presente-card.oculto {
+            display: none;
+        }
+
+        .presente-card-body {
+            padding: 22px 22px 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .presente-cat-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-bottom: 10px;
+        }
+
+        .presente-nome {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--texto-principal);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .presente-descricao {
+            font-size: 0.82rem;
+            color: var(--texto-secundario);
+            margin-bottom: 16px;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .presente-valor {
+            font-size: 1.5rem;
+            font-weight: 200;
+            color: var(--texto-principal);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .presente-btn {
+            padding: 12px 22px;
+            border: 1px solid var(--texto-principal);
+            color: var(--texto-principal);
+            background: none;
+            font-family: var(--fonte-textos);
+            font-size: 0.72rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .presente-btn:hover {
+            background: var(--texto-principal);
+            color: var(--branco-puro);
+        }
+
+        /* Barra por card de presente */
+        .presente-barra-bg {
+            width: 100%;
+            height: 2px;
+            background: #ebebeb;
+            margin-top: 16px;
+        }
+
+        .presente-barra-fill {
+            height: 2px;
+            background: var(--texto-principal);
+            width: 0%;
+            transition: width 1s ease;
+        }
+
+        .presente-barra-label {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--texto-secundario);
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .presente-card.reservado {
+            opacity: 0.5;
+        }
+
+        .presente-btn.btn-reservado {
+            border-color: #bbb;
+            color: #bbb;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* Imagem do card */
+        .presente-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            display: block;
+            background: #f8f8f8;
+            padding: 16px;
+        }
+
+        .presente-img-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        /* Endereço de entrega */
+        .entrega-section {
+            padding: 80px 20px;
+            background: var(--branco-puro);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .entrega-wrap {
+            text-align: center;
+        }
+
+        .entrega-titulo {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--texto-secundario);
+            margin-bottom: 18px;
+        }
+
+        .entrega-local-nome {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--texto-principal);
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .entrega-linha {
+            font-size: 0.85rem;
+            color: var(--texto-secundario);
+            letter-spacing: 1px;
+            line-height: 2;
+        }
+
+        /* Modal de pagamento */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.aberto {
+            display: flex;
+        }
+
+        .modal-box {
+            background: #fff;
+            max-width: 480px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .modal-img-placeholder {
+            width: 100%;
+            height: 220px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .modal-fechar {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: rgba(0,0,0,0.35);
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            line-height: 32px;
+            text-align: center;
+        }
+
+        .modal-corpo {
+            padding: 28px 28px 36px;
+        }
+
+        .modal-cat {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-bottom: 8px;
+        }
+
+        .modal-nome {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: var(--texto-principal);
+            margin-bottom: 6px;
+        }
+
+        .modal-descricao {
+            font-size: 0.85rem;
+            color: var(--texto-secundario);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .modal-valor {
+            font-size: 1.6rem;
+            font-weight: 200;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
+            margin-bottom: 28px;
+        }
+
+        .modal-barra-bg {
+            width: 100%;
+            height: 2px;
+            background: #ebebeb;
+            margin-bottom: 6px;
+        }
+
+        .modal-barra-fill {
+            height: 2px;
+            background: var(--texto-principal);
+            transition: width 1s ease;
+        }
+
+        .modal-barra-label {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--texto-secundario);
+            text-align: right;
+            margin-bottom: 28px;
+        }
+
+        .modal-titulo-opcoes {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-bottom: 16px;
+        }
+
+        .modal-opcoes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .modal-opcao {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.25s;
+        }
+
+        .modal-opcao:hover {
+            border-color: var(--texto-principal);
+        }
+
+        .modal-opcao-icone {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+        }
+
+        .modal-opcao-texto {
+            text-align: left;
+        }
+
+        .modal-opcao-titulo {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--texto-principal);
+            display: block;
+        }
+
+        .modal-opcao-subtitulo {
+            font-size: 0.75rem;
+            color: var(--texto-secundario);
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* PIX expandido */
+        .pix-box {
+            display: none;
+            margin-top: 16px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .pix-box.aberto { display: block; }
+
+        .pix-chave {
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--texto-principal);
+            font-weight: 400;
+            margin: 12px 0;
+            word-break: break-all;
+        }
+
+        .pix-copiar {
+            padding: 10px 24px;
+            background: var(--texto-principal);
+            color: #fff;
+            border: none;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+
+        .pix-instrucao {
+            font-size: 0.78rem;
+            color: var(--texto-secundario);
+            margin-top: 14px;
+            line-height: 1.6;
+        }
+
+        .pix-confirmar {
+            margin-top: 16px;
+            padding: 12px 28px;
+            border: 1px solid var(--texto-principal);
+            background: none;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: var(--texto-principal);
+            transition: all 0.3s;
+        }
+
+        .pix-confirmar:hover {
+            background: var(--texto-principal);
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <!-- LOGIN -->
-    <div id="loginScreen" class="login-container">
-        <div class="login-box">
-            <div class="login-logo">
-                <div class="login-logo-icon">🧭</div>
-                <h1>NavePort</h1>
-                <p>Mobilidade Operacional Unificada</p>
+    <!-- ===================== CAPA ===================== -->
+    <section class="hero">
+        <!-- Mosaico de fundo (preenchido via Firebase Storage) -->
+        <div class="mosaic-bg" id="mosaic-bg"></div>
+        <div class="mosaic-overlay"></div>
+
+        <!-- Conteúdo principal -->
+        <div class="hero-conteudo">
+            <h1>Gusttavo & Luciana</h1>
+        </div>
+    </section>
+
+    <!-- ===================== INFO DO CASAL ===================== -->
+    <section class="info-casal">
+        <p class="data">15 de Agosto de 2026 • 18:00</p>
+        <p class="contagem-label">Contagem Regressiva</p>
+        <div class="contador" id="contador"></div>
+        <div class="spotify-wrap">
+            <div class="spotify-label">Trilha sonora do casamento</div>
+            <iframe
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1E8Jjyi7BP2J4e?utm_source=generator&theme=0"
+                width="100%"
+                height="152"
+                style="max-width: 500px;"
+                allowfullscreen
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <nav class="info-nav">
+            <a href="#historia">Nossa História</a>
+            <a href="#rsvp">Confirmação de Presença</a>
+            <a href="#evento">O Evento</a>
+            <a href="#presentes">Lista de Presentes</a>
+        </nav>
+    </section>
+
+    <!-- ===================== NOSSA HISTÓRIA ===================== -->
+    <section id="historia" class="fundo-cinza">
+        <h2>Nossa História</h2>
+        <div class="historia-texto">
+            <p>Nossa história começou em 2021, de um jeito simples, quase como quem não imagina o tamanho do que está por vir… mas, desde o início, havia algo diferente. Algo leve, verdadeiro e, ao mesmo tempo, profundo. Era como se, mesmo sem dizer, nossos corações já soubessem: ali estava começando algo especial.</p>
+            <p>Com o passar dos dias, fomos descobrindo muito mais do que afinidades. Nossos princípios, nossos pensamentos, nossos sonhos… tudo parecia se encontrar de forma tão natural. As pessoas ao nosso redor — amigos, família — percebiam aquilo que já sentíamos por dentro: éramos feitos para caminhar juntos.</p>
+            <p>E assim seguimos. Sem grandes pausas, sem dúvidas que nos afastassem. Desde o começo, havia uma certeza silenciosa de que era "para sempre". E o tempo só confirmou aquilo que o coração já havia decidido.</p>
+            <p>Os anos passaram, e o amor cresceu. Cresceu nos detalhes, nas escolhas diárias, no cuidado, na parceria e na construção de uma vida compartilhada. Cresceu firme, bonito e cheio de propósito.</p>
+            <p>Até que chegou o momento de dar um passo ainda maior: decidimos nos unir em matrimônio, perante Deus e a lei dos homens. Não como um fim, mas como uma continuação — um novo capítulo de tudo aquilo que já vínhamos construindo.</p>
+            <p>Somos duas pessoas comuns… mas que, juntas, se tornaram extraordinárias.</p>
+            <p>E o casamento? É apenas o começo da nossa história.</p>
+        </div>
+    </section>
+
+    <!-- ===================== CONFIRMAÇÃO DE PRESENÇA ===================== -->
+    <section id="rsvp" class="fundo-cinza">
+        <h2>Confirme sua Presença</h2>
+        <p style="color: var(--texto-secundario); margin-bottom: 30px;">
+            Por favor, confirme sua presença até o dia 15 de Julho de 2026.
+        </p>
+
+        <!-- Contador de Convidados -->
+        <div class="bloco-contador-convidados">
+            <div class="numero-convidados">
+                <span id="total-convidados">—</span> / 200 <span>convidados</span>
             </div>
-            <form class="login-form" onsubmit="entrar(event)">
-                <input type="email" id="emailInput" placeholder="E-mail" value="elilson@vale.com" required>
-                <input type="password" id="senhaInput" placeholder="Senha" value="123" required>
-                <div id="loginError" class="login-error">E-mail ou senha incorretos</div>
-                <button type="submit">Entrar</button>
-            </form>
-            <div class="login-help">
-                <strong>👤 Usuário Comum:</strong><br>
-                elilson@vale.com / 123<br><br>
-                <strong>🔧 Administrador:</strong><br>
-                admin@vale.com / admin
+            <div class="barra-progresso-bg">
+                <div class="barra-progresso-fill" id="barra-fill" style="width: 0%"></div>
+            </div>
+            <div class="legenda-convidados">presenças confirmadas</div>
+        </div>
+
+        <form id="form-rsvp" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" id="nomeConvidado" placeholder="Seu Nome Completo" required>
+            <input type="number" id="qtdAcompanhantes" placeholder="Número de Acompanhantes (ex: 2)" min="0" required>
+            <button type="submit" id="btn-confirmar">Confirmar Presença</button>
+            <p id="mensagem-feedback"></p>
+        </form>
+    </section>
+
+    <!-- ===================== O EVENTO ===================== -->
+    <section id="evento">
+        <h2>O Evento</h2>
+
+        <!-- IGREJA -->
+        <div class="evento-bloco">
+            <div class="evento-tipo-label">Cerimônia</div>
+            <div class="evento-local-nome">Paróquia Nossa Senhora Auxiliadora</div>
+            <div class="evento-local-end">Iporá — GO</div>
+
+            <div class="evento-galeria-unica" id="galeria-igreja"></div>
+
+            <div class="evento-mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.6670954736633!2d-51.119014899999996!3d-16.441725299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bdbb78b5ab0d%3A0x42a8d85c9f976b99!2sParoquia%20Nossa%20Senhora%20Auxiliadora!5e0!3m2!1spt-BR!2sbr!4v1776019961669!5m2!1spt-BR!2sbr"
+                    width="100%" height="380"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
-    </div>
 
-    <!-- APP -->
-    <div id="appContainer" class="hidden">
-        <header>
-            <div class="logo">
-                <div class="logo-icon">🧭</div>
-                <span>NavePort</span>
+        <!-- DIVISOR -->
+        <div class="evento-divisor"></div>
+
+        <!-- FESTA -->
+        <div class="evento-bloco">
+            <div class="evento-tipo-label">Recepção</div>
+            <div class="evento-local-nome">Recanto das Emílias</div>
+            <div class="evento-local-end">Jardim Novo Horizonte · Iporá — GO · 76200-000</div>
+
+            <div class="evento-galeria" id="galeria-local"></div>
+
+            <div class="evento-mapa">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.0543534875014!2d-51.109376399999995!3d-16.422065699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bd3962a81eeb%3A0x1a7e1ba7a1efc4e!2sRecanto%20das%20Em%C3%ADlias!5e0!3m2!1spt-BR!2sbr!4v1776017370841!5m2!1spt-BR!2sbr"
+                    width="100%" height="380"
+                    style="border:0;"
+                    allowfullscreen
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
-            <div class="header-right">
-                <div id="userBadge" class="user-badge user">
-                    <span id="userBadgeIcon">👤</span>
-                    <span id="userBadgeText">Usuário</span>
-                </div>
-                <div class="hora-atual" id="horaAtual">14:32</div>
-                <button class="btn-logout" onclick="sair()">Sair</button>
+        </div>
+
+    </section>
+
+    <!-- ===================== LISTA DE PRESENTES ===================== -->
+    <section id="presentes" class="fundo-cinza">
+        <h2>Lista de Presentes</h2>
+        <p style="color: var(--texto-secundario); margin-bottom: 40px;">
+            Sua presença é o nosso maior presente. Mas se quiser nos presentear, ficamos felizes com qualquer escolha.
+        </p>
+            </section>
+
+    <!-- ===================== ENDEREÇO DE ENTREGA ===================== -->
+    <section class="entrega-section">
+        <div class="entrega-wrap">
+            <div class="entrega-titulo">Endereço para entrega dos presentes</div>
+            <div class="entrega-local-nome">Gusttavo & Luciana</div>
+            <div class="entrega-linha">Avenida 03, quadra 20, lote 02 · Setor São Bento · Apt 206</div>
+            <div class="entrega-linha">Mineiros — GO &nbsp;·&nbsp; CEP 75.832-066</div>
+        </div>
+        <!-- Filtros de Categoria -->
+        <div class="categorias-filtro">
+            <button class="filtro-btn ativo" data-cat="todos">Todos</button>
+            <button class="filtro-btn" data-cat="eletro">Eletrodomésticos</button>
+            <button class="filtro-btn" data-cat="cozinha">Cozinha & Mesa</button>
+            <button class="filtro-btn" data-cat="casa">Casa</button>
+        </div>
+
+        <!-- Grid de Presentes -->
+        <div class="presentes-grid">
+
+            <div class="presente-card" data-cat="eletro" data-id="maquina-lavar-louca" data-valor="3255"
+                 data-nome="Máquina de Lavar Louça" data-descricao="Brastemp Smart Sensor"
+                 data-img="https://m.media-amazon.com/images/I/515RhwbRJfL._AC_SX466_.jpg"
+                 data-loja="https://www.amazon.com.br/Lava-lou%C3%A7as-Servi%C3%A7os-Brastemp-Smart-Sensor/dp/B0DKG4KN2Y/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Máquina de Lavar Louça</div>
+                <div class="presente-descricao">Brastemp Smart Sensor</div>
+                <div class="presente-valor">R$ 3.255</div>
+                <button class="presente-btn">Presentear</button>
             </div>
-        </header>
 
-        <!-- Dashboard Principal -->
-        <div id="dashboardPrincipal" class="app-container">
-            <div class="mapa-section">
-                <div class="mapa-header">
-                    <div>
-                        <div class="mapa-titulo">Mapa Operacional — Porto de Ponta da Madeira</div>
-                        <div class="mapa-titulo-sub">São Luís, MA • 29 km² • 287 veículos ativos</div>
-                    </div>
-                    <div class="mapa-legendas">
-                        <div class="legenda-item">
-                            <div class="legenda-cor" style="background: #4A90E2;"></div>
-                            <span>Pedestre</span>
-                        </div>
-                        <div class="legenda-item">
-                            <div class="legenda-cor" style="background: #50C878;"></div>
-                            <span>Veículo Leve</span>
-                        </div>
-                        <div class="legenda-item">
-                            <div class="legenda-cor" style="background: #FEC40F;"></div>
-                            <span>Utilitário</span>
-                        </div>
-                        <div class="legenda-item">
-                            <div class="legenda-cor" style="background: #E55934;"></div>
-                            <span>Caminhão</span>
-                        </div>
-                        <div class="legenda-item">
-                            <div class="legenda-cor" style="background: #8B5CF6;"></div>
-                            <span>Ônibus</span>
-                        </div>
-                    </div>
+            <div class="presente-card" data-cat="eletro" data-id="sanduicheira" data-valor="148"
+                 data-nome="Sanduicheira" data-descricao="Elétrica antiaderente"
+                 data-img="https://m.media-amazon.com/images/I/5131X1N1gWL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B07B675ZQ6/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Sanduicheira</div>
+                <div class="presente-descricao">Elétrica antiaderente</div>
+                <div class="presente-valor">R$ 148</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="torradeira" data-valor="123"
+                 data-nome="Torradeira de Pão" data-descricao="Electrolux Efficient ETS10"
+                 data-img="https://m.media-amazon.com/images/I/51IRloWQneL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Torradeira-El%C3%A9trica-Electrolux-Efficient-ETS10/dp/B09CC71S5H/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Torradeira de Pão</div>
+                <div class="presente-descricao">Electrolux Efficient ETS10</div>
+                <div class="presente-valor">R$ 123</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="forno-eletrico" data-valor="409"
+                 data-nome="Forno Elétrico" data-descricao="Philco PFE52P 52 litros"
+                 data-img="https://m.media-amazon.com/images/I/61cqfHB8XNL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Forno-El%C3%A9trico-Philco-PFE52P-resist%C3%AAncia/dp/B0CBQPG37R/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Forno Elétrico</div>
+                <div class="presente-descricao">Philco PFE52P 52 litros</div>
+                <div class="presente-valor">R$ 409</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="vaporizador" data-valor="187"
+                 data-nome="Vaporizador de Roupas" data-descricao="Portátil, remoção de amassados"
+                 data-img="https://m.media-amazon.com/images/I/61RNxwH7zyL._AC_SX569_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B08B6DLFYD/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Vaporizador de Roupas</div>
+                <div class="presente-descricao">Portátil, remoção de amassados</div>
+                <div class="presente-valor">R$ 187</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="air-fryer" data-valor="330"
+                 data-nome="Air Fryer" data-descricao="Philips Walita RapidAir"
+                 data-img="https://m.media-amazon.com/images/I/5106QpD9V6L._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Fritadeira-Airfryer-Walita-Tecnologia-RapidAir/dp/B0FMDNT137/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Air Fryer</div>
+                <div class="presente-descricao">Philips Walita RapidAir</div>
+                <div class="presente-valor">R$ 330</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="liquidificador" data-valor="279"
+                 data-nome="Liquidificador" data-descricao="Alta potência, jarro de vidro"
+                 data-img="https://m.media-amazon.com/images/I/613LbadctMS._AC_SY879_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B08TLM8GDQ/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Liquidificador</div>
+                <div class="presente-descricao">Alta potência, jarro de vidro</div>
+                <div class="presente-valor">R$ 279</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="eletro" data-id="panela-pressao" data-valor="379"
+                 data-nome="Panela de Pressão Elétrica" data-descricao="Multifuncional, 6 litros"
+                 data-img="https://m.media-amazon.com/images/I/81iejDNyklL._AC_SX300_SY300_QL70_ML2_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B07L8SH6NK/">
+                <div class="presente-cat-label">Eletrodomésticos</div>
+                <div class="presente-nome">Panela de Pressão Elétrica</div>
+                <div class="presente-descricao">Multifuncional, 6 litros</div>
+                <div class="presente-valor">R$ 379</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="jogo-tacas" data-valor="120"
+                 data-nome="Jogo de Taças" data-descricao="Cristal Bohemia Bordeaux Gastro"
+                 data-img="https://m.media-amazon.com/images/I/41-8Kv6rCDL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Ta%C3%A7as-Bordeaux-Gastro-Cristal-Bohemia/dp/B07KDBZ8HF/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Taças</div>
+                <div class="presente-descricao">Cristal Bohemia Bordeaux Gastro</div>
+                <div class="presente-valor">R$ 120</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="panelas-tramontina" data-valor="709"
+                 data-nome="Jogo de Panelas Tramontina" data-descricao="Solar Aço Inox, conjunto completo"
+                 data-img="https://m.media-amazon.com/images/I/71yG1BEwZ+L._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/gp/product/B076B9N81Q/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Panelas Tramontina</div>
+                <div class="presente-descricao">Solar Aço Inox, conjunto completo</div>
+                <div class="presente-valor">R$ 709</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="sousplat-1" data-valor="55"
+                 data-nome="Sousplat Elegante — Modelo 1" data-descricao="Jogo americano redondo"
+                 data-img="https://m.media-amazon.com/images/I/619gKuXuyIL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Jogo-Americano-Redondo-Sousplat-Elegante/dp/B0FRCRFMMX/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Sousplat Elegante — Modelo 1</div>
+                <div class="presente-descricao">Jogo americano redondo</div>
+                <div class="presente-valor">R$ 55</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="sousplat-2" data-valor="60"
+                 data-nome="Sousplat Elegante — Modelo 2" data-descricao="Antiderrapante, resistente"
+                 data-img="https://m.media-amazon.com/images/I/71WX02HlCAL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Kit-Americano-Elegante-Resistente-Antiderrapante/dp/B0GK2WLZQR/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Sousplat Elegante — Modelo 2</div>
+                <div class="presente-descricao">Antiderrapante, resistente</div>
+                <div class="presente-valor">R$ 60</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="jogo-facas" data-valor="66"
+                 data-nome="Jogo de Facas" data-descricao="Tramontina Plenus, lâminas inox"
+                 data-img="https://m.media-amazon.com/images/I/51oCxGHT-aL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Facas-Tramontina-Plenus-L%C3%A2minas-Polipropileno/dp/B07WR4TP9W/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Facas</div>
+                <div class="presente-descricao">Tramontina Plenus, lâminas inox</div>
+                <div class="presente-valor">R$ 66</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="jogo-talheres" data-valor="131"
+                 data-nome="Jogo de Talheres" data-descricao="Faqueiro Bellagio Brinox"
+                 data-img="https://m.media-amazon.com/images/I/61u1qf8ArML._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Faqueiro-Bellagio-Brinox-5103-102/dp/B01MZ2CK50/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Jogo de Talheres</div>
+                <div class="presente-descricao">Faqueiro Bellagio Brinox</div>
+                <div class="presente-valor">R$ 131</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="cozinha" data-id="petisqueira" data-valor="60"
+                 data-nome="Petisqueira" data-descricao="Melamina com garfinhos"
+                 data-img="https://m.media-amazon.com/images/I/61qlhRliuBL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Petisqueira-melamina-garfinhos-petisco-feitos/dp/B0DPGY8VJK/">
+                <div class="presente-cat-label">Cozinha & Mesa</div>
+                <div class="presente-nome">Petisqueira</div>
+                <div class="presente-descricao">Melamina com garfinhos</div>
+                <div class="presente-valor">R$ 60</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+            <div class="presente-card" data-cat="casa" data-id="sofa" data-valor="2979"
+                 data-nome="Sofá Retrátil e Reclinável" data-descricao="Velusoft, bordado, ensacado"
+                 data-img="https://m.media-amazon.com/images/I/61TUFodZWZL._AC_SX679_.jpg"
+                 data-loja="https://www.amazon.com.br/Retr%C3%A1til-Reclin%C3%A1vel-Ensacadas-Bordado-Velusoft/dp/B09YS9K7J7/">
+                <div class="presente-cat-label">Casa</div>
+                <div class="presente-nome">Sofá Retrátil e Reclinável</div>
+                <div class="presente-descricao">Velusoft, bordado, ensacado</div>
+                <div class="presente-valor">R$ 2.979</div>
+                <button class="presente-btn">Presentear</button>
+            </div>
+
+        </div>
+
+
+    </section>
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+            <button class="modal-fechar" id="modal-fechar">✕</button>
+            <div id="modal-img-wrap"></div>
+            <div class="modal-corpo">
+                <div class="modal-cat" id="modal-cat"></div>
+                <div class="modal-nome" id="modal-nome"></div>
+                <div class="modal-descricao" id="modal-descricao"></div>
+                <div class="modal-valor" id="modal-valor"></div>
+
+                <div class="modal-barra-bg">
+                    <div class="modal-barra-fill" id="modal-barra-fill"></div>
                 </div>
+                <div class="modal-barra-label" id="modal-barra-label"></div>
 
-                <div class="mapa-google-container">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d27676.166625170703!2d-44.33718982605348!3d-2.5764701983604246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1776467317257!5m2!1spt-BR!2sbr"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                <div class="modal-titulo-opcoes">Como deseja presentear?</div>
+                <div class="modal-opcoes">
 
-                    <div class="rotas-lista-flutuante">
-                        <div class="rotas-lista-titulo">🛣️ Rotas Cadastradas</div>
-                        <div id="rotasLista">
-                            <div class="rotas-vazias">
-                                Nenhuma rota cadastrada ainda.<br>
-                                <span id="rotasVaziasHint">Peça ao administrador para cadastrar rotas.</span>
+                    <!-- PIX -->
+                    <div class="modal-opcao" id="opcao-pix" style="flex-direction:column;align-items:flex-start;gap:0">
+                        <div style="display:flex;align-items:center;gap:14px;width:100%" id="pix-header">
+                            <div class="modal-opcao-icone">◆</div>
+                            <div class="modal-opcao-texto">
+                                <span class="modal-opcao-titulo">PIX</span>
+                                <span class="modal-opcao-subtitulo">Transferência instantânea, sem taxas</span>
                             </div>
                         </div>
+                        <div class="pix-box" id="pix-box">
+                            <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--texto-secundario)">Chave PIX</div>
+                            <div class="pix-chave" id="pix-chave-valor">64 9217-1411</div>
+                            <button class="pix-copiar" id="pix-copiar">Copiar chave</button>
+                            <div class="pix-instrucao">
+                                Após realizar o pagamento, clique abaixo para confirmar a reserva do presente.
+                            </div>
+                            <button class="pix-confirmar" id="pix-confirmar">Já paguei — confirmar presente</button>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="sidebar">
-                <div class="sidebar-titulo">Painel de Controle</div>
+                    <!-- Comprar o presente -->
+                    <a class="modal-opcao" id="opcao-loja" href="#" target="_blank">
+                        <div class="modal-opcao-icone">◎</div>
+                        <div class="modal-opcao-texto">
+                            <span class="modal-opcao-titulo">Comprar o presente</span>
+                            <span class="modal-opcao-subtitulo">Adquira diretamente na loja e nos entregue</span>
+                        </div>
+                    </a>
 
-                <div class="card-kpi">
-                    <div class="card-kpi-label">Veículos Ativos</div>
-                    <div class="card-kpi-valor">287</div>
-                </div>
-
-                <div class="card-kpi">
-                    <div class="card-kpi-label">Tempo Médio</div>
-                    <div class="card-kpi-valor">4 min</div>
-                </div>
-
-                <div class="card-kpi">
-                    <div class="card-kpi-label">Rotas Cadastradas</div>
-                    <div class="card-kpi-valor" id="kpiRotasCount">0</div>
-                </div>
-
-                <div class="botoes-acao">
-                    <div class="sidebar-titulo" style="margin-top: 8px;">Ações</div>
-
-                    <button class="btn-primary" onclick="abrirModalSolicitar()">
-                        🚗 Solicitar Transporte
-                    </button>
-
-                    <button id="btnCadastrarRota" class="btn-adm hidden" onclick="abrirModalRota()">
-                        🛣️ Cadastrar Nova Rota
-                    </button>
-                    <button id="btnRegistrarBloqueio" class="btn-primary hidden" onclick="abrirModalBloqueio()">
-                        ⚠️ Registrar Bloqueio
-                    </button>
-                    <button id="btnDashboardDespachante" class="btn-secondary hidden" onclick="verDashboardDespachante()">
-                        📊 Dashboard Despachante
-                    </button>
-
-                    <div id="avisoUsuario" class="adm-aviso">
-                        ℹ️ Funções de cadastro de rotas e registro de bloqueios são restritas a administradores.
-                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Dashboard Despachante -->
-        <div id="dashboardDespachante" class="dashboard-despachante">
-            <div class="despachante-titulo">Centro de Controle Operacional</div>
-            <div class="despachante-subtitulo">Visão consolidada do Porto de Ponta da Madeira — atualizado em tempo real</div>
-
-            <div class="kpis-grid">
-                <div class="kpi-card">
-                    <div class="kpi-label">Tempo Médio Alocação</div>
-                    <div class="kpi-numero">4 min</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Veículos Ativos</div>
-                    <div class="kpi-numero">287</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Pessoas Transportadas</div>
-                    <div class="kpi-numero">143</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Materiais Entregues</div>
-                    <div class="kpi-numero">58</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Interdições Hoje</div>
-                    <div class="kpi-numero" id="contadorInterdicoes">0</div>
-                </div>
-                <div class="kpi-card">
-                    <div class="kpi-label">Rotas Replanejadas</div>
-                    <div class="kpi-numero">12</div>
-                </div>
-            </div>
-
-            <div class="botoes-despachante">
-                <button class="btn-secondary" onclick="voltarDashboard()">← Voltar ao Dashboard</button>
-            </div>
-        </div>
-
-        <!-- MODAL Solicitar -->
-        <div id="modalSolicitar" class="modal" onclick="fecharModalClick(event)">
-            <div class="modal-content">
-                <button class="btn-fechar" onclick="fecharModalSolicitar()">×</button>
-                <div class="modal-title">Solicitar Transporte</div>
-                <div class="modal-subtitle">Informe origem e destino para ver veículos disponíveis</div>
-
-                <div class="form-group">
-                    <label>Origem</label>
-                    <input type="text" value="Prédio do Núcleo" disabled>
-                </div>
-
-                <div class="form-group">
-                    <label>Destino</label>
-                    <select id="destinoSelect" onchange="buscarVeiculos()">
-                        <option value="">Selecionar destino...</option>
-                        <option value="Valer">Valer — Centro de Treinamento</option>
-                        <option value="Píer 1">Píer 1</option>
-                        <option value="Píer 2">Píer 2</option>
-                        <option value="Píer 3">Píer 3</option>
-                        <option value="Píer 4">Píer 4</option>
-                        <option value="Pátio Central">Pátio Central</option>
-                        <option value="Armazém Norte">Armazém Norte</option>
-                        <option value="Armazém Sul">Armazém Sul</option>
-                    </select>
-                </div>
-
-                <div id="veiculosLista" class="veiculos-lista">
-                    <div class="veiculos-lista-titulo">🚗 Veículos Disponíveis</div>
-                    <div class="veiculo-opcao" onclick="selecionarVeiculo('Parvi', 2)">
-                        <div class="veiculo-info-principal">
-                            <div class="veiculo-nome">🚌 Circular Parvi</div>
-                            <div class="veiculo-empresa">Parvi Transportes • 12 lugares</div>
-                        </div>
-                        <div>
-                            <div class="veiculo-tempo">2 min</div>
-                            <div class="veiculo-tempo-label">chegada</div>
-                        </div>
-                    </div>
-                    <div class="veiculo-opcao" onclick="selecionarVeiculo('Vale', 4)">
-                        <div class="veiculo-info-principal">
-                            <div class="veiculo-nome">🚗 Utilitário Vale</div>
-                            <div class="veiculo-empresa">Vale S.A. • 4 lugares</div>
-                        </div>
-                        <div>
-                            <div class="veiculo-tempo">4 min</div>
-                            <div class="veiculo-tempo-label">chegada</div>
-                        </div>
-                    </div>
-                    <div class="veiculo-opcao" onclick="selecionarVeiculo('Terramel', 6)">
-                        <div class="veiculo-info-principal">
-                            <div class="veiculo-nome">🚐 Van Terramel</div>
-                            <div class="veiculo-empresa">Terramel Logística • 8 lugares</div>
-                        </div>
-                        <div>
-                            <div class="veiculo-tempo">6 min</div>
-                            <div class="veiculo-tempo-label">chegada</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL Cadastrar Rota (só ADM) -->
-        <div id="modalRota" class="modal" onclick="fecharModalClick(event)">
-            <div class="modal-content">
-                <button class="btn-fechar" onclick="fecharModalRota()">×</button>
-                <div class="modal-title">🛣️ Cadastrar Nova Rota</div>
-                <div class="modal-subtitle">⚠️ Função restrita a administradores</div>
-
-                <div class="form-group">
-                    <label>Nome da Rota</label>
-                    <input type="text" id="rotaNome" placeholder="Ex: Rota Núcleo → Píer 3">
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Origem</label>
-                        <select id="rotaOrigem">
-                            <option value="">Selecionar...</option>
-                            <option value="Prédio do Núcleo">Prédio do Núcleo</option>
-                            <option value="Valer">Valer</option>
-                            <option value="Píer 1">Píer 1</option>
-                            <option value="Píer 2">Píer 2</option>
-                            <option value="Píer 3">Píer 3</option>
-                            <option value="Píer 4">Píer 4</option>
-                            <option value="Pátio Central">Pátio Central</option>
-                            <option value="Armazém Norte">Armazém Norte</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Destino</label>
-                        <select id="rotaDestino">
-                            <option value="">Selecionar...</option>
-                            <option value="Prédio do Núcleo">Prédio do Núcleo</option>
-                            <option value="Valer">Valer</option>
-                            <option value="Píer 1">Píer 1</option>
-                            <option value="Píer 2">Píer 2</option>
-                            <option value="Píer 3">Píer 3</option>
-                            <option value="Píer 4">Píer 4</option>
-                            <option value="Pátio Central">Pátio Central</option>
-                            <option value="Armazém Norte">Armazém Norte</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Tipo de Rota (quais veículos podem usar)</label>
-                    <div class="tipos-rota-grid">
-                        <div class="tipo-rota-opcao" onclick="selecionarTipoRota(event, 'Pedestre', '#4A90E2')">
-                            <div class="tipo-rota-cor" style="background: #4A90E2;"></div>
-                            <span>🚶 Pedestre</span>
-                        </div>
-                        <div class="tipo-rota-opcao" onclick="selecionarTipoRota(event, 'Veículo Leve', '#50C878')">
-                            <div class="tipo-rota-cor" style="background: #50C878;"></div>
-                            <span>🚗 Veículo Leve</span>
-                        </div>
-                        <div class="tipo-rota-opcao" onclick="selecionarTipoRota(event, 'Utilitário', '#FEC40F')">
-                            <div class="tipo-rota-cor" style="background: #FEC40F;"></div>
-                            <span>🚐 Utilitário</span>
-                        </div>
-                        <div class="tipo-rota-opcao" onclick="selecionarTipoRota(event, 'Caminhão', '#E55934')">
-                            <div class="tipo-rota-cor" style="background: #E55934;"></div>
-                            <span>🚛 Caminhão</span>
-                        </div>
-                        <div class="tipo-rota-opcao" onclick="selecionarTipoRota(event, 'Ônibus', '#8B5CF6')">
-                            <div class="tipo-rota-cor" style="background: #8B5CF6;"></div>
-                            <span>🚌 Ônibus</span>
-                        </div>
-                        <div class="tipo-rota-opcao" onclick="selecionarTipoRota(event, 'Todos', '#0B2545')">
-                            <div class="tipo-rota-cor" style="background: #0B2545;"></div>
-                            <span>✓ Todos</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Distância Estimada (km)</label>
-                    <input type="number" id="rotaDistancia" min="0.1" step="0.1" value="3.5">
-                </div>
-
-                <button class="btn-adm" onclick="confirmarRota()">
-                    ✓ Cadastrar Rota
-                </button>
-            </div>
-        </div>
-
-        <!-- MODAL Bloqueio (só ADM) -->
-        <div id="modalBloqueio" class="modal" onclick="fecharModalClick(event)">
-            <div class="modal-content">
-                <button class="btn-fechar" onclick="fecharModalBloqueio()">×</button>
-                <div class="modal-title">⚠️ Registrar Bloqueio de Via</div>
-                <div class="modal-subtitle">Função restrita a administradores</div>
-
-                <div class="form-group">
-                    <label>Localização</label>
-                    <select id="localizacaoBloqueio">
-                        <option value="">Selecionar localização...</option>
-                        <option value="Pátio Central">Pátio Central</option>
-                        <option value="Píer 1">Píer 1</option>
-                        <option value="Píer 2">Píer 2</option>
-                        <option value="Píer 3">Píer 3</option>
-                        <option value="Píer 4">Píer 4</option>
-                        <option value="Armazém Norte">Armazém Norte</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Motivo do Bloqueio</label>
-                    <select id="motivoBloqueio">
-                        <option value="">Selecionar motivo...</option>
-                        <option value="Manutenção">Manutenção Programada</option>
-                        <option value="Deslizamento">Deslizamento de Pilha</option>
-                        <option value="Guincho">Operação de Guincho</option>
-                        <option value="Roço">Roço/Limpeza</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Tempo Estimado (horas)</label>
-                    <input type="number" id="tempoEstimado" min="0.5" step="0.5" value="2">
-                </div>
-
-                <button class="btn-primary" onclick="confirmarBloqueio()">
-                    Confirmar Bloqueio
-                </button>
-            </div>
-        </div>
-
-        <div id="notificacao" class="notificacao"></div>
     </div>
 
+    <!-- ===================== SCRIPT: FILTROS DE PRESENTES ===================== -->
     <script>
-        const usuarios = {
-            'elilson@vale.com': { senha: '123', tipo: 'user', nome: 'Elilson (Supervisor)' },
-            'admin@vale.com': { senha: 'admin', tipo: 'adm', nome: 'Administrador Vale' }
+        document.querySelectorAll('.filtro-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+                this.classList.add('ativo');
+
+                const cat = this.dataset.cat;
+                document.querySelectorAll('.presente-card').forEach(card => {
+                    if (cat === 'todos' || card.dataset.cat === cat) {
+                        card.classList.remove('oculto');
+                    } else {
+                        card.classList.add('oculto');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- ===================== SCRIPT: CONTAGEM REGRESSIVA ===================== -->
+    <script>
+        const dataCasamento = new Date("August 15, 2026 18:00:00").getTime();
+
+        const atualizarContador = setInterval(function () {
+            const agora = new Date().getTime();
+            const distancia = dataCasamento - agora;
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById("contador").innerHTML = `
+                <div class="bloco-tempo">
+                    <span class="numero">${dias}</span>
+                    <span class="legenda">Dias</span>
+                </div>
+                <div class="bloco-tempo">
+                    <span class="numero">${horas.toString().padStart(2, '0')}</span>
+                    <span class="legenda">Horas</span>
+                </div>
+                <div class="bloco-tempo">
+                    <span class="numero">${minutos.toString().padStart(2, '0')}</span>
+                    <span class="legenda">Min</span>
+                </div>
+                <div class="bloco-tempo">
+                    <span class="numero">${segundos.toString().padStart(2, '0')}</span>
+                    <span class="legenda">Seg</span>
+                </div>
+            `;
+
+            if (distancia < 0) {
+                clearInterval(atualizarContador);
+                document.getElementById("contador").innerHTML = "<p class='numero'>Chegou o grande dia!</p>";
+            }
+        }, 1000);
+    </script>
+
+    <!-- ===================== SCRIPT: FIREBASE + RSVP + MOSAICO ===================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        import { getStorage, ref, listAll, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAIPvSWjCDMdyZP8WaSuBMJBL2Wh1m441I",
+            authDomain: "casamento-53d96.firebaseapp.com",
+            projectId: "casamento-53d96",
+            storageBucket: "casamento-53d96.firebasestorage.app",
+            messagingSenderId: "657466584523",
+            appId: "1:657466584523:web:96de701bf571e95a64da4e",
+            measurementId: "G-PPNHTSERNL"
         };
 
-        let usuarioAtual = null;
-        let contadorInterdicoes = 0;
-        let rotas = [];
-        let tipoRotaSelecionado = null;
-        let corRotaSelecionada = null;
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
 
-        function entrar(event) {
+        const LIMITE_CONVIDADOS = 200;
+
+        // ===================== CONTADOR DE CONVIDADOS =====================
+        async function atualizarContadorConvidados() {
+            try {
+                const snapshot = await getDocs(collection(db, "convidados"));
+                let total = 0;
+                snapshot.forEach(doc => {
+                    // Cada registro = 1 (o próprio convidado) + número de acompanhantes
+                    total += 1 + (doc.data().acompanhantes || 0);
+                });
+
+                document.getElementById('total-convidados').innerText = total;
+                const porcentagem = Math.min((total / LIMITE_CONVIDADOS) * 100, 100);
+                document.getElementById('barra-fill').style.width = porcentagem + '%';
+            } catch (e) {
+                console.warn('Erro ao carregar contador de convidados:', e);
+            }
+        }
+
+        atualizarContadorConvidados();
+
+        // ===================== PRESENTES - RESERVAS + MODAL =====================
+        const VALOR_TOTAL_LISTA = 9290;
+        const PIX_CHAVE = '64 9217-1411';
+
+        let cardAtivo = null;
+
+        // Estrutura + imagem real + barra em cada card
+        document.querySelectorAll('.presente-card').forEach(card => {
+            const imgUrl = card.dataset.img;
+
+            // Cria o wrapper do corpo
+            const body = document.createElement('div');
+            body.className = 'presente-card-body';
+            while (card.firstChild) body.appendChild(card.firstChild);
+            card.appendChild(body);
+
+            // Insere imagem real no topo
+            if (imgUrl) {
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                img.alt = card.dataset.nome;
+                img.className = 'presente-img';
+                card.insertBefore(img, body);
+            }
+
+            // Barra começa zerada
+            const barra = document.createElement('div');
+            barra.className = 'presente-barra-bg';
+            barra.innerHTML = `<div class="presente-barra-fill" style="width:0%"></div>`;
+            body.appendChild(barra);
+            const lbl = document.createElement('div');
+            lbl.className = 'presente-barra-label';
+            lbl.innerText = 'Disponível';
+            body.appendChild(lbl);
+        });
+
+        async function carregarReservas() {
+            try {
+                const snapshot = await getDocs(collection(db, "presentes_reservados"));
+                snapshot.forEach(d => marcarReservado(d.id));
+            } catch (e) {
+                console.warn('Erro ao carregar reservas:', e);
+            }
+        }
+
+        function marcarReservado(id) {
+            const card = document.querySelector(`.presente-card[data-id="${id}"]`);
+            if (!card) return;
+            card.classList.add('reservado');
+            const btn = card.querySelector('.presente-btn');
+            btn.classList.add('btn-reservado');
+            btn.innerText = 'Reservado ✓';
+            // Preenche barra e atualiza label
+            const fill = card.querySelector('.presente-barra-fill');
+            const lbl  = card.querySelector('.presente-barra-label');
+            if (fill) fill.style.width = '100%';
+            if (lbl)  lbl.innerText = 'Reservado ✓';
+        }
+
+        async function registrarReserva(id, nome, valor, tipo) {
+            await setDoc(doc(db, "presentes_reservados", id), {
+                nome, valor, tipo,
+                dataReserva: new Date().toISOString()
+            });
+            marcarReservado(id);
+        }
+
+        carregarReservas();
+
+        // Abre o modal ao clicar em "Presentear"
+        document.querySelectorAll('.presente-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                if (this.classList.contains('btn-reservado')) return;
+                cardAtivo = this.closest('.presente-card');
+                abrirModal(cardAtivo);
+            });
+        });
+
+        function abrirModal(card) {
+            const img    = card.dataset.img;
+            const cat    = card.querySelector('.presente-cat-label').innerText;
+            const nome   = card.dataset.nome;
+            const desc   = card.dataset.descricao;
+            const valor  = parseInt(card.dataset.valor);
+            const loja   = card.dataset.loja;
+            const pct    = (valor / VALOR_TOTAL_LISTA) * 100;
+
+            // Imagem ou placeholder
+            const wrap = document.getElementById('modal-img-wrap');
+            if (img) {
+                wrap.innerHTML = `<img class="modal-img" src="${img}" alt="${nome}">`;
+            } else {
+                const emoji = card.querySelector('.presente-img-placeholder').innerText;
+                wrap.innerHTML = `<div class="modal-img-placeholder">${emoji}</div>`;
+            }
+
+            document.getElementById('modal-cat').innerText = cat;
+            document.getElementById('modal-nome').innerText = nome;
+            document.getElementById('modal-descricao').innerText = desc;
+            document.getElementById('modal-valor').innerText = 'R$ ' + valor.toLocaleString('pt-BR');
+            document.getElementById('modal-barra-fill').style.width = pct.toFixed(1) + '%';
+            document.getElementById('modal-barra-label').innerText = pct.toFixed(0) + '% do total da lista';
+            document.getElementById('pix-chave-valor').innerText = PIX_CHAVE;
+
+            // Link loja
+            document.getElementById('opcao-loja').href = loja && loja !== '#' ? loja : '#';
+
+            // Fecha PIX se estava aberto
+            document.getElementById('pix-box').classList.remove('aberto');
+
+            document.getElementById('modal-overlay').classList.add('aberto');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function fecharModal() {
+            document.getElementById('modal-overlay').classList.remove('aberto');
+            document.body.style.overflow = '';
+            cardAtivo = null;
+        }
+
+        document.getElementById('modal-fechar').addEventListener('click', fecharModal);
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) fecharModal();
+        });
+
+        // PIX — expande a caixa
+        document.getElementById('opcao-pix').addEventListener('click', function() {
+            document.getElementById('pix-box').classList.toggle('aberto');
+        });
+
+        // Copiar chave PIX
+        document.getElementById('pix-copiar').addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigator.clipboard.writeText(PIX_CHAVE).then(() => {
+                this.innerText = 'Copiado!';
+                setTimeout(() => this.innerText = 'Copiar chave', 2000);
+            });
+        });
+
+        // Confirmar pagamento PIX
+        document.getElementById('pix-confirmar').addEventListener('click', async function(e) {
+            e.stopPropagation();
+            if (!cardAtivo) return;
+            const id    = cardAtivo.dataset.id;
+            const nome  = cardAtivo.dataset.nome;
+            const valor = parseInt(cardAtivo.dataset.valor);
+            this.innerText = 'Registrando...';
+            this.disabled = true;
+            try {
+                // Salva como PENDENTE — só confirma após aprovação no painel admin
+                await setDoc(doc(db, "pix_pendentes", id + '_' + Date.now()), {
+                    presenteId: id,
+                    presenteNome: nome,
+                    valor: valor,
+                    status: 'pendente',
+                    dataEnvio: new Date().toISOString()
+                });
+                this.innerText = 'Enviado!';
+                setTimeout(() => fecharModal(), 1200);
+            } catch (err) {
+                this.innerText = 'Erro — tente novamente';
+                this.disabled = false;
+            }
+        });
+
+        // Comprar — registra reserva e abre loja
+        document.getElementById('opcao-loja').addEventListener('click', async function() {
+            if (!cardAtivo || this.href === '#' || this.href === window.location.href + '#') return;
+            const id    = cardAtivo.dataset.id;
+            const nome  = cardAtivo.dataset.nome;
+            const valor = parseInt(cardAtivo.dataset.valor);
+            try { await registrarReserva(id, nome, valor, 'loja'); } catch(e) {}
+            fecharModal();
+        });
+
+        // ===================== MOSAICO =====================
+        const TOTAL_CELULAS = 12;
+        const INTERVALO_TROCA = 5000;
+        const ATRASO_ENTRE_CELULAS = 400;
+
+        async function iniciarMosaico() {
+            try {
+                const pastafotosRef = ref(storage, 'Fotos casal/');
+                const resultado = await listAll(pastafotosRef);
+                if (resultado.items.length === 0) return;
+
+                const urls = await Promise.all(resultado.items.map(item => getDownloadURL(item)));
+                const urlsEmbaralhadas = urls.sort(() => Math.random() - 0.5);
+                const container = document.getElementById('mosaic-bg');
+
+                for (let i = 0; i < TOTAL_CELULAS; i++) {
+                    const celula = document.createElement('div');
+                    celula.className = 'mosaic-cell';
+
+                    const imgA = document.createElement('img');
+                    const imgB = document.createElement('img');
+                    imgA.alt = '';
+                    imgB.alt = '';
+                    imgA.src = urlsEmbaralhadas[i % urlsEmbaralhadas.length];
+                    imgA.className = 'visivel';
+
+                    celula.appendChild(imgA);
+                    celula.appendChild(imgB);
+                    container.appendChild(celula);
+
+                    let fotoAtual = i % urlsEmbaralhadas.length;
+                    let usandoA = true;
+
+                    setTimeout(() => {
+                        setInterval(() => {
+                            const proximoIndice = (fotoAtual + 1) % urlsEmbaralhadas.length;
+                            const proximaImg = usandoA ? imgB : imgA;
+                            const imgAtual   = usandoA ? imgA : imgB;
+
+                            // Pré-carrega antes de mostrar
+                            proximaImg.src = urlsEmbaralhadas[proximoIndice];
+                            proximaImg.onload = () => {
+                                proximaImg.className = 'visivel';
+                                imgAtual.className = '';
+                                fotoAtual = proximoIndice;
+                                usandoA = !usandoA;
+                            };
+                        }, INTERVALO_TROCA);
+                    }, i * ATRASO_ENTRE_CELULAS);
+                }
+            } catch (e) {
+                console.warn('Mosaico: erro ao carregar fotos.', e);
+            }
+        }
+
+        iniciarMosaico();
+
+        // ===================== GALERIA DO LOCAL =====================
+        async function iniciarGaleriaLocal() {
+            try {
+                const pastaRef = ref(storage, 'Fotos local do casamento/');
+                const resultado = await listAll(pastaRef);
+                if (resultado.items.length === 0) return;
+
+                const urls = await Promise.all(resultado.items.map(item => getDownloadURL(item)));
+                const container = document.getElementById('galeria-local');
+                urls.slice(0, 6).forEach(url => {
+                    const cell = document.createElement('div');
+                    cell.className = 'evento-galeria-cell';
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = 'Recanto das Emílias';
+                    img.loading = 'lazy';
+                    cell.appendChild(img);
+                    container.appendChild(cell);
+                });
+            } catch (e) {
+                console.warn('Galeria local: erro ao carregar fotos.', e);
+            }
+        }
+
+        iniciarGaleriaLocal();
+
+        // ===================== FOTO DA IGREJA =====================
+        async function iniciarGaleriaIgreja() {
+            try {
+                const pastaRef = ref(storage, 'Igreja/');
+                const resultado = await listAll(pastaRef);
+                if (resultado.items.length === 0) {
+                    console.warn('Pasta igreja/ vazia ou não encontrada no Storage.');
+                    return;
+                }
+                const url = await getDownloadURL(resultado.items[0]);
+                const container = document.getElementById('galeria-igreja');
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Paróquia Nossa Senhora Auxiliadora';
+                img.loading = 'lazy';
+                container.appendChild(img);
+            } catch (e) {
+                console.warn('Igreja: erro —', e.message);
+            }
+        }
+
+        iniciarGaleriaIgreja();
+
+        // ===================== RSVP =====================
+        document.getElementById('form-rsvp').addEventListener('submit', async function (event) {
             event.preventDefault();
-            const email = document.getElementById('emailInput').value.trim().toLowerCase();
-            const senha = document.getElementById('senhaInput').value;
 
-            const usuario = usuarios[email];
-            if (!usuario || usuario.senha !== senha) {
-                document.getElementById('loginError').classList.add('active');
-                return;
+            const btn = document.getElementById('btn-confirmar');
+            const feedback = document.getElementById('mensagem-feedback');
+            const nome = document.getElementById('nomeConvidado').value.trim();
+            const acompanhantes = parseInt(document.getElementById('qtdAcompanhantes').value, 10);
+
+            try {
+                btn.innerText = "Enviando...";
+                btn.disabled = true;
+
+                await addDoc(collection(db, "convidados"), {
+                    nome: nome,
+                    acompanhantes: acompanhantes,
+                    dataConfirmacao: new Date().toISOString()
+                });
+
+                feedback.style.display = "block";
+                feedback.style.color = "green";
+                feedback.innerText = "Presença confirmada com sucesso! Muito obrigado.";
+                document.getElementById('form-rsvp').reset();
+
+                // Atualiza o contador após nova confirmação
+                atualizarContadorConvidados();
+
+            } catch (e) {
+                console.error("Erro ao adicionar documento: ", e);
+                feedback.style.display = "block";
+                feedback.style.color = "red";
+                feedback.innerText = "Ocorreu um erro ao confirmar. Tente novamente.";
+            } finally {
+                btn.innerText = "Confirmar Presença";
+                btn.disabled = false;
             }
-
-            usuarioAtual = { email, ...usuario };
-            document.getElementById('loginError').classList.remove('active');
-            document.getElementById('loginScreen').classList.add('hidden');
-            document.getElementById('appContainer').classList.remove('hidden');
-
-            configurarUIPorPermissao();
-            atualizarHora();
-            setInterval(atualizarHora, 1000);
-        }
-
-        function sair() {
-            usuarioAtual = null;
-            document.getElementById('loginScreen').classList.remove('hidden');
-            document.getElementById('appContainer').classList.add('hidden');
-            document.getElementById('emailInput').value = 'elilson@vale.com';
-            document.getElementById('senhaInput').value = '123';
-        }
-
-        function configurarUIPorPermissao() {
-            const badge = document.getElementById('userBadge');
-            const badgeIcon = document.getElementById('userBadgeIcon');
-            const badgeText = document.getElementById('userBadgeText');
-
-            const btnRota = document.getElementById('btnCadastrarRota');
-            const btnBloqueio = document.getElementById('btnRegistrarBloqueio');
-            const btnDashboard = document.getElementById('btnDashboardDespachante');
-            const avisoUsuario = document.getElementById('avisoUsuario');
-            const rotasVaziasHint = document.getElementById('rotasVaziasHint');
-
-            if (usuarioAtual.tipo === 'adm') {
-                badge.className = 'user-badge adm';
-                badgeIcon.textContent = '🔧';
-                badgeText.textContent = usuarioAtual.nome;
-
-                btnRota.classList.remove('hidden');
-                btnBloqueio.classList.remove('hidden');
-                btnDashboard.classList.remove('hidden');
-                avisoUsuario.classList.add('hidden');
-                if (rotasVaziasHint) rotasVaziasHint.textContent = 'Clique em "Cadastrar Nova Rota" para adicionar.';
-            } else {
-                badge.className = 'user-badge user';
-                badgeIcon.textContent = '👤';
-                badgeText.textContent = usuarioAtual.nome;
-
-                btnRota.classList.add('hidden');
-                btnBloqueio.classList.add('hidden');
-                btnDashboard.classList.add('hidden');
-                avisoUsuario.classList.remove('hidden');
-                if (rotasVaziasHint) rotasVaziasHint.textContent = 'Peça ao administrador para cadastrar rotas.';
-            }
-
-            renderizarRotas();
-        }
-
-        function atualizarHora() {
-            const agora = new Date();
-            const horas = String(agora.getHours()).padStart(2, '0');
-            const minutos = String(agora.getMinutes()).padStart(2, '0');
-            document.getElementById('horaAtual').textContent = `${horas}:${minutos}`;
-        }
-
-        function abrirModalSolicitar() {
-            document.getElementById('modalSolicitar').classList.add('active');
-        }
-
-        function fecharModalSolicitar() {
-            document.getElementById('modalSolicitar').classList.remove('active');
-            document.getElementById('destinoSelect').value = '';
-            document.getElementById('veiculosLista').classList.remove('active');
-        }
-
-        function buscarVeiculos() {
-            const destino = document.getElementById('destinoSelect').value;
-            if (destino) {
-                document.getElementById('veiculosLista').classList.add('active');
-            } else {
-                document.getElementById('veiculosLista').classList.remove('active');
-            }
-        }
-
-        function selecionarVeiculo(empresa, tempo) {
-            mostrarNotificacao(`✓ Veículo ${empresa} confirmado. Chegará em ${tempo} minutos.`, 'verde');
-            fecharModalSolicitar();
-        }
-
-        function abrirModalRota() {
-            if (usuarioAtual.tipo !== 'adm') {
-                mostrarNotificacao('⛔ Acesso negado. Apenas administradores.', 'erro');
-                return;
-            }
-            document.getElementById('modalRota').classList.add('active');
-        }
-
-        function fecharModalRota() {
-            document.getElementById('modalRota').classList.remove('active');
-            document.getElementById('rotaNome').value = '';
-            document.getElementById('rotaOrigem').value = '';
-            document.getElementById('rotaDestino').value = '';
-            document.getElementById('rotaDistancia').value = '3.5';
-            document.querySelectorAll('.tipo-rota-opcao').forEach(el => el.classList.remove('selected'));
-            tipoRotaSelecionado = null;
-            corRotaSelecionada = null;
-        }
-
-        function selecionarTipoRota(event, tipo, cor) {
-            document.querySelectorAll('.tipo-rota-opcao').forEach(el => el.classList.remove('selected'));
-            event.currentTarget.classList.add('selected');
-            tipoRotaSelecionado = tipo;
-            corRotaSelecionada = cor;
-        }
-
-        function confirmarRota() {
-            const nome = document.getElementById('rotaNome').value.trim();
-            const origem = document.getElementById('rotaOrigem').value;
-            const destino = document.getElementById('rotaDestino').value;
-            const distancia = document.getElementById('rotaDistancia').value;
-
-            if (!nome || !origem || !destino || !tipoRotaSelecionado) {
-                mostrarNotificacao('⚠ Preencha todos os campos e selecione o tipo de rota.', 'erro');
-                return;
-            }
-
-            if (origem === destino) {
-                mostrarNotificacao('⚠ Origem e destino não podem ser iguais.', 'erro');
-                return;
-            }
-
-            const novaRota = {
-                id: Date.now(),
-                nome, origem, destino,
-                tipo: tipoRotaSelecionado,
-                cor: corRotaSelecionada,
-                distancia: parseFloat(distancia)
-            };
-
-            rotas.push(novaRota);
-            renderizarRotas();
-            atualizarKPIRotas();
-            mostrarNotificacao(`✓ Rota "${nome}" cadastrada com sucesso!`, 'adm');
-            fecharModalRota();
-        }
-
-        function renderizarRotas() {
-            const container = document.getElementById('rotasLista');
-
-            if (rotas.length === 0) {
-                const hint = usuarioAtual && usuarioAtual.tipo === 'adm'
-                    ? 'Clique em "Cadastrar Nova Rota" para adicionar.'
-                    : 'Peça ao administrador para cadastrar rotas.';
-                container.innerHTML = `
-                    <div class="rotas-vazias">
-                        Nenhuma rota cadastrada ainda.<br>
-                        <span>${hint}</span>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = rotas.map(rota => `
-                <div class="rota-item" style="border-left-color: ${rota.cor};">
-                    ${usuarioAtual.tipo === 'adm' ? `<button class="rota-item-delete" onclick="removerRota(${rota.id})">🗑</button>` : ''}
-                    <div class="rota-item-nome">${rota.nome}</div>
-                    <div class="rota-item-tipo">
-                        ${rota.origem} → ${rota.destino}<br>
-                        <strong>${rota.tipo}</strong> • ${rota.distancia} km
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function removerRota(id) {
-            if (usuarioAtual.tipo !== 'adm') return;
-            rotas = rotas.filter(r => r.id !== id);
-            renderizarRotas();
-            atualizarKPIRotas();
-            mostrarNotificacao('Rota removida.', 'adm');
-        }
-
-        function atualizarKPIRotas() {
-            document.getElementById('kpiRotasCount').textContent = rotas.length;
-        }
-
-        function abrirModalBloqueio() {
-            if (usuarioAtual.tipo !== 'adm') {
-                mostrarNotificacao('⛔ Acesso negado. Apenas administradores.', 'erro');
-                return;
-            }
-            document.getElementById('modalBloqueio').classList.add('active');
-        }
-
-        function fecharModalBloqueio() {
-            document.getElementById('modalBloqueio').classList.remove('active');
-        }
-
-        function confirmarBloqueio() {
-            const localizacao = document.getElementById('localizacaoBloqueio').value;
-            const motivo = document.getElementById('motivoBloqueio').value;
-            const tempo = document.getElementById('tempoEstimado').value;
-
-            if (!localizacao || !motivo) {
-                mostrarNotificacao('⚠ Preencha todos os campos.', 'erro');
-                return;
-            }
-
-            contadorInterdicoes++;
-            document.getElementById('contadorInterdicoes').textContent = contadorInterdicoes;
-            mostrarNotificacao(`⚠ Bloqueio registrado: ${localizacao} (${tempo}h)`, 'adm');
-            fecharModalBloqueio();
-        }
-
-        function verDashboardDespachante() {
-            if (usuarioAtual.tipo !== 'adm') return;
-            document.getElementById('dashboardPrincipal').classList.add('hidden');
-            document.getElementById('dashboardDespachante').classList.add('active');
-        }
-
-        function voltarDashboard() {
-            document.getElementById('dashboardPrincipal').classList.remove('hidden');
-            document.getElementById('dashboardDespachante').classList.remove('active');
-        }
-
-        function mostrarNotificacao(mensagem, tipo = 'verde') {
-            const notif = document.getElementById('notificacao');
-            notif.textContent = mensagem;
-            notif.className = 'notificacao active';
-            if (tipo === 'erro') notif.classList.add('erro');
-            if (tipo === 'adm') notif.classList.add('adm');
-
-            setTimeout(() => {
-                notif.classList.remove('active');
-            }, 3500);
-        }
-
-        function fecharModalClick(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('active');
-            }
-        }
+        });
     </script>
+
+
 </body>
 </html>
