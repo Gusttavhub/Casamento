@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Admin · Casamento Gusttavo &amp; Luciana</title>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --branco: #fff;
+            --texto: #2c2c2c;
+            --texto-sec: #6a6a6a;
+            --borda: #e5e5e5;
+            --verde: #0a7c2e;
+            --vermelho: #b00020;
+            --azul: #1a73e8;
+            --amarelo: #b07a00;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--texto);
+            line-height: 1.5;
+        }
+        header {
+            background: var(--branco);
+            border-bottom: 1px solid var(--borda);
+            padding: 18px 24px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        header h1 { font-size: 1.1rem; font-weight: 400; letter-spacing: 1px; }
+        header .user { font-size: 0.85rem; color: var(--texto-sec); }
+        header button {
+            margin-left: 14px;
+            padding: 6px 14px;
+            background: none; border: 1px solid var(--borda);
+            cursor: pointer; font-size: 0.8rem;
+        }
+
+        main { max-width: 1200px; margin: 0 auto; padding: 30px 24px; }
+
+        .login-box {
+            max-width: 360px; margin: 80px auto;
+            background: var(--branco);
+            padding: 32px; border: 1px solid var(--borda);
+        }
+        .login-box h2 { margin-bottom: 18px; font-weight: 300; font-size: 1.3rem; }
+        .login-box label { display: block; font-size: 0.78rem; margin: 12px 0 6px; color: var(--texto-sec); }
+        .login-box input {
+            width: 100%; padding: 11px; border: 1px solid var(--borda);
+            font-family: inherit; font-size: 0.95rem;
+        }
+        .login-box button {
+            width: 100%; margin-top: 18px; padding: 12px;
+            background: var(--texto); color: white; border: none;
+            cursor: pointer; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .login-box .erro { color: var(--vermelho); font-size: 0.8rem; margin-top: 12px; min-height: 18px; }
+
+        .tabs {
+            display: flex; gap: 4px; margin-bottom: 24px;
+            border-bottom: 1px solid var(--borda);
+        }
+        .tab-btn {
+            padding: 10px 20px; background: none; border: none;
+            border-bottom: 2px solid transparent;
+            font-family: inherit; font-size: 0.85rem; cursor: pointer;
+            color: var(--texto-sec);
+        }
+        .tab-btn.ativo { color: var(--texto); border-bottom-color: var(--texto); }
+
+        .resumo {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px; margin-bottom: 28px;
+        }
+        .resumo-card {
+            background: var(--branco); padding: 18px; border: 1px solid var(--borda);
+        }
+        .resumo-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--texto-sec); }
+        .resumo-valor { font-size: 1.7rem; font-weight: 200; margin-top: 6px; }
+
+        table {
+            width: 100%; border-collapse: collapse; background: var(--branco);
+            border: 1px solid var(--borda); font-size: 0.88rem;
+        }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--borda); }
+        th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--texto-sec); background: #fafafa; }
+        tr:hover td { background: #fafafa; }
+
+        .status {
+            display: inline-block; padding: 3px 10px;
+            border-radius: 10px; font-size: 0.72rem;
+        }
+        .status.aguardando { background: #fff7d6; color: var(--amarelo); }
+        .status.aprovado   { background: #e6f5ec; color: var(--verde); }
+        .status.invalido   { background: #ffe6ea; color: var(--vermelho); }
+
+        .acoes button {
+            margin-right: 6px; padding: 5px 11px;
+            font-family: inherit; font-size: 0.75rem; cursor: pointer;
+            border: 1px solid var(--borda); background: white;
+        }
+        .acoes button.aprovar:hover  { border-color: var(--verde);   color: var(--verde); }
+        .acoes button.invalidar:hover{ border-color: var(--vermelho);color: var(--vermelho); }
+        .acoes button.excluir:hover  { border-color: var(--vermelho);color: var(--vermelho); }
+
+        .vazio { padding: 40px; text-align: center; color: var(--texto-sec); }
+        .loading { padding: 40px; text-align: center; color: var(--texto-sec); }
+
+        .filtros { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+        .filtros button {
+            padding: 6px 14px; background: white; border: 1px solid var(--borda);
+            cursor: pointer; font-size: 0.78rem;
+        }
+        .filtros button.ativo { background: var(--texto); color: white; border-color: var(--texto); }
+
+        @media (max-width: 700px) {
+            table { font-size: 0.78rem; }
+            th, td { padding: 8px 6px; }
+            .acoes button { padding: 4px 8px; font-size: 0.7rem; margin-bottom: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen">
+        <form class="login-box" id="form-login">
+            <h2>Painel da Noiva</h2>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" autocomplete="email" required>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" autocomplete="current-password" required>
+            <button type="submit" id="btn-login">Entrar</button>
+            <div class="erro" id="login-erro" role="alert"></div>
+        </form>
+    </div>
+
+    <div id="app" style="display:none;">
+        <header>
+            <h1>Painel · Gusttavo &amp; Luciana</h1>
+            <div>
+                <span class="user" id="user-email"></span>
+                <button id="btn-logout">Sair</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-btn ativo" data-tab="presentes">Presentes</button>
+                <button class="tab-btn" data-tab="convidados">RSVP</button>
+            </div>
+
+            <section id="tab-presentes">
+                <div class="resumo">
+                    <div class="resumo-card">
+                        <div class="resumo-label">Total Aprovado</div>
+                        <div class="resumo-valor" id="r-aprovado">R$ 0</div>
+                    </div>
+                    <div class="resumo-card">
+                        <div class="resumo-label">Aguardando</div>
+                        <div class="resumo-valor" id="r-aguardando">R$ 0</div>
+                    </div>
+                    <div class="resumo-card">
+                        <div class="resumo-label">Contribuições</div>
+                        <div class="resumo-valor" id="r-contagem">0</div>
+                    </div>
+                </div>
+
+                <div class="filtros" role="group" aria-label="Filtrar por status">
+                    <button class="ativo" data-f="todos">Todos</button>
+                    <button data-f="aguardando_confirmacao_noiva">Aguardando</button>
+                    <button data-f="aprovado">Aprovados</button>
+                    <button data-f="invalido">Invalidados</button>
+                </div>
+
+                <div id="presentes-container">
+                    <div class="loading">Carregando...</div>
+                </div>
+            </section>
+
+            <section id="tab-convidados" style="display:none;">
+                <div class="resumo">
+                    <div class="resumo-card">
+                        <div class="resumo-label">Confirmados</div>
+                        <div class="resumo-valor" id="r-conv-total">0</div>
+                    </div>
+                    <div class="resumo-card">
+                        <div class="resumo-label">Famílias</div>
+                        <div class="resumo-valor" id="r-conv-familias">0</div>
+                    </div>
+                </div>
+                <div id="convidados-container">
+                    <div class="loading">Carregando...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+            from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore, collection, getDocs, doc, updateDoc, deleteDoc, query, orderBy }
+            from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAIPvSWjCDMdyZP8WaSuBMJBL2Wh1m441I",
+            authDomain: "casamento-53d96.firebaseapp.com",
+            projectId: "casamento-53d96",
+            storageBucket: "casamento-53d96.firebasestorage.app",
+            messagingSenderId: "657466584523",
+            appId: "1:657466584523:web:96de701bf571e95a64da4e"
+        };
+
+        const app  = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db   = getFirestore(app);
+
+        const fmtBRL = v => 'R$ ' + Number(v||0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        const fmtData = iso => {
+            try { return new Date(iso).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }); }
+            catch { return iso; }
+        };
+
+        // ================= LOGIN =================
+        const loginScreen = document.getElementById('login-screen');
+        const appScreen   = document.getElementById('app');
+        const formLogin   = document.getElementById('form-login');
+        const loginErro   = document.getElementById('login-erro');
+
+        formLogin.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            loginErro.textContent = '';
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value;
+            try {
+                await signInWithEmailAndPassword(auth, email, senha);
+            } catch (err) {
+                loginErro.textContent = 'E-mail ou senha incorretos.';
+                console.error(err);
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', () => signOut(auth));
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                document.getElementById('user-email').textContent = user.email;
+                loginScreen.style.display = 'none';
+                appScreen.style.display = 'block';
+                carregarPresentes();
+                carregarConvidados();
+            } else {
+                loginScreen.style.display = 'block';
+                appScreen.style.display = 'none';
+            }
+        });
+
+        // ================= TABS =================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('ativo'));
+                btn.classList.add('ativo');
+                const tab = btn.dataset.tab;
+                document.getElementById('tab-presentes').style.display  = tab === 'presentes'  ? 'block' : 'none';
+                document.getElementById('tab-convidados').style.display = tab === 'convidados' ? 'block' : 'none';
+            });
+        });
+
+        // ================= PRESENTES =================
+        let contribuicoesCache = [];
+        let filtroStatus = 'todos';
+
+        document.querySelectorAll('.filtros button').forEach(b => {
+            b.addEventListener('click', () => {
+                document.querySelectorAll('.filtros button').forEach(x => x.classList.remove('ativo'));
+                b.classList.add('ativo');
+                filtroStatus = b.dataset.f;
+                renderPresentes();
+            });
+        });
+
+        async function carregarPresentes() {
+            const cont = document.getElementById('presentes-container');
+            cont.innerHTML = '<div class="loading">Carregando...</div>';
+            try {
+                const snap = await getDocs(collection(db, "presentes_contribuicoes"));
+                contribuicoesCache = [];
+                snap.forEach(d => contribuicoesCache.push({ id: d.id, ...d.data() }));
+                contribuicoesCache.sort((a,b) => (b.data || '').localeCompare(a.data || ''));
+                renderPresentes();
+            } catch (e) {
+                cont.innerHTML = `<div class="vazio">Erro: ${e.message}</div>`;
+            }
+        }
+
+        function renderPresentes() {
+            const cont = document.getElementById('presentes-container');
+            const lista = filtroStatus === 'todos'
+                ? contribuicoesCache
+                : contribuicoesCache.filter(c => (c.statusValidacao || 'aguardando_confirmacao_noiva') === filtroStatus);
+
+            // Resumo
+            let aprovado = 0, aguardando = 0;
+            contribuicoesCache.forEach(c => {
+                const s = c.statusValidacao || 'aguardando_confirmacao_noiva';
+                if (s === 'aprovado')   aprovado   += Number(c.valorContribuido || 0);
+                if (s === 'aguardando_confirmacao_noiva') aguardando += Number(c.valorContribuido || 0);
+            });
+            document.getElementById('r-aprovado').textContent   = fmtBRL(aprovado);
+            document.getElementById('r-aguardando').textContent = fmtBRL(aguardando);
+            document.getElementById('r-contagem').textContent   = contribuicoesCache.length;
+
+            if (!lista.length) {
+                cont.innerHTML = '<div class="vazio">Nenhuma contribuição neste filtro.</div>';
+                return;
+            }
+
+            const linhas = lista.map(c => {
+                const status = c.statusValidacao || 'aguardando_confirmacao_noiva';
+                const statusLabel = status === 'aprovado' ? 'Aprovado' : status === 'invalido' ? 'Invalidado' : 'Aguardando';
+                const statusClass = status === 'aprovado' ? 'aprovado' : status === 'invalido' ? 'invalido' : 'aguardando';
+                return `
+                    <tr>
+                        <td>${fmtData(c.data)}</td>
+                        <td>${escapeHtml(c.doador)}</td>
+                        <td>${escapeHtml(c.presenteNome)}</td>
+                        <td>${fmtBRL(c.valorContribuido)}</td>
+                        <td>${c.metodo === 'pix' ? 'PIX' : 'Loja'}</td>
+                        <td><span class="status ${statusClass}">${statusLabel}</span></td>
+                        <td class="acoes">
+                            ${status !== 'aprovado' ? `<button class="aprovar"   data-id="${c.id}" data-acao="aprovar">Aprovar</button>` : ''}
+                            ${status !== 'invalido' ? `<button class="invalidar" data-id="${c.id}" data-acao="invalidar">Invalidar</button>` : ''}
+                            <button class="excluir" data-id="${c.id}" data-acao="excluir">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            cont.innerHTML = `
+                <table>
+                    <thead><tr>
+                        <th>Data</th><th>Doador</th><th>Presente</th><th>Valor</th>
+                        <th>Método</th><th>Status</th><th>Ações</th>
+                    </tr></thead>
+                    <tbody>${linhas}</tbody>
+                </table>
+            `;
+
+            cont.querySelectorAll('button[data-acao]').forEach(b => {
+                b.addEventListener('click', () => acaoPresente(b.dataset.id, b.dataset.acao));
+            });
+        }
+
+        async function acaoPresente(id, acao) {
+            try {
+                if (acao === 'excluir') {
+                    if (!confirm('Tem certeza que deseja EXCLUIR esta contribuição? Não pode ser desfeito.')) return;
+                    await deleteDoc(doc(db, "presentes_contribuicoes", id));
+                } else if (acao === 'aprovar') {
+                    await updateDoc(doc(db, "presentes_contribuicoes", id), { statusValidacao: 'aprovado' });
+                } else if (acao === 'invalidar') {
+                    await updateDoc(doc(db, "presentes_contribuicoes", id), { statusValidacao: 'invalido' });
+                }
+                await carregarPresentes();
+            } catch (e) {
+                alert('Erro: ' + e.message);
+            }
+        }
+
+        // ================= CONVIDADOS =================
+        async function carregarConvidados() {
+            const cont = document.getElementById('convidados-container');
+            cont.innerHTML = '<div class="loading">Carregando...</div>';
+            try {
+                const snap = await getDocs(collection(db, "convidados"));
+                const lista = [];
+                snap.forEach(d => lista.push({ id: d.id, ...d.data() }));
+                lista.sort((a,b) => (b.dataConfirmacao || '').localeCompare(a.dataConfirmacao || ''));
+
+                const total = lista.reduce((s,c) => s + 1 + (c.acompanhantes||0), 0);
+                document.getElementById('r-conv-total').textContent    = total;
+                document.getElementById('r-conv-familias').textContent = lista.length;
+
+                if (!lista.length) {
+                    cont.innerHTML = '<div class="vazio">Nenhuma confirmação ainda.</div>';
+                    return;
+                }
+
+                const linhas = lista.map(c => `
+                    <tr>
+                        <td>${fmtData(c.dataConfirmacao)}</td>
+                        <td>${escapeHtml(c.nome)}</td>
+                        <td>${c.acompanhantes || 0}</td>
+                        <td>${1 + (c.acompanhantes || 0)}</td>
+                        <td class="acoes">
+                            <button class="excluir" data-id="${c.id}">Excluir</button>
+                        </td>
+                    </tr>
+                `).join('');
+
+                cont.innerHTML = `
+                    <table>
+                        <thead><tr>
+                            <th>Data</th><th>Nome</th><th>Acompanhantes</th><th>Total</th><th>Ações</th>
+                        </tr></thead>
+                        <tbody>${linhas}</tbody>
+                    </table>
+                `;
+                cont.querySelectorAll('button.excluir').forEach(b => {
+                    b.addEventListener('click', async () => {
+                        if (!confirm('Excluir esta confirmação?')) return;
+                        try {
+                            await deleteDoc(doc(db, "convidados", b.dataset.id));
+                            carregarConvidados();
+                        } catch (e) { alert('Erro: ' + e.message); }
+                    });
+                });
+
+            } catch (e) {
+                cont.innerHTML = `<div class="vazio">Erro: ${e.message}</div>`;
+            }
+        }
+
+        function escapeHtml(s) {
+            return String(s||'')
+                .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+                .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+        }
+    </script>
+</body>
+</html>

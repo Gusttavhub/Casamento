@@ -1,0 +1,33 @@
+# Planilhas e dados privados (lista de convidados, orçamentos, presentes)
+*.xlsx
+*.xls
+*.csv
+
+# Arquivos temporários do Excel/Word
+~$*
+
+# Versões antigas / rascunhos
+Casamento.html
+Casamento.txt
+
+# Dumps temporários
+*_dump.txt
+*_dump.json
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Variáveis de ambiente (caso adicione no futuro)
+.env
+.env.local

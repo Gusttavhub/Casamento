@@ -10,9 +10,74 @@
             --branco-puro: #ffffff;
             --cinza-fundo: #fafafa;
             --texto-principal: #2c2c2c;
-            --texto-secundario: #888888;
+            --texto-secundario: #6a6a6a;
+            --texto-terciario: #8a8a8a;
             --fonte-titulos: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             --fonte-textos: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        /* Acessibilidade — foco visível */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        [role="button"]:focus-visible {
+            outline: 2px solid #1a73e8;
+            outline-offset: 2px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Barra de progresso geral da lista */
+        .bloco-progresso-global {
+            max-width: 720px;
+            margin: 0 auto 50px;
+            padding: 28px 24px;
+            background: #ffffff;
+            border: 1px solid #ebebeb;
+        }
+        .progresso-global-titulo {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--texto-secundario);
+            margin-bottom: 14px;
+        }
+        .progresso-global-barra {
+            width: 100%;
+            height: 6px;
+            background: #ececec;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progresso-global-fill {
+            height: 100%;
+            background: var(--texto-principal);
+            transition: width 1s ease;
+        }
+        .progresso-global-numeros {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            color: var(--texto-principal);
+            font-size: 1.1rem;
+        }
+        .progresso-global-percent {
+            text-align: right;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--texto-secundario);
+            margin-top: 6px;
         }
 
         /* Reset e Estilos Globais */
@@ -934,12 +999,14 @@
 </head>
 <body>
 
-    <section class="hero">
-        <div class="mosaic-bg" id="mosaic-bg"></div>
-        <div class="mosaic-overlay"></div>
+    <a href="#presentes" class="sr-only">Pular para a lista de presentes</a>
+
+    <section class="hero" aria-label="Capa">
+        <div class="mosaic-bg" id="mosaic-bg" aria-hidden="true"></div>
+        <div class="mosaic-overlay" aria-hidden="true"></div>
 
         <div class="hero-conteudo">
-            <h1>Gusttavo & Luciana</h1>
+            <h1>Gusttavo &amp; Luciana</h1>
         </div>
     </section>
 
@@ -950,7 +1017,8 @@
         <div class="spotify-wrap">
             <div class="spotify-label">Trilha sonora do casamento</div>
             <iframe
-                src="https://open.spotify.com/embed/playlist/37i9dQZF1E8Jjyi7BP2J4e?utm_source=generator&theme=0"
+                title="Playlist do casamento no Spotify"
+                src="https://open.spotify.com/embed/playlist/37i9dQZF1E8Jjyi7BP2J4e?utm_source=generator&amp;theme=0"
                 width="100%"
                 height="152"
                 style="max-width: 500px;"
@@ -997,11 +1065,16 @@
             <div class="legenda-convidados">presenças confirmadas</div>
         </div>
 
-        <form id="form-rsvp" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
-            <input type="text" id="nomeConvidado" placeholder="Seu Nome Completo" required>
-            <input type="number" id="qtdAcompanhantes" placeholder="Número de Acompanhantes (ex: 2)" min="0" required>
+        <form id="form-rsvp" aria-label="Formulário de confirmação de presença" style="max-width: 400px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+            <label for="nomeConvidado" class="sr-only">Seu nome completo</label>
+            <input type="text" id="nomeConvidado" name="nomeConvidado" autocomplete="name"
+                   placeholder="Seu Nome Completo" required aria-required="true" minlength="3">
+            <label for="qtdAcompanhantes" class="sr-only">Número de acompanhantes</label>
+            <input type="number" id="qtdAcompanhantes" name="qtdAcompanhantes"
+                   placeholder="Número de Acompanhantes (ex: 2)" min="0" max="10"
+                   required aria-required="true" inputmode="numeric">
             <button type="submit" id="btn-confirmar">Confirmar Presença</button>
-            <p id="mensagem-feedback"></p>
+            <p id="mensagem-feedback" role="status" aria-live="polite"></p>
         </form>
     </section>
 
@@ -1017,6 +1090,7 @@
 
             <div class="evento-mapa">
                 <iframe
+                    title="Mapa: Paróquia Nossa Senhora Auxiliadora"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3826.6670954736633!2d-51.119014899999996!3d-16.441725299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bdbb78b5ab0d%3A0x42a8d85c9f976b99!2sParoquia%20Nossa%20Senhora%20Auxiliadora!5e0!3m2!1spt-BR!2sbr!4v1776019961669!5m2!1spt-BR!2sbr"
                     width="100%" height="380"
                     style="border:0;"
@@ -1027,7 +1101,7 @@
             </div>
         </div>
 
-        <div class="evento-divisor"></div>
+        <div class="evento-divisor" aria-hidden="true"></div>
 
         <div class="evento-bloco">
             <div class="evento-tipo-label">Recepção</div>
@@ -1038,6 +1112,7 @@
 
             <div class="evento-mapa">
                 <iframe
+                    title="Mapa: Recanto das Emílias"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.0543534875014!2d-51.109376399999995!3d-16.422065699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9366bd3962a81eeb%3A0x1a7e1ba7a1efc4e!2sRecanto%20das%20Em%C3%ADlias!5e0!3m2!1spt-BR!2sbr!4v1776017370841!5m2!1spt-BR!2sbr"
                     width="100%" height="380"
                     style="border:0;"
@@ -1056,11 +1131,23 @@
             Sua presença é o nosso maior presente. Mas se quiser nos presentear, ficamos felizes com qualquer escolha.
         </p>
 
-        <div class="categorias-filtro">
-            <button class="filtro-btn ativo" data-cat="todos">Todos</button>
-            <button class="filtro-btn" data-cat="eletro">Eletrodomésticos</button>
-            <button class="filtro-btn" data-cat="cozinha">Cozinha & Mesa</button>
-            <button class="filtro-btn" data-cat="casa">Casa</button>
+        <div class="categorias-filtro" role="group" aria-label="Filtrar presentes por categoria">
+            <button type="button" class="filtro-btn ativo" data-cat="todos" aria-pressed="true">Todos</button>
+            <button type="button" class="filtro-btn" data-cat="eletro" aria-pressed="false">Eletrodomésticos</button>
+            <button type="button" class="filtro-btn" data-cat="cozinha" aria-pressed="false">Cozinha &amp; Mesa</button>
+            <button type="button" class="filtro-btn" data-cat="casa" aria-pressed="false">Casa</button>
+        </div>
+
+        <div class="bloco-progresso-global" aria-live="polite">
+            <div class="progresso-global-titulo">Progresso geral da lista</div>
+            <div class="progresso-global-barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progresso-global-aria">
+                <div class="progresso-global-fill" id="progresso-global-fill" style="width:0%"></div>
+            </div>
+            <div class="progresso-global-numeros">
+                <span id="progresso-global-arrecadado">R$ 0</span>
+                <span id="progresso-global-meta">de R$ 0</span>
+            </div>
+            <div class="progresso-global-percent" id="progresso-global-percent">0% presenteado</div>
         </div>
 
         <div class="presentes-grid">
@@ -1068,7 +1155,7 @@
             <div class="presente-card" data-cat="eletro" data-id="maquina-lavar-louca" data-valor="3549"
                  data-nome="Máquina de Lavar Louça" data-descricao="Brastemp Smart Sensor 15 serviços"
                  data-img="https://m.media-amazon.com/images/I/51ORU2+7KEL._AC_SX466_.jpg"
-                 data-loja="https://www.amazon.com.br/Lava-lou%C3%A7as-Servi%C3%A7os-Brastemp-Smart-Sensor/dp/B0DKG44NYQ/">
+                 data-loja="https://www.amazon.com.br/Lava-lou%C3%A7as-Servi%C3%A7os-Brastemp-Smart-Sensor/dp/B0DKG44NYQ/ref=sr_1_7?crid=3F5JSEHDA3CK2&amp;dib=eyJ2IjoiMSJ9.4fV04E4eLByncwsf74INfyZaaqwUo4SWzEtzVkKXhddrF0E45qsnfhCfOwP7D33-ykKmDjvcONPq_fUEv9Mvoc6JdvKRAIeOx9ikeHX64sqNetWHsNPJBhREHXCBjM6Jvsr1s4LYOQ6-Jdhu3rtQjru_dAcSYW5n65UVpgRzoszZbQbHnCR39nIo_27M-kw8gncXrbRrD7skhMHlSb9_HHD5y_gP2Ayj-SsY4LkmpLrWK1ubzd6TWRUOV43rma6sbchnpcBp9J2daGg6Ad3f0364z9gm4_fwZHnjLrUjmms.ljv69gjFqMxEkafeJ8EvYhmVMCd5rxOGwY_-yxQWsmI&amp;dib_tag=se&amp;keywords=m%C3%A1quina+de+lavar+lou%C3%A7a+15+servi%C3%A7o+220v&amp;qid=1777248223&amp;sprefix=M%C3%A1quina+de+lavar+lou%C3%A7a+15%2Caps%2C240&amp;sr=8-7&amp;ufe=app_do%3Aamzn1.fos.95de73c3-5dda-43a7-bd1f-63af03b14751">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Máquina de Lavar Louça</div>
                 <div class="presente-descricao">Brastemp Smart Sensor 15 serviços</div>
@@ -1079,7 +1166,7 @@
             <div class="presente-card" data-cat="eletro" data-id="sanduicheira" data-valor="148"
                  data-nome="Sanduicheira" data-descricao="Elétrica antiaderente"
                  data-img="https://m.media-amazon.com/images/I/5131X1N1gWL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/gp/product/B07B675ZQ6/">
+                 data-loja="https://www.amazon.com.br/gp/product/B07B675ZQ6/ref=ox_sc_act_title_1?smid=A1ZZFT5FULY4LN&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Sanduicheira</div>
                 <div class="presente-descricao">Elétrica antiaderente</div>
@@ -1090,7 +1177,7 @@
             <div class="presente-card" data-cat="eletro" data-id="torradeira" data-valor="123"
                  data-nome="Torradeira de Pão" data-descricao="Electrolux Efficient ETS10"
                  data-img="https://m.media-amazon.com/images/I/51IRloWQneL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Torradeira-El%C3%A9trica-Electrolux-Efficient-ETS10/dp/B09CC71S5H/">
+                 data-loja="https://www.amazon.com.br/Torradeira-El%C3%A9trica-Electrolux-Efficient-ETS10/dp/B09CC71S5H/ref=asc_df_B09CC71S5H?mcid=0a122993f56d3eb582044f93fe32cb62&amp;tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=721147801917&amp;hvpos=&amp;hvnetw=g&amp;hvrand=5169143678532388793&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031818&amp;hvtargid=pla-2374768376294&amp;gad_source=1&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Torradeira de Pão</div>
                 <div class="presente-descricao">Electrolux Efficient ETS10</div>
@@ -1101,7 +1188,7 @@
             <div class="presente-card" data-cat="eletro" data-id="forno-eletrico" data-valor="409"
                  data-nome="Forno Elétrico" data-descricao="Philco PFE52P 52 litros"
                  data-img="https://m.media-amazon.com/images/I/61cqfHB8XNL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Forno-El%C3%A9trico-Philco-PFE52P-resist%C3%AAncia/dp/B0CBQPG37R/">
+                 data-loja="https://www.amazon.com.br/Forno-El%C3%A9trico-Philco-PFE52P-resist%C3%AAncia/dp/B0CBQPG37R/ref=asc_df_B0CBQPG37R?mcid=d26c594f0eb03aa8ad0cefcf1edc2ed0&amp;tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=709886750320&amp;hvpos=&amp;hvnetw=g&amp;hvrand=14342195141250728094&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031818&amp;hvtargid=pla-2264805729776&amp;hvocijid=14342195141250728094-B0CBQPG37R-&amp;hvexpln=0&amp;language=pt_BR&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Forno Elétrico</div>
                 <div class="presente-descricao">Philco PFE52P 52 litros</div>
@@ -1112,7 +1199,7 @@
             <div class="presente-card" data-cat="eletro" data-id="vaporizador" data-valor="187"
                  data-nome="Vaporizador de Roupas" data-descricao="Portátil, remoção de amassados"
                  data-img="https://m.media-amazon.com/images/I/61RNxwH7zyL._AC_SX569_.jpg"
-                 data-loja="https://www.amazon.com.br/gp/product/B08B6DLFYD/">
+                 data-loja="https://www.amazon.com.br/gp/product/B08B6DLFYD/ref=ox_sc_act_title_5?smid=A1ZZFT5FULY4LN&amp;psc=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Vaporizador de Roupas</div>
                 <div class="presente-descricao">Portátil, remoção de amassados</div>
@@ -1123,7 +1210,7 @@
             <div class="presente-card" data-cat="eletro" data-id="air-fryer" data-valor="330"
                  data-nome="Air Fryer" data-descricao="Philips Walita RapidAir"
                  data-img="https://m.media-amazon.com/images/I/5106QpD9V6L._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Fritadeira-Airfryer-Walita-Tecnologia-RapidAir/dp/B0FMDNT137/">
+                 data-loja="https://www.amazon.com.br/Fritadeira-Airfryer-Walita-Tecnologia-RapidAir/dp/B0FMDNT137/ref=asc_df_B0FMDNT137?mcid=0e9c85ccaef93186a3c12ba37b1b6f97&amp;tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=721147801917&amp;hvpos=&amp;hvnetw=g&amp;hvrand=8736795722307689977&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031818&amp;hvtargid=pla-2374768376294&amp;gad_source=1&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Air Fryer</div>
                 <div class="presente-descricao">Philips Walita RapidAir</div>
@@ -1134,7 +1221,7 @@
             <div class="presente-card" data-cat="eletro" data-id="liquidificador" data-valor="279"
                  data-nome="Liquidificador" data-descricao="Alta potência, jarro de vidro"
                  data-img="https://m.media-amazon.com/images/I/613LbadctMS._AC_SY879_.jpg"
-                 data-loja="https://www.amazon.com.br/gp/product/B08TLM8GDQ/">
+                 data-loja="https://www.amazon.com.br/gp/product/B08TLM8GDQ/ref=ox_sc_act_title_1?smid=A1ZZFT5FULY4LN&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Liquidificador</div>
                 <div class="presente-descricao">Alta potência, jarro de vidro</div>
@@ -1145,7 +1232,7 @@
             <div class="presente-card" data-cat="eletro" data-id="panela-pressao" data-valor="379"
                  data-nome="Panela de Pressão Elétrica" data-descricao="Multifuncional, 6 litros"
                  data-img="https://m.media-amazon.com/images/I/81iejDNyklL._AC_SX300_SY300_QL70_ML2_.jpg"
-                 data-loja="https://www.amazon.com.br/gp/product/B07L8SH6NK/">
+                 data-loja="https://www.amazon.com.br/gp/product/B07L8SH6NK/ref=ox_sc_act_title_4?smid=A1ZZFT5FULY4LN&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Panela de Pressão Elétrica</div>
                 <div class="presente-descricao">Multifuncional, 6 litros</div>
@@ -1156,7 +1243,7 @@
             <div class="presente-card" data-cat="eletro" data-id="maquina-pao" data-valor="548"
                  data-nome="Máquina de Fazer Pão" data-descricao="Programável, várias receitas"
                  data-img="https://m.media-amazon.com/images/I/71-WBAuwQwL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/gp/product/B08PPRZ76D/">
+                 data-loja="https://www.amazon.com.br/gp/product/B08PPRZ76D/ref=ox_sc_act_image_1?smid=AF01SR382YB4A&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Máquina de Fazer Pão</div>
                 <div class="presente-descricao">Programável, várias receitas</div>
@@ -1167,7 +1254,7 @@
             <div class="presente-card" data-cat="eletro" data-id="smart-tv-lg" data-valor="2659"
                  data-nome='Smart TV 4K 55" LG UHD' data-descricao="LG UHD 55UA85 · Processador α7 AI Gen8"
                  data-img="https://m.media-amazon.com/images/I/61RGkr3wqEL._AC_SL1000_.jpg"
-                 data-loja="https://www.amazon.com.br/dp/B0F5X39JQ1">
+                 data-loja="https://www.amazon.com.br/dp/B0F5X39JQ1?ref=ppx_yo2ov_dt_b_fed_asin_title&amp;th=1">
                 <div class="presente-cat-label">Eletrodomésticos</div>
                 <div class="presente-nome">Smart TV 4K 55" LG UHD</div>
                 <div class="presente-descricao">LG UHD 55UA85 · Processador α7 AI Gen8</div>
@@ -1178,7 +1265,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="jogo-tacas" data-valor="120"
                  data-nome="Jogo de Taças" data-descricao="Cristal Bohemia Bordeaux Gastro"
                  data-img="https://m.media-amazon.com/images/I/41-8Kv6rCDL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Ta%C3%A7as-Bordeaux-Gastro-Cristal-Bohemia/dp/B07KDBZ8HF/">
+                 data-loja="https://www.amazon.com.br/Ta%C3%A7as-Bordeaux-Gastro-Cristal-Bohemia/dp/B07KDBZ8HF/ref=asc_df_B07KDBZ8HF?mcid=6b6510d2c67b3575a1b1c4685391ebe7&amp;tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=709964506238&amp;hvpos=&amp;hvnetw=g&amp;hvrand=1065986128531093471&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031818&amp;hvtargid=pla-929724412079&amp;psc=1&amp;hvocijid=1065986128531093471-B07KDBZ8HF-&amp;hvexpln=0&amp;language=pt_BR">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Jogo de Taças</div>
                 <div class="presente-descricao">Cristal Bohemia Bordeaux Gastro</div>
@@ -1189,7 +1276,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="panelas-tramontina" data-valor="709"
                  data-nome="Jogo de Panelas Tramontina" data-descricao="Solar Aço Inox, conjunto completo"
                  data-img="https://m.media-amazon.com/images/I/71yG1BEwZ+L._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/gp/product/B076B9N81Q/">
+                 data-loja="https://www.amazon.com.br/gp/product/B076B9N81Q/ref=ox_sc_act_image_1?smid=A1ZZFT5FULY4LN&amp;psc=1">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Jogo de Panelas Tramontina</div>
                 <div class="presente-descricao">Solar Aço Inox, conjunto completo</div>
@@ -1200,7 +1287,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="sousplat-rattan" data-valor="97"
                  data-nome="Sousplat Rattan — Palha Natural" data-descricao="Jogo Americano Redondo 4 peças 38cm"
                  data-img="https://m.media-amazon.com/images/I/61zhse5CgML._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/s?k=sousplat+rattan+palha+natural+38cm">
+                 data-loja="Jogo Americano Redondo Rattan 4 Peças 38cm Sousplat de Palha Natural para Mesa Posta, Base Decorativa Elegante para Pratos, Protege a Mesa e Valoriza a Apresentação das Refeições | Amazon.com.br">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Sousplat Rattan — Palha Natural</div>
                 <div class="presente-descricao">Jogo Americano Redondo 4 peças 38cm</div>
@@ -1211,7 +1298,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="sousplat-elegante" data-valor="60"
                  data-nome="Sousplat Elegante — Antiderrapante" data-descricao="Kit Americano resistente"
                  data-img="https://m.media-amazon.com/images/I/71WX02HlCAL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Kit-Americano-Elegante-Resistente-Antiderrapante/dp/B0GK2WLZQR/">
+                 data-loja="https://www.amazon.com.br/Kit-Americano-Elegante-Resistente-Antiderrapante/dp/B0GK2WLZQR/ref=sr_1_1_sspa?dib=eyJ2IjoiMSJ9.95p2BkrrQLuxAXX-3PBN5slKJzOZD7GXJFCIhGLjZXNERp9sloMXVF2WrIwAB_XNRJwH94MaWUaxClP956KcHmYXwFu2JqayarcHVriks2ZWVj0NvxLMZuIxlr51PRxRtCn5r0H-5RCG5KTzqK8p6UJ80U4Y0z7kai92jYGtwkZ8v0jOWti6tyTtMJxlqY7KWAWYU6AeNEbKCY-bNr_HooVwOWkDo0k4A0w8gBu5_j8wKkMxVquzGHjMul1wjDlIjZIDI4XVsXHsFj-0sDL3a5h4DGdtc64ooVzCd2VNYFM.LYnB3jcFleOC4leK9hD2kh-8Rygrycs_5-jAosRzyC8&amp;dib_tag=se&amp;keywords=sousplat%2Bjogo%2Bamericano&amp;qid=1775420907&amp;sr=8-1-spons&amp;ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9&amp;sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&amp;th=1">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Sousplat Elegante — Antiderrapante</div>
                 <div class="presente-descricao">Kit Americano resistente</div>
@@ -1222,7 +1309,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="jogo-facas" data-valor="66"
                  data-nome="Jogo de Facas" data-descricao="Tramontina Plenus, lâminas inox"
                  data-img="https://m.media-amazon.com/images/I/51oCxGHT-aL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Facas-Tramontina-Plenus-L%C3%A2minas-Polipropileno/dp/B07WR4TP9W/">
+                 data-loja="https://www.amazon.com.br/Facas-Tramontina-Plenus-L%C3%A2minas-Polipropileno/dp/B07WR4TP9W/ref=asc_df_B07WR4TP9W?mcid=0deda5f10ae63e419b94603efd19d4a9&amp;tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=721147801917&amp;hvpos=&amp;hvnetw=g&amp;hvrand=18411912045016312812&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031818&amp;hvtargid=pla-2374768376294&amp;psc=1&amp;gad_source=1">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Jogo de Facas</div>
                 <div class="presente-descricao">Tramontina Plenus, lâminas inox</div>
@@ -1233,7 +1320,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="jogo-talheres" data-valor="267"
                  data-nome="Jogo de Talheres" data-descricao="Faqueiro Tramontina Laguna Aço Inox 42 peças"
                  data-img="https://m.media-amazon.com/images/I/51UQ-Tx6-LL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/s?k=Faqueiro+Tramontina+Laguna+42+pe%C3%A7as">
+                 data-loja="Faqueiro Aço Inox com Faca para Churrasco com 42 Peças Tramontina Laguna. : Amazon.com.br: Cozinha">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Jogo de Talheres</div>
                 <div class="presente-descricao">Faqueiro Tramontina Laguna Aço Inox 42 peças</div>
@@ -1244,7 +1331,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="petisqueira-melamina" data-valor="60"
                  data-nome="Petisqueira de Melamina" data-descricao="Com garfinhos para petiscos"
                  data-img="https://m.media-amazon.com/images/I/61qlhRliuBL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Petisqueira-melamina-garfinhos-petisco-feitos/dp/B0DPGY8VJK/">
+                 data-loja="https://www.amazon.com.br/Petisqueira-melamina-garfinhos-petisco-feitos/dp/B0DPGY8VJK/ref=asc_df_B0DPGY8VJK?mcid=219efed253d3335fa046855a0d6b5300&amp;tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=709878548112&amp;hvpos=&amp;hvnetw=g&amp;hvrand=5203654154862814754&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031818&amp;hvtargid=pla-2387674387099&amp;psc=1&amp;hvocijid=5203654154862814754-B0DPGY8VJK-&amp;hvexpln=0&amp;language=pt_BR">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Petisqueira de Melamina</div>
                 <div class="presente-descricao">Com garfinhos para petiscos</div>
@@ -1255,7 +1342,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="tabua-queijos-lumai" data-valor="190"
                  data-nome="Tábua para Queijos e Frios" data-descricao="LUMAI Bambu, formato coração com facas"
                  data-img="https://m.media-amazon.com/images/I/71Jx1Z4tmhL._AC_SX569_.jpg"
-                 data-loja="https://www.amazon.com.br/s?k=LUMAI+Tabua+Queijos+Frios+Cora%C3%A7%C3%A3o">
+                 data-loja="LUMAI Kit Tábua Para Queijos e Frios Formato Coração com Facas, Garfos, Divisórias e Encaixe Magnético – Petisqueira de Bambu Modular para Servir Queijos, Frutas e Aperitivos : Amazon.com.br: Cozinha">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Tábua para Queijos e Frios</div>
                 <div class="presente-descricao">LUMAI Bambu, formato coração com facas</div>
@@ -1266,7 +1353,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="kit-temperos" data-valor="90"
                  data-nome="Kit de Temperos" data-descricao="10 potes de vidro 250ml com tampa de bambu"
                  data-img="https://m.media-amazon.com/images/I/81OXBiW4TnL._AC_SY300_SX300_QL70_ML2_.jpg"
-                 data-loja="https://www.amazon.com.br/s?k=Kit+10+Potes+Vidro+250ml+Tampa+Bambu+Herm%C3%A9tica">
+                 data-loja="Kit 10 Potes de Vidro 250ml com Tampa de Bambu Hermética – Empilháveis com Vedação de Silicone, Potes para Temperos, Grãos, Mantimentos e Conservas, Recipientes de Vidro para Cozinha, Organização | Amazon.com.br">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Kit de Temperos</div>
                 <div class="presente-descricao">10 potes de vidro 250ml com tampa de bambu</div>
@@ -1277,7 +1364,7 @@
             <div class="presente-card" data-cat="cozinha" data-id="jogo-jantar" data-valor="317"
                  data-nome="Jogo de Jantar" data-descricao="Tramontina Arbo Porcelana 20 peças"
                  data-img="https://http2.mlstatic.com/D_NQ_NP_2X_911558-MLA96136868935_102025-F.webp"
-                 data-loja="https://lista.mercadolivre.com.br/aparelho-jantar-tramontina-arbo-porcelana-20-pe%C3%A7as">
+                 data-loja="Aparelho De Jantar Tramontina Arbo Porcelana 20 Peças | MercadoLivre">
                 <div class="presente-cat-label">Cozinha & Mesa</div>
                 <div class="presente-nome">Jogo de Jantar</div>
                 <div class="presente-descricao">Tramontina Arbo Porcelana 20 peças</div>
@@ -1288,7 +1375,7 @@
             <div class="presente-card" data-cat="casa" data-id="sofa" data-valor="2979"
                  data-nome="Sofá Retrátil e Reclinável" data-descricao="Velusoft, bordado, ensacado"
                  data-img="https://m.media-amazon.com/images/I/61TUFodZWZL._AC_SX679_.jpg"
-                 data-loja="https://www.amazon.com.br/Retr%C3%A1til-Reclin%C3%A1vel-Ensacadas-Bordado-Velusoft/dp/B09YS9K7J7/">
+                 data-loja="https://www.amazon.com.br/Retr%C3%A1til-Reclin%C3%A1vel-Ensacadas-Bordado-Velusoft/dp/B09YS9K7J7/ref=asc_df_B09YS9K7J7?mcid=921a8945dd8c35078b76ce0fc6baea74&amp;tag=googleshopp00-20&amp;linkCode=df0&amp;hvadid=709968341269&amp;hvpos=&amp;hvnetw=g&amp;hvrand=3067871483948941091&amp;hvpone=&amp;hvptwo=&amp;hvqmt=&amp;hvdev=c&amp;hvdvcmdl=&amp;hvlocint=&amp;hvlocphy=1031818&amp;hvtargid=pla-2269389454692&amp;psc=1&amp;hvocijid=3067871483948941091-B09YS9K7J7-&amp;hvexpln=0&amp;language=pt_BR">
                 <div class="presente-cat-label">Casa</div>
                 <div class="presente-nome">Sofá Retrátil e Reclinável</div>
                 <div class="presente-descricao">Velusoft, bordado, ensacado</div>
@@ -1299,7 +1386,7 @@
             <div class="presente-card" data-cat="casa" data-id="kit-toalha-branco" data-valor="289"
                  data-nome="Kit de Toalha — Branco" data-descricao="Buddemeyer Banhão Fio Penteado · 4 peças"
                  data-img="https://m.media-amazon.com/images/I/71KYI2gW4hL._AC_SX569_.jpg"
-                 data-loja="https://www.amazon.com.br/s?k=Buddemeyer+Banh%C3%A3o+Fio+Penteado+Canelado+Branco">
+                 data-loja="Jogo De Banho Gigante Buddemeyer - Toalha Banhão Fio Penteado Canelado - 100% Algodão - Kit 4 Peças (Branco) | Amazon.com.br">
                 <div class="presente-cat-label">Casa</div>
                 <div class="presente-nome">Kit de Toalha — Branco</div>
                 <div class="presente-descricao">Buddemeyer Banhão Fio Penteado · 4 peças</div>
@@ -1310,7 +1397,7 @@
             <div class="presente-card" data-cat="casa" data-id="kit-toalha-verde" data-valor="312"
                  data-nome="Kit de Toalha — Verde" data-descricao="Buddemeyer Banhão Fio Penteado · 4 peças"
                  data-img="https://m.media-amazon.com/images/I/8106ZVa3rLL._AC_SX569_.jpg"
-                 data-loja="https://www.amazon.com.br/s?k=Buddemeyer+Banh%C3%A3o+Fio+Penteado+Verde+1871">
+                 data-loja="Jogo De Banho Gigante Buddemeyer - Toalha Banhão Fio Penteado Canelado - 100% Algodão - Kit 4 Peças (Verde 1871/1836) | Amazon.com.br">
                 <div class="presente-cat-label">Casa</div>
                 <div class="presente-nome">Kit de Toalha — Verde</div>
                 <div class="presente-descricao">Buddemeyer Banhão Fio Penteado · 4 peças</div>
@@ -1321,7 +1408,7 @@
             <div class="presente-card" data-cat="casa" data-id="mesa-jantar" data-valor="5451"
                  data-nome="Mesa de Jantar + 5 Cadeiras" data-descricao="Mesa Cone Ø150cm + Cadeiras New York"
                  data-img="https://decorise.cdn.magazord.com.br/img/2025/04/produto/10115/mesa-cone-e-cadeiras-new-york-cmm.jpg?ims=1000x1000"
-                 data-loja="https://www.decorise.com.br/busca?busca=mesa+cone+150+new+york">
+                 data-loja="Conjunto Mesa Cone Ø150cm + 5 Cadeiras New York Assento Estofado Corano Marrom Mescla">
                 <div class="presente-cat-label">Casa</div>
                 <div class="presente-nome">Mesa de Jantar + 5 Cadeiras</div>
                 <div class="presente-descricao">Mesa Cone Ø150cm + Cadeiras New York</div>
@@ -1332,7 +1419,7 @@
             <div class="presente-card" data-cat="casa" data-id="mesa-cabeceira" data-valor="338"
                  data-nome="Mesa de Cabeceira (par)" data-descricao="Estilo Retrô · Madeira maciça Grécia"
                  data-img="https://m.media-amazon.com/images/I/71mw0qwv2nL._AC_SX569_.jpg"
-                 data-loja="https://www.amazon.com.br/s?k=Mesa+Cabeceira+Estilo+Retr%C3%B4+Madeira+Maci%C3%A7a+Gr%C3%A9cia">
+                 data-loja="Mesa De Cabeceira 1 mesa Estilo Retrô Pés Em Madeira Maciça Grécia (Branco) | Amazon.com.br">
                 <div class="presente-cat-label">Casa</div>
                 <div class="presente-nome">Mesa de Cabeceira (par)</div>
                 <div class="presente-descricao">Estilo Retrô · Madeira maciça Grécia</div>
@@ -1352,9 +1439,9 @@
         </div>
     </section>
 
-    <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-nome" aria-hidden="true">
         <div class="modal-box">
-            <button class="modal-fechar" id="modal-fechar">✕</button>
+            <button class="modal-fechar" id="modal-fechar" aria-label="Fechar janela de presente">✕</button>
             <div id="modal-img-wrap"></div>
             <div class="modal-corpo">
                 <div class="modal-cat" id="modal-cat"></div>
@@ -1383,10 +1470,16 @@
                             <div class="pix-chave" id="pix-chave-valor">64 9217-1411</div>
                             <button class="pix-copiar" id="pix-copiar">Copiar chave</button>
                             
-                            <input type="text" id="nome-presenteador" placeholder="Seu Nome Completo" 
+                            <label for="nome-presenteador" class="sr-only">Seu nome completo</label>
+                            <input type="text" id="nome-presenteador" name="nome-presenteador"
+                                   placeholder="Seu Nome Completo" autocomplete="name" minlength="3"
+                                   aria-required="true"
                                    style="width: 100%; padding: 12px; margin-top: 20px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--fonte-textos); outline: none;">
 
-                            <input type="number" id="valor-enviado" placeholder="Valor enviado (R$)" min="1" step="0.01"
+                            <label for="valor-enviado" class="sr-only">Valor enviado em reais</label>
+                            <input type="number" id="valor-enviado" name="valor-enviado"
+                                   placeholder="Valor enviado (R$)" min="1" step="0.01" inputmode="decimal"
+                                   aria-required="true"
                                    style="width: 100%; padding: 12px; margin-top: 10px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--fonte-textos); outline: none;">
 
                             <div class="pix-instrucao">
@@ -1415,7 +1508,10 @@
                             <div class="pix-instrucao" style="margin-top: 0;">
                                 <strong>Passo 2:</strong> Já comprou? Digite seu nome abaixo e registre para atualizarmos a lista!
                             </div>
-                            <input type="text" id="nome-presenteador-loja" placeholder="Seu Nome Completo" 
+                            <label for="nome-presenteador-loja" class="sr-only">Seu nome completo (compra na loja)</label>
+                            <input type="text" id="nome-presenteador-loja" name="nome-presenteador-loja"
+                                   placeholder="Seu Nome Completo" autocomplete="name" minlength="3"
+                                   aria-required="true"
                                    style="width: 100%; padding: 12px; margin-bottom: 16px; border: 1px solid #ccc; border-radius: 4px; font-family: var(--fonte-textos); font-size: 0.9rem; outline: none;">
 
                             <button class="pix-confirmar" id="loja-confirmar">2. Registrar Compra</button>
@@ -1430,8 +1526,12 @@
     <script>
         document.querySelectorAll('.filtro-btn').forEach(btn => {
             btn.addEventListener('click', function () {
-                document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+                document.querySelectorAll('.filtro-btn').forEach(b => {
+                    b.classList.remove('ativo');
+                    b.setAttribute('aria-pressed', 'false');
+                });
                 this.classList.add('ativo');
+                this.setAttribute('aria-pressed', 'true');
 
                 const cat = this.dataset.cat;
                 document.querySelectorAll('.presente-card').forEach(card => {
@@ -1580,29 +1680,35 @@
             body.appendChild(lbl);
         });
 
-        // Carrega progresso do banco
+        // Carrega progresso do banco + atualiza barra global da lista
         async function carregarProgressoPresentes() {
             try {
                 const snapshot = await getDocs(collection(db, "presentes_contribuicoes"));
                 const totaisPorPresente = {};
 
-                // Soma todas as contribuições
                 snapshot.forEach(doc => {
                     const data = doc.data();
                     const id = data.presenteId;
                     totaisPorPresente[id] = (totaisPorPresente[id] || 0) + data.valorContribuido;
                 });
 
+                let metaTotal = 0;
+                let arrecadadoTotal = 0;
+
                 document.querySelectorAll('.presente-card').forEach(card => {
                     const id = card.dataset.id;
                     const valorTotalNecessario = parseFloat(card.dataset.valor);
                     const acumulado = totaisPorPresente[id] || 0;
-                    
+                    const valorContado = Math.min(acumulado, valorTotalNecessario);
+
+                    metaTotal += valorTotalNecessario;
+                    arrecadadoTotal += valorContado;
+
                     const percentual = Math.min((acumulado / valorTotalNecessario) * 100, 100);
-                    
+
                     const barra = card.querySelector('.presente-barra-fill');
                     const legenda = card.querySelector('.presente-barra-label');
-                    
+
                     if (barra) barra.style.width = percentual + '%';
                     if (legenda) {
                         if (percentual >= 100) {
@@ -1619,12 +1725,44 @@
                         }
                     }
                 });
+
+                // Barra global da lista
+                const pctGlobal = metaTotal > 0 ? Math.min((arrecadadoTotal / metaTotal) * 100, 100) : 0;
+                const arrEl = document.getElementById('progresso-global-arrecadado');
+                const metaEl = document.getElementById('progresso-global-meta');
+                const fillEl = document.getElementById('progresso-global-fill');
+                const pctEl  = document.getElementById('progresso-global-percent');
+                const ariaEl = document.getElementById('progresso-global-aria');
+                if (arrEl)  arrEl.innerText  = 'R$ ' + Math.round(arrecadadoTotal).toLocaleString('pt-BR');
+                if (metaEl) metaEl.innerText = 'de R$ ' + Math.round(metaTotal).toLocaleString('pt-BR');
+                if (fillEl) fillEl.style.width = pctGlobal.toFixed(1) + '%';
+                if (pctEl)  pctEl.innerText = pctGlobal.toFixed(0) + '% presenteado';
+                if (ariaEl) ariaEl.setAttribute('aria-valuenow', pctGlobal.toFixed(0));
             } catch (e) {
                 console.warn("Erro ao carregar progresso:", e);
             }
         }
 
         carregarProgressoPresentes();
+
+        // ===================== RATE-LIMIT (#6) =====================
+        // Bloqueia repetição do mesmo (nome+presente+método) por 5 min via localStorage
+        const RATE_LIMIT_MS = 5 * 60 * 1000;
+        function chaveRateLimit(presenteId, doador, metodo) {
+            return `gl_doacao_${metodo}_${presenteId}_${doador.toLowerCase().replace(/\s+/g,'_')}`;
+        }
+        function jaContribuiuRecentemente(presenteId, doador, metodo) {
+            try {
+                const k = chaveRateLimit(presenteId, doador, metodo);
+                const ultimo = parseInt(localStorage.getItem(k) || '0', 10);
+                return ultimo && (Date.now() - ultimo) < RATE_LIMIT_MS;
+            } catch { return false; }
+        }
+        function marcarContribuicao(presenteId, doador, metodo) {
+            try {
+                localStorage.setItem(chaveRateLimit(presenteId, doador, metodo), String(Date.now()));
+            } catch {}
+        }
 
         // ===================== ABRIR / FECHAR MODAL =====================
         document.querySelectorAll('.presente-btn').forEach(btn => {
@@ -1660,12 +1798,17 @@
             document.getElementById('pix-box').classList.remove('aberto');
             document.getElementById('loja-box').classList.remove('aberto');
 
-            document.getElementById('modal-overlay').classList.add('aberto');
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.add('aberto');
+            overlay.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
+            document.getElementById('modal-fechar').focus();
         }
 
         function fecharModal() {
-            document.getElementById('modal-overlay').classList.remove('aberto');
+            const overlay = document.getElementById('modal-overlay');
+            overlay.classList.remove('aberto');
+            overlay.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
             cardAtivo = null;
         }
@@ -1673,6 +1816,11 @@
         document.getElementById('modal-fechar').addEventListener('click', fecharModal);
         document.getElementById('modal-overlay').addEventListener('click', function(e) {
             if (e.target === this) fecharModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('modal-overlay').classList.contains('aberto')) {
+                fecharModal();
+            }
         });
 
         // ===================== BOTÕES PIX =====================
@@ -1711,6 +1859,11 @@
             const id = cardAtivo.dataset.id;
             const nomePresente = cardAtivo.dataset.nome;
 
+            if (jaContribuiuRecentemente(id, nomeDoador, 'pix')) {
+                alert('Detectamos uma contribuição recente sua para este presente. Aguarde alguns minutos antes de enviar novamente, para evitar duplicidade. 💙');
+                return;
+            }
+
             this.innerText = 'Processando...';
             this.disabled = true;
 
@@ -1724,6 +1877,7 @@
                     statusValidacao: 'aguardando_confirmacao_noiva',
                     data: new Date().toISOString()
                 });
+                marcarContribuicao(id, nomeDoador, 'pix');
 
                 await carregarProgressoPresentes();
 
@@ -1763,23 +1917,27 @@
                 presenteId: id,
                 presenteNome: nome,
                 doador: doador,
-                valorContribuido: valor, 
+                valorContribuido: valor,
                 metodo: tipo,
+                statusValidacao: 'aguardando_confirmacao_noiva',
                 data: new Date().toISOString()
             });
             await carregarProgressoPresentes();
         }
 
-        // Botão "Ver presente no site" — abre o link da loja sem registrar nada
+        // Botão "Ver presente no site" — abre o link OU busca no Google se for texto
         document.getElementById('loja-visitar').addEventListener('click', function(e) {
             e.stopPropagation();
             if (!cardAtivo) return;
-            const linkLoja = cardAtivo.dataset.loja;
-            if (linkLoja && linkLoja !== '#') {
-                window.open(linkLoja, '_blank', 'noopener,noreferrer');
-            } else {
+            const linkLoja = (cardAtivo.dataset.loja || '').trim();
+            if (!linkLoja) {
                 alert('Link da loja indisponível para este item.');
+                return;
             }
+            const url = /^https?:\/\//i.test(linkLoja)
+                ? linkLoja
+                : 'https://www.google.com/search?q=' + encodeURIComponent(linkLoja);
+            window.open(url, '_blank', 'noopener,noreferrer');
         });
 
         document.getElementById('loja-confirmar').addEventListener('click', async function(e) {
@@ -1798,11 +1956,17 @@
             const nome  = cardAtivo.dataset.nome;
             const valor = parseInt(cardAtivo.dataset.valor);
 
+            if (jaContribuiuRecentemente(id, nomeDoador, 'loja')) {
+                alert('Detectamos um registro recente seu para este presente. Aguarde alguns minutos antes de registrar novamente. 💙');
+                return;
+            }
+
             this.innerText = 'Registrando...';
             this.disabled = true;
 
             try {
                 await registrarReservaLoja(id, nome, valor, 'loja', nomeDoador);
+                marcarContribuicao(id, nomeDoador, 'loja');
 
                 abrirWhatsAppNoiva({
                     presente: nome,
@@ -1926,7 +2090,15 @@
         }
         iniciarGaleriaIgreja();
 
-        // ===================== RSVP =====================
+        // ===================== RSVP (com dedup #5) =====================
+        function normalizarNome(s) {
+            return (s || '')
+                .toLowerCase()
+                .normalize('NFD').replace(/[̀-ͯ]/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
         document.getElementById('form-rsvp').addEventListener('submit', async function (event) {
             event.preventDefault();
 
@@ -1935,18 +2107,43 @@
             const nome = document.getElementById('nomeConvidado').value.trim();
             const acompanhantes = parseInt(document.getElementById('qtdAcompanhantes').value, 10);
 
+            if (nome.length < 3 || !nome.includes(' ')) {
+                feedback.style.display = "block";
+                feedback.style.color = "#b00020";
+                feedback.innerText = "Por favor, informe seu nome completo.";
+                return;
+            }
+
             try {
-                btn.innerText = "Enviando...";
+                btn.innerText = "Verificando...";
                 btn.disabled = true;
+
+                // Dedup: checa se já existe confirmação com este nome
+                const snapshot = await getDocs(collection(db, "convidados"));
+                const nomeNorm = normalizarNome(nome);
+                let jaExiste = false;
+                snapshot.forEach(doc => {
+                    if (normalizarNome(doc.data().nome) === nomeNorm) jaExiste = true;
+                });
+
+                if (jaExiste) {
+                    feedback.style.display = "block";
+                    feedback.style.color = "#b00020";
+                    feedback.innerText = "Já encontramos uma confirmação com este nome. Se foi engano, fale com os noivos.";
+                    return;
+                }
+
+                btn.innerText = "Enviando...";
 
                 await addDoc(collection(db, "convidados"), {
                     nome: nome,
+                    nomeNormalizado: nomeNorm,
                     acompanhantes: acompanhantes,
                     dataConfirmacao: new Date().toISOString()
                 });
 
                 feedback.style.display = "block";
-                feedback.style.color = "green";
+                feedback.style.color = "#0a7c2e";
                 feedback.innerText = "Presença confirmada com sucesso! Muito obrigado.";
                 document.getElementById('form-rsvp').reset();
 
@@ -1955,7 +2152,7 @@
             } catch (e) {
                 console.error("Erro ao adicionar documento: ", e);
                 feedback.style.display = "block";
-                feedback.style.color = "red";
+                feedback.style.color = "#b00020";
                 feedback.innerText = "Ocorreu um erro ao confirmar. Tente novamente.";
             } finally {
                 btn.innerText = "Confirmar Presença";

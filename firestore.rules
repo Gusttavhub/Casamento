@@ -1,0 +1,65 @@
+rules_version = '2';
+
+// Regras de segurança do Firestore — site Gusttavo & Luciana
+// Publicar: firebase deploy --only firestore:rules
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===== Helpers =====
+    function isString(v)  { return v is string; }
+    function isNumber(v)  { return v is number; }
+    function isInt(v)     { return v is int; }
+    function isAdmin()    {
+      // Defina UIDs de admin no campo "admins" da coleção /config (doc "admins")
+      return request.auth != null
+          && exists(/databases/$(database)/documents/config/admins)
+          && request.auth.uid in get(/databases/$(database)/documents/config/admins).data.uids;
+    }
+    function notTooBig(s, n) { return s.size() <= n; }
+
+    // ===== RSVP de convidados =====
+    match /convidados/{docId} {
+      allow read: if true;
+
+      allow create: if
+          request.resource.data.keys().hasOnly(['nome','nomeNormalizado','acompanhantes','dataConfirmacao'])
+          && isString(request.resource.data.nome)             && notTooBig(request.resource.data.nome, 80)
+          && isString(request.resource.data.nomeNormalizado)  && notTooBig(request.resource.data.nomeNormalizado, 80)
+          && isInt(request.resource.data.acompanhantes)
+          && request.resource.data.acompanhantes >= 0
+          && request.resource.data.acompanhantes <= 10
+          && isString(request.resource.data.dataConfirmacao);
+
+      allow update, delete: if isAdmin();
+    }
+
+    // ===== Contribuições para presentes =====
+    match /presentes_contribuicoes/{docId} {
+      allow read: if true;
+
+      allow create: if
+          request.resource.data.keys().hasOnly([
+            'presenteId','presenteNome','doador',
+            'valorContribuido','metodo','statusValidacao','data'
+          ])
+          && isString(request.resource.data.presenteId)   && notTooBig(request.resource.data.presenteId, 60)
+          && isString(request.resource.data.presenteNome) && notTooBig(request.resource.data.presenteNome, 120)
+          && isString(request.resource.data.doador)       && notTooBig(request.resource.data.doador, 80)
+          && isNumber(request.resource.data.valorContribuido)
+          && request.resource.data.valorContribuido > 0
+          && request.resource.data.valorContribuido <= 100000
+          && request.resource.data.metodo in ['pix','loja']
+          && request.resource.data.statusValidacao == 'aguardando_confirmacao_noiva'
+          && isString(request.resource.data.data);
+
+      // Só admin pode aprovar/marcar como inválido ou apagar
+      allow update, delete: if isAdmin();
+    }
+
+    // ===== Configuração (lista de admins) =====
+    match /config/{docId} {
+      allow read:  if isAdmin();
+      allow write: if false; // edite manualmente via console
+    }
+  }
+}
