@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciana & Gusttavo| Nosso Casamento</title>
+    <title>Luciana & Gusttavo | Nosso Casamento</title>
     <style>
+        /* Importando uma fonte elegante do Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
         /* Variáveis de Cores - Estilo Minimalista */
         :root {
             --branco-puro: #ffffff;
@@ -12,7 +15,7 @@
             --texto-principal: #2c2c2c;
             --texto-secundario: #6a6a6a;
             --texto-terciario: #8a8a8a;
-            --fonte-titulos: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --fonte-titulos: 'Playfair Display', Georgia, serif;
             --fonte-textos: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
@@ -147,6 +150,24 @@
             position: relative;
             overflow: hidden;
             background: #000;
+        }
+
+        /* Código para ocultar os dois mosaicos do meio */
+        .mosaic-cell:nth-child(6),
+        .mosaic-cell:nth-child(7) {
+            visibility: hidden;
+        }
+
+        /* Ajuste para esconder o meio também na versão de celular (telas menores) */
+        @media (max-width: 768px) {
+            .mosaic-cell:nth-child(6),
+            .mosaic-cell:nth-child(7) {
+                visibility: visible; /* Volta os normais */
+            }
+            .mosaic-cell:nth-child(5),
+            .mosaic-cell:nth-child(6) {
+                visibility: hidden; /* Esconde os do meio na grade do celular */
+            }
         }
 
         .mosaic-cell img {
@@ -1006,7 +1027,7 @@
         <div class="mosaic-overlay" aria-hidden="true"></div>
 
         <div class="hero-conteudo">
-            <h1>Gusttavo & Luciana</h1>
+            <h1>Luciana & Gusttavo</h1>
         </div>
     </section>
 
