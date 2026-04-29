@@ -17,10 +17,15 @@ service cloud.firestore {
     }
     function notTooBig(s, n) { return s.size() <= n; }
 
+    // ===== Catálogo de Presentes (O site lê, a Noiva edita) =====
+    match /presentes_catalogo/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     // ===== RSVP de convidados =====
     match /convidados/{docId} {
       allow read: if true;
-
       allow create: if
           request.resource.data.keys().hasOnly(['nome','nomeNormalizado','acompanhantes','dataConfirmacao'])
           && isString(request.resource.data.nome)             && notTooBig(request.resource.data.nome, 80)
@@ -36,7 +41,6 @@ service cloud.firestore {
     // ===== Contribuições para presentes =====
     match /presentes_contribuicoes/{docId} {
       allow read: if true;
-
       allow create: if
           request.resource.data.keys().hasOnly([
             'presenteId','presenteNome','doador',
@@ -52,7 +56,6 @@ service cloud.firestore {
           && request.resource.data.statusValidacao == 'aguardando_confirmacao_noiva'
           && isString(request.resource.data.data);
 
-      // Só admin pode aprovar/marcar como inválido ou apagar
       allow update, delete: if isAdmin();
     }
 
